@@ -7,6 +7,7 @@ import {
   TableCell,
   Text
 } from '@tremor/react';
+import { formatDateForUI } from '../lib/hooks/convertDate';
 
 interface User {
   id: number;
@@ -67,11 +68,14 @@ export function AttendanceTable({ records }: { records: AttendanceRecord[]}) {
         </TableRow>
       </TableHead>
       <TableBody>
-        {records.map((record) => (
+        {records.map((record) =>  {
+            const formattedDate = formatDateForUI(record?.perf_dt);
+
+          return (
           <TableRow key={record.id}>
             <TableCell>{record.production_season}</TableCell>
             <TableCell>
-              <Text>{record.perf_dt}</Text>
+              <Text>{formattedDate}</Text>
             </TableCell>
             <TableCell>
               <Text>{record.perf_time}</Text>
@@ -83,7 +87,9 @@ export function AttendanceTable({ records }: { records: AttendanceRecord[]}) {
               <Text>{record.revenue}</Text>
             </TableCell>
           </TableRow>
-        ))}
+        )
+          }
+          )}
       </TableBody>
     </Table>
   );
