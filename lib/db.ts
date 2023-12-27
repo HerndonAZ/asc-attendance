@@ -1,12 +1,18 @@
 const credintials = "restweb:webapi:location1:pwd123"
-const restAPIUrl = `https://azscicusaz0restprod.aws.tnhs.cloud/tessituraservice` 
+const restAPIUrl = `https://azscicusaz0restprod.tnhs.cloud/tessituraservice` 
+const userName = "restweb"
+const userGroup = "webapi" || "webAPI"
+const machineName = "RESTAPI"
+
+
 
 export const fetchTessitura = async () => {
   try {
     const query = `/custom/Attendance_Update/?perf_dt=2023-09-30`;
+    const query2 = ""
     const res = await fetch(restAPIUrl + query, {
       method: "GET",
-      body: "",
+      //body: "",
      // headers: ""
     });
     if (res.ok) {

@@ -6,6 +6,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { signIn, signOut } from 'next-auth/react';
 import Image from 'next/image';
+import DarkModeButton from '../ui/Buttons/DarkModeButton';
 
 const navigation = [
   { name: 'Dashboard', href: '/' },
@@ -20,34 +21,27 @@ export default function Navbar({ user }: { user: any }) {
   const pathname = usePathname();
 
   return (
-    <Disclosure as="nav" className="bg-white shadow-sm">
+    <Disclosure as="nav" className="shadow-sm bg-gray-50 dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 justify-between">
               <div className="flex">
                 <div className="flex flex-shrink-0 items-center">
-                  <svg
-                    width="32"
-                    height="32"
-                    viewBox="0 0 32 32"
-                    fill="none"
-                    className="text-gray-100"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <rect
-                      width="100%"
-                      height="100%"
-                      rx="16"
-                      fill="currentColor"
-                    />
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z"
-                      fill="black"
-                    />
-                  </svg>
+                  <Image
+                    src="/images/logo_black-asc.png"
+                    width={64}
+                    height={32}
+                    alt="asc-logo"
+                    className='visible dark:hidden'
+                  />
+                     <Image
+                    src="/images/logo_white-asc.png"
+                    width={64}
+                    height={32}
+                    alt="asc-logo"
+                    className='hidden dark:block'
+                  />
                 </div>
                 <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
                   {navigation.map((item) => (
@@ -56,7 +50,7 @@ export default function Navbar({ user }: { user: any }) {
                       href={item.href}
                       className={classNames(
                         pathname === item.href
-                          ? 'border-slate-500 text-gray-900'
+                          ? 'border-slate-500 text-gray-900 dark:text-gray-100'
                           : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
                         'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
                       )}
@@ -68,9 +62,9 @@ export default function Navbar({ user }: { user: any }) {
                 </div>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:items-center">
-                <Menu as="div" className="relative ml-3">
+                <Menu as="div" className="relative ml-3 ">
                   <div>
-                    <Menu.Button className="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2">
+                    <Menu.Button className="flex rounded-full bg-white  text-sm focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2">
                       <span className="sr-only">Open user menu</span>
                       <Image
                         className="h-8 w-8 rounded-full"
@@ -90,14 +84,14 @@ export default function Navbar({ user }: { user: any }) {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="border dark:border-gray-700 absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-gray-800 dark:text-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       {user ? (
                         <Menu.Item>
                           {({ active }) => (
                             <button
                               className={classNames(
                                 active ? 'bg-gray-100' : '',
-                                'flex w-full px-4 py-2 text-sm text-gray-700'
+                                'flex w-full px-4 py-2 text-sm text-gray-700 dark:text-white'
                               )}
                               onClick={() => signOut()}
                             >
@@ -110,7 +104,7 @@ export default function Navbar({ user }: { user: any }) {
                           {({ active }) => (
                             <button
                               className={classNames(
-                                active ? 'bg-gray-100' : '',
+                                active ? 'bg-gray-100 ' : '',
                                 'flex w-full px-4 py-2 text-sm text-gray-700'
                               )}
                               onClick={() => signIn('github')}
@@ -120,6 +114,12 @@ export default function Navbar({ user }: { user: any }) {
                           )}
                         </Menu.Item>
                       )}
+
+                      <Menu.Item>
+                        <div className="flex w-full px-4 py-2 text-sm text-gray-700 ">
+                          <DarkModeButton />
+                        </div>
+                      </Menu.Item>
                     </Menu.Items>
                   </Transition>
                 </Menu>

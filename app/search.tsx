@@ -23,7 +23,7 @@ export default function Search({ disabled }: { disabled?: boolean }) {
   }
 
   return (
-    <div className="relative mt-5 max-w-md">
+    <div className="relative mt-5 max-w-md ">
       <label htmlFor="search" className="sr-only">
         Search
       </label>
@@ -33,7 +33,7 @@ export default function Search({ disabled }: { disabled?: boolean }) {
           aria-hidden="true"
         >
           <MagnifyingGlassIcon
-            className="mr-3 h-4 w-4 text-gray-400"
+            className="mr-3 h-4 w-4 text-gray-400 dark:text-gray-100"
             aria-hidden="true"
           />
         </div>
@@ -42,7 +42,7 @@ export default function Search({ disabled }: { disabled?: boolean }) {
           name="search"
           id="search"
           disabled={disabled}
-          className="h-10 block w-full rounded-md border border-gray-200 pl-9 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          className="h-10 block w-full rounded-md border border-gray-200 dark:border-gray-600 pl-9 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm bg-gray-50 dark:bg-gray-800"
           placeholder="Search by name..."
           spellCheck={false}
           onChange={(e) => handleSearch(e.target.value)}

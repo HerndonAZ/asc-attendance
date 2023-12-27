@@ -1,8 +1,12 @@
 import type { Config } from 'tailwindcss';
 
 export default {
+  darkMode: 'class',
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './ui/**/*.{js,ts,jsx,tsx,mdx}',
+    './lib/**/*.{js,ts,jsx,tsx,mdx}',
+
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './node_modules/@tremor/**/*.{js,ts,jsx,tsx,mdx}'
   ],
@@ -28,7 +32,7 @@ export default {
             emphasis: '#374151' // gray-700
           },
           border: {
-            DEFAULT: '#e5e7eb' // gray-200
+          //  DEFAULT: '#e5e7eb' // gray-200
           },
           ring: {
             DEFAULT: '#e5e7eb' // gray-200
@@ -40,6 +44,24 @@ export default {
             strong: '#111827', // gray-900
             inverted: '#ffffff' // white
           }
+        }, 
+       "dark-tremor" :{
+        background: {
+          muted: '#f9fafb', // gray-50
+          subtle: '#f3f4f6', // gray-100
+          DEFAULT: '#f9fafb', // gray-50
+          emphasis: '#374151' // gray-700
+        },
+        border: {
+        //  DEFAULT: '#374151', // gray-700
+        },
+        content: {
+          subtle: '#9ca3af', // gray-400
+          DEFAULT: '#6b7280', // gray-500
+          emphasis: '#374151', // gray-700
+          strong: '#f3f4f6', // gray-100
+          inverted: '#000000' // white
+        }
         }
       },
       boxShadow: {
