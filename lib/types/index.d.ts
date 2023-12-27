@@ -7,5 +7,12 @@ export interface AttendanceRecord {
     theater?: string | null
     attendance: number | null
     revenue: number | string | null
-  
   }
+
+  export interface User {
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+  }
+  
