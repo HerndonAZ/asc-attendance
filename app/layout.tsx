@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning > 
    
-      <body className="h-full bg-white dark:bg-gray-900 ">
+      <body className="h-full bg-gray-50 dark:bg-gray-900 ">
         <Providers>
         <Suspense>
           <Nav />

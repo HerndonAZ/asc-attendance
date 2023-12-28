@@ -4,14 +4,17 @@
 import { fetchTessitura } from '../lib/db';
 import AttendanceChart from '../ui/AttendanceChart';
 import { records } from '../lib/test-data/testRecord';
+import { auth } from './auth';
+import AuthComponent from '../ui/Auth/AuthComponent';
 
 export default async function IndexPage() {
   const users = null;
   const res = await fetchTessitura();
-  
+  const session = await auth();
+
 
   if (res) {
-    return <main className="p-4 md:p-10 mx-auto max-w-7xl h-screen">{JSON.stringify(res)}</main>;
+    return <div className="p-4 md:p-10 mx-auto max-w-7xl h-screen">{JSON.stringify(res)}</div>;
   }
 
   // if (users) {
@@ -26,6 +29,12 @@ export default async function IndexPage() {
   //     </main>
   //   );
   // }
-``
-  return <AttendanceChart records={records} />;
+ if (session){
+  return <AttendanceChart records={records} />
+} else {
+  return <AuthComponent/>
+}
+
+;
+
 }

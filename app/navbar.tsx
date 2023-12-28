@@ -21,7 +21,7 @@ export default function Navbar({ user }: { user: any }) {
   const pathname = usePathname();
 
   return (
-    <Disclosure as="nav" className="shadow-sm bg-gray-50 dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800">
+    <Disclosure as="nav" className="shadow-sm bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -44,7 +44,7 @@ export default function Navbar({ user }: { user: any }) {
                   />
                 </div>
                 <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-                  {navigation.map((item) => (
+                  {user && navigation.map((item) => (
                     <a
                       key={item.name}
                       href={item.href}
@@ -107,7 +107,7 @@ export default function Navbar({ user }: { user: any }) {
                                 active ? 'bg-gray-100 ' : '',
                                 'flex w-full px-4 py-2 text-sm text-gray-700'
                               )}
-                              onClick={() => signIn('github')}
+                              onClick={() => signIn('google')}
                             >
                               Sign in
                             </button>
@@ -190,7 +190,7 @@ export default function Navbar({ user }: { user: any }) {
               ) : (
                 <div className="mt-3 space-y-1">
                   <button
-                    onClick={() => signIn('github')}
+                    onClick={() => signIn('google')}
                     className="flex w-full px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
                   >
                     Sign in

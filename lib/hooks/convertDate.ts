@@ -16,4 +16,11 @@ export function formatDateForUI(dateString: string): string {
   }
   
   // Example usage
+  export function formatDateForStatus(inputDate: string) {
+    const dateObject = new Date(inputDate);
+    const year = dateObject.getFullYear();
+    const month = String(dateObject.getMonth() + 1).padStart(2, '0');
+    const day = String(dateObject.getDate()).padStart(2, '0');
   
+    return `${year}-${month}-${day}`;
+  }
