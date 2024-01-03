@@ -34,7 +34,7 @@ const credentials = Buffer.from(`${username}:${usergroup}:${machine}:${password}
 const handleTessituraError = (response: Response) => {
     console.error(`Error: HTTP Status Code: ${response.status}`);
     return response.json().then(data => {
-        console.error(`Tessitura returned ${JSON.stringify(response)} errors`);
+        console.error(`Tessitura returned ${data.ErrorMessages.length} errors`);
         console.error(`Tessitura responded: ${data.Error}`);
         throw new Error("Tessitura API error");
     });
@@ -43,7 +43,7 @@ const handleTessituraError = (response: Response) => {
 // Function to fetch data from Tessitura API
 export const fetchTess= async () => {
     try {
-        const response = await fetch(`${apiUrl}/ReferenceData/PerformanceStatuses/Summary`, {
+        const response = await fetch(`${apiUrl}/TXN/PriceTypes/GetSummaries`, {
             method: 'GET',
             headers: {
               'Authorization': 'Basic ' + credentials,
@@ -51,17 +51,16 @@ export const fetchTess= async () => {
         });
 
         if (!response.ok) {
-          console.log(response)
             // Handle Tessitura API errors
             await handleTessituraError(response);
-
-            return JSON.stringify(response)
         }
 
         const data = await response.json();
-       // console.log("Pricetypes:");
-        //console.log("----------------------------------------------");
-      return data
+        console.log("Pricetypes:");
+        console.log("----------------------------------------------");
+      return  data.forEach((v: { Description: any }) => {
+            console.log(v.Description);
+        });
     } catch (error) {
         // Handle other errors (e.g., network issues, deserialization errors)
         console.error(error);

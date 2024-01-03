@@ -28,11 +28,11 @@ const username = "restweb"
 const usergroup ="webapi" || "webAPI"
 const machine = "875";
 const password = process.env.TESS_API_PASSWORD as string;
-const credentials = Buffer.from(`${username}:${usergroup}:${machine}:${password}`).toString('base64');
+const credentials = (`${username}:${usergroup}:${machine}:${password}`);
 
 // Function to handle errors from Tessitura API
 const handleTessituraError = (response: Response) => {
-    console.error(`Error: HTTP Status Code: ${response.status}`);
+    console.error(`Error: HTTP Status Code: ${response.status}, ${JSON.stringify(response)}`);
     return response.json().then(data => {
         console.error(`Tessitura returned ${JSON.stringify(response)} errors`);
         console.error(`Tessitura responded: ${data.Error}`);
@@ -51,7 +51,6 @@ export const fetchTess= async () => {
         });
 
         if (!response.ok) {
-          console.log(response)
             // Handle Tessitura API errors
             await handleTessituraError(response);
 

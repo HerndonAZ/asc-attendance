@@ -1,7 +1,7 @@
 // import { Card, Title, Text } from '@tremor/react';
 // import Search from './search';
 // import { UsersTable } from './table';
-import { fetchTess, fetchTessitura } from '../lib/db';
+import { fetchTessitura } from '../lib/db';
 import AttendanceChart from '../ui/AttendanceChart';
 import { records } from '../lib/test-data/testRecord';
 import { auth } from './auth';
@@ -9,8 +9,7 @@ import AuthComponent from '../ui/Auth/AuthComponent';
 
 export default async function IndexPage() {
   const users = null;
-  const res = await fetchTess();
-  console.log(res)
+  const res = await fetchTessitura();
   const session = await auth();
 
 

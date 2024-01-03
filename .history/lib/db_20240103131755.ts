@@ -23,7 +23,7 @@ export const fetchTessitura = async () => {
   }
 };
 
-const apiUrl = `https://azscicusaz0restprod.tnhs.cloud/tessituraservice` 
+const apiUrl = `https://azscicusaz0restprod.aws.tnhs.cloud/tessituraservice` 
 const username = "restweb"
 const usergroup ="webapi" || "webAPI"
 const machine = "875";
@@ -43,7 +43,7 @@ const handleTessituraError = (response: Response) => {
 // Function to fetch data from Tessitura API
 export const fetchTess= async () => {
     try {
-        const response = await fetch(`${apiUrl}/ReferenceData/PerformanceStatuses/Summary`, {
+        const response = await fetch(`${apiUrl}/TXN/PriceTypes/GetSummaries`, {
             method: 'GET',
             headers: {
               'Authorization': 'Basic ' + credentials,
@@ -51,7 +51,6 @@ export const fetchTess= async () => {
         });
 
         if (!response.ok) {
-          console.log(response)
             // Handle Tessitura API errors
             await handleTessituraError(response);
 
@@ -59,8 +58,8 @@ export const fetchTess= async () => {
         }
 
         const data = await response.json();
-       // console.log("Pricetypes:");
-        //console.log("----------------------------------------------");
+        console.log("Pricetypes:");
+        console.log("----------------------------------------------");
       return data
     } catch (error) {
         // Handle other errors (e.g., network issues, deserialization errors)

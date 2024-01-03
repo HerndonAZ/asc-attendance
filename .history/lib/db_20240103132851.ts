@@ -51,7 +51,6 @@ export const fetchTess= async () => {
         });
 
         if (!response.ok) {
-          console.log(response)
             // Handle Tessitura API errors
             await handleTessituraError(response);
 

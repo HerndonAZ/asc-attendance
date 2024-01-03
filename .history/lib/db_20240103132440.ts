@@ -43,7 +43,7 @@ const handleTessituraError = (response: Response) => {
 // Function to fetch data from Tessitura API
 export const fetchTess= async () => {
     try {
-        const response = await fetch(`${apiUrl}/ReferenceData/PerformanceStatuses/Summary`, {
+        const response = await fetch(`${apiUrl}/TXN/Performances`, {
             method: 'GET',
             headers: {
               'Authorization': 'Basic ' + credentials,
@@ -51,7 +51,6 @@ export const fetchTess= async () => {
         });
 
         if (!response.ok) {
-          console.log(response)
             // Handle Tessitura API errors
             await handleTessituraError(response);
 
