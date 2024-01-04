@@ -9,8 +9,8 @@ import Image from 'next/image';
 import DarkModeButton from '../ui/Buttons/DarkModeButton';
 
 const navigation = [
-  { name: 'Dashboard', href: '/' },
-  { name: 'Playground', href: '/playground' }
+  { name: 'Dashboard', href: '/', hidden: false },
+ // { name: 'Playground', href: '/playground' , hidden: true}
 ];
 
 function classNames(...classes: string[]) {
@@ -44,8 +44,11 @@ export default function Navbar({ user }: { user: any }) {
                   />
                 </div>
                 <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-                  {user && navigation.map((item) => (
+                  {user && navigation.map((item) => { 
+
+                    return(
                     <a
+                    
                       key={item.name}
                       href={item.href}
                       className={classNames(
@@ -58,7 +61,8 @@ export default function Navbar({ user }: { user: any }) {
                     >
                       {item.name}
                     </a>
-                  ))}
+                  )
+                      })}
                 </div>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:items-center">

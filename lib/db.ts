@@ -46,7 +46,7 @@ export const fetchTess= async () => {
 
     console.log(credentials, 'Credentials')
     try {
-        const response = await fetch(`${apiUrl}/ReferenceData/PerformanceStatuses/Summary`, {
+        const response = await fetch(`${apiUrl}/ReferenceData/PerformanceTypes/Summary`, {
             method: 'GET',
             headers: {
               'Authorization': 'Basic ' + credentials,
