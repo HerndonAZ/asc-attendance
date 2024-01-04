@@ -1,33 +1,33 @@
-const restAPIUrl = `https://azscicusaz0restprod.tnhs.cloud/tessituraservice` 
-const userName = "restweb"
-const userGroup = "webapi" || "webAPI"
-const machineName = "875"
-const tessApiPW = process.env.TESS_API_PASSWORD as string
-
-
-export const fetchTessitura = async () => {
-  try {
-    const query = `/custom/Attendance_Update/?perf_dt=2023-09-30`;
-    const query2 = ""
-    const res = await fetch(restAPIUrl + query, {
-      method: "GET",
-      //body: "",
-     // headers: ""
-    });
-    if (res.ok) {
-      return res;
-    }
-  } catch (error) {
-    console.log(error, 'ERROR')
-    return null
-  }
-};
+const tessitura = {
+	id: "1bf452bd-afb4-4b4f-888c-ce19505c06ee",
+	name: "Arizona Science Center LIVE",
+	values: [
+		{
+			key: "rest_api_url",
+			value: "https://AZSCICUSAZ0restprod.tnhs.cloud/TessituraService/",
+			enabled: true
+		},
+		{
+			key: "rest_username",
+			value: "RESTAPI:WEBAPI:RestAPI",
+			enabled: true
+		},
+		{
+			key: "rest_password",
+			value: "N3wS!t3forASC23!",
+			enabled: true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2023-04-04T19:22:20.537Z",
+	"_postman_exported_using": "Postman/10.12.10"
+}
 
 const apiUrl = `https://azscicusaz0restprod.tnhs.cloud/tessituraservice` 
-const username = "restweb"
-const usergroup ="webapi" || "webAPI"
-const machine = "875";
-const password = process.env.TESS_API_PASSWORD as string;
+const username = "RESTAPI"
+const usergroup ="WEBAPI" 
+const machine = 'RestAPI';
+const password = "N3wS!t3forASC23!" || process.env.TESS_API_PASSWORD as string;
 const credentials = Buffer.from(`${username}:${usergroup}:${machine}:${password}`).toString('base64');
 
 // Function to handle errors from Tessitura API
@@ -42,20 +42,23 @@ const handleTessituraError = (response: Response) => {
 
 // Function to fetch data from Tessitura API
 export const fetchTess= async () => {
+  if(credentials){
+
+    console.log(credentials, 'Credentials')
     try {
         const response = await fetch(`${apiUrl}/ReferenceData/PerformanceStatuses/Summary`, {
             method: 'GET',
             headers: {
               'Authorization': 'Basic ' + credentials,
+              "Content-Type": "application/json",
+
             },
         });
 
         if (!response.ok) {
-          console.log(response)
+         // console.log(response)
             // Handle Tessitura API errors
             await handleTessituraError(response);
-
-            return JSON.stringify(response)
         }
 
         const data = await response.json();
@@ -65,8 +68,8 @@ export const fetchTess= async () => {
     } catch (error) {
         // Handle other errors (e.g., network issues, deserialization errors)
         console.error(error);
-        return error
     }
+  }
 };
 
 // Call the fetchData function

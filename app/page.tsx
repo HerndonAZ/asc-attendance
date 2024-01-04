@@ -1,7 +1,7 @@
 // import { Card, Title, Text } from '@tremor/react';
 // import Search from './search';
 // import { UsersTable } from './table';
-import { fetchTess, fetchTessitura } from '../lib/db';
+import { fetchTess } from '../lib/db';
 import AttendanceChart from '../ui/AttendanceChart';
 import { records } from '../lib/test-data/testRecord';
 import { auth } from './auth';
@@ -14,7 +14,7 @@ export default async function IndexPage() {
   const session = await auth();
 
 
-  if (res) {
+  if (res && session) {
     return <div className="p-4 md:p-10 mx-auto max-w-7xl h-screen">{JSON.stringify(res)}</div>;
   }
 
