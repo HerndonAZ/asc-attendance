@@ -10,11 +10,11 @@ import AuthComponent from '../ui/Auth/AuthComponent';
 export default async function IndexPage() {
   const users = null;
   const res = await fetchTess();
-  console.log(res)
+  //console.log(res)
   const session = await auth();
 
 
-  if (res && session) {
+  if (!res && session) {
     return <div className="p-4 md:p-10 mx-auto max-w-7xl h-screen">{JSON.stringify(res)}</div>;
   }
 

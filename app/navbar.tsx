@@ -94,8 +94,8 @@ export default function Navbar({ user }: { user: any }) {
                           {({ active }) => (
                             <button
                               className={classNames(
-                                active ? 'bg-gray-100' : '',
-                                'flex w-full px-4 py-2 text-sm text-gray-700 dark:text-white'
+                                active ? 'bg-gray-100 dark:bg-gray-800' : '',
+                                'flex w-full px-4 py-2 text-sm text-gray-700 dark:text-white hover:dark:bg-gray-700'
                               )}
                               onClick={() => signOut()}
                             >
