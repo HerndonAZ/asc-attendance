@@ -9,9 +9,10 @@ import AuthComponent from '../ui/Auth/AuthComponent';
 export const dynamic = 'force-dynamic'
 export default async function IndexPage() {
   const users = null;
-  const res: any = await fetchTess();
   //console.log(res)
   const session = await auth();
+  const res: any = session && await fetchTess();
+
   console.log(res?.Attendance_Update?.AttendanceUpdate)
 
   const records = res?.Attendance_Update?.AttendanceUpdate
@@ -32,7 +33,7 @@ export default async function IndexPage() {
   //     </main>
   //   );
   // }
- if (session && res){
+ if (session){
   return <AttendanceChart records={records} />
 } else {
   return <AuthComponent/>
