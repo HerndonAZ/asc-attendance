@@ -79,6 +79,7 @@ records.map((record) => {
       time: record.perf_time,
       date: record.perf_dt,
     };
+    
 
     return (
       <TableRow key={record.id}>
