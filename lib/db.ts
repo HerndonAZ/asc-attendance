@@ -1,3 +1,5 @@
+import { convertXmlToJson } from "./hooks/convertXML";
+
 const tessitura = {
 	id: "1bf452bd-afb4-4b4f-888c-ce19505c06ee",
 	name: "Arizona Science Center LIVE",
@@ -43,10 +45,12 @@ const handleTessituraError = (response: Response) => {
 // Function to fetch data from Tessitura API
 export const fetchTess= async () => {
   if(credentials){
-
+    const customApiEndpoint = '/custom/Attendance_Update?perf_dt=2023-09-30'
+    const workingEndpoint = '/ReferenceData/PerformanceTypes/Summary'
     console.log(credentials, 'Credentials')
     try {
-        const response = await fetch(`${apiUrl}/ReferenceData/PerformanceTypes/Summary`, {
+        const response = await fetch(apiUrl + customApiEndpoint, {
+            cache: 'no-cache',
             method: 'GET',
             headers: {
               'Authorization': 'Basic ' + credentials,
@@ -61,7 +65,10 @@ export const fetchTess= async () => {
             await handleTessituraError(response);
         }
 
-        const data = await response.json();
+        const xml = await response.text()
+        const data = await convertXmlToJson(xml);
+
+       // console.log(data, 'data')
        // console.log("Pricetypes:");
         //console.log("----------------------------------------------");
       return data

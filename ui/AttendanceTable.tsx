@@ -10,10 +10,13 @@ import {
 } from '@tremor/react';
 import { formatDateForStatus, formatDateForUI } from '../lib/hooks/convertDate';
 import { AttendanceRecord } from '../lib/types';
-import { records } from '../lib/test-data/testRecord';
 import React from 'react';
 
-const recordsByTheater: Record<string, AttendanceRecord[]> = {};
+
+
+//console.log(recordsByTheater, 'RBT')
+export function AttendanceTable({ records }: { records: AttendanceRecord[] }) {
+  const recordsByTheater: Record<string, AttendanceRecord[]> = {};
 records.map((record) => {
   if (!recordsByTheater[record.theater!]) {
     recordsByTheater[record.theater!] = [];
@@ -21,9 +24,6 @@ records.map((record) => {
   recordsByTheater[record.theater!].push(record);
 });
 
-
-//console.log(recordsByTheater, 'RBT')
-export function AttendanceTable({ records }: { records: AttendanceRecord[] }) {
   return (
     <Table className="">
       <TableHead>

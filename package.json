@@ -34,6 +34,7 @@
     "server-only": "^0.0.1",
     "tailwindcss": "^3.3.5",
     "typescript": "5.2.2",
+    "xml2js": "^0.6.2",
     "zustand": "^4.4.7"
   },
   "prettier": {
@@ -41,5 +42,8 @@
     "singleQuote": true,
     "tabWidth": 2,
     "trailingComma": "none"
+  },
+  "devDependencies": {
+    "@types/xml2js": "^0.4.14"
   }
 }

@@ -3,20 +3,22 @@
 // import { UsersTable } from './table';
 import { fetchTess } from '../lib/db';
 import AttendanceChart from '../ui/AttendanceChart';
-import { records } from '../lib/test-data/testRecord';
+//import { records } from '../lib/test-data/testRecord';
 import { auth } from './auth';
 import AuthComponent from '../ui/Auth/AuthComponent';
-
+export const dynamic = 'force-dynamic'
 export default async function IndexPage() {
   const users = null;
-  const res = await fetchTess();
+  const res: any = await fetchTess();
   //console.log(res)
   const session = await auth();
+  console.log(res?.Attendance_Update?.AttendanceUpdate)
 
+  const records = res?.Attendance_Update?.AttendanceUpdate
 
-  if (!res && session) {
-    return <div className="p-4 md:p-10 mx-auto max-w-7xl h-screen">{JSON.stringify(res)}</div>;
-  }
+  // if (res && session) {
+  //   return <div className="p-4 md:p-10 mx-auto max-w-7xl h-screen">{JSON.stringify(res)}</div>;
+  // }
 
   // if (users) {
   //   return (
@@ -30,7 +32,7 @@ export default async function IndexPage() {
   //     </main>
   //   );
   // }
- if (session){
+ if (session && res){
   return <AttendanceChart records={records} />
 } else {
   return <AuthComponent/>
