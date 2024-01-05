@@ -28,11 +28,14 @@ records.map((record) => {
     <Table className="">
       <TableHead>
         <TableRow>
-          <TableHeaderCell className="text-black dark:text-white">
+          <TableHeaderCell className="text-black dark:text-white hidden">
             Status
           </TableHeaderCell>
           <TableHeaderCell className="text-black dark:text-white hidden">
             Theater
+          </TableHeaderCell>
+          <TableHeaderCell className="text-black dark:text-white">
+            Season
           </TableHeaderCell>
           <TableHeaderCell className="text-black dark:text-white">
             Performance
@@ -61,47 +64,62 @@ records.map((record) => {
               </TableHeaderCell>
             </TableRow>
             {/* Theater records */}
-            {recordsForTheater.map((record) => {
-              const formattedDate = formatDateForUI(record?.perf_dt);
-              const statusProps = {
-                time: record.perf_time,
-                date: record.perf_dt
-              };
+            {recordsForTheater
+  .slice()
+  .sort((a, b) => {
+    // Convert the time strings to Date objects for proper comparison
+    const timeA = new Date(`2022-01-01 ${a.perf_time}`);
+    const timeB = new Date(`2022-01-01 ${b.perf_time}`);
+    
+    return timeA.getTime() - timeB.getTime();
+  })
+  .map((record) => {
+    const formattedDate = formatDateForUI(record?.perf_dt);
+    const statusProps = {
+      time: record.perf_time,
+      date: record.perf_dt,
+    };
 
-              return (
-                <TableRow key={record.id}>
-                  <TableCell className="text-gray-900 dark:text-gray-100">
-                    <div className='mx-auto'><StatusIcon {...statusProps} /></div>
-                  </TableCell>
-                  <TableCell className="text-gray-900 dark:text-gray-100 hidden">
-                    {record.theater}
-                  </TableCell>
-                  <TableCell className="text-gray-900 dark:text-gray-100">
-                    {record.production_season}
-                  </TableCell>
-                  <TableCell>
-                    <Text className="text-gray-900 dark:text-gray-100">
-                      {formattedDate}
-                    </Text>
-                  </TableCell>
-                  <TableCell>
-                    <Text className="text-gray-900 dark:text-gray-100">
-                      {record.perf_time}
-                    </Text>
-                  </TableCell>
-                  <TableCell>
-                    <Text className="text-gray-900 dark:text-gray-100">
-                      {record.attendance}
-                    </Text>
-                  </TableCell>
-                  <TableCell>
-                    <Text className="text-gray-900 dark:text-gray-100">
-                      {record.revenue}
-                    </Text>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+    return (
+      <TableRow key={record.id}>
+        <TableCell className="text-gray-900 dark:text-gray-100 hidden">
+          <div className="mx-auto">
+            <StatusIcon {...statusProps} />
+          </div>
+        </TableCell>
+        <TableCell className="text-gray-900 dark:text-gray-100 hidden">
+          {record.theater}
+        </TableCell>
+        <TableCell className="text-gray-900 dark:text-gray-100 pl-8">
+          {record.production_season}
+        </TableCell>
+        <TableCell className="text-gray-900 dark:text-gray-100">
+          {record.production}
+        </TableCell>
+        <TableCell>
+          <Text className="text-gray-900 dark:text-gray-100">
+            {formattedDate}
+          </Text>
+        </TableCell>
+        <TableCell>
+          <Text className="text-gray-900 dark:text-gray-100">
+            {record.perf_time}
+          </Text>
+        </TableCell>
+        <TableCell>
+          <Text className="text-gray-900 dark:text-gray-100">
+            {record.attendance}
+          </Text>
+        </TableCell>
+        <TableCell>
+          <Text className="text-gray-900 dark:text-gray-100">
+            {record.revenue}
+          </Text>
+        </TableCell>
+      </TableRow>
+    );
+  })}
+
           </React.Fragment>
         ))}
       </TableBody>
@@ -110,7 +128,6 @@ records.map((record) => {
   );
 }
 const StatusIcon = ({ time, date, runtime }: { time: string; date: string; runtime?: any }) => {
- // console.log(date, time)
   const now = Date.now();
   const adjustedTime = time.replace(' PM', ''); // Remove " PM" if it's included
   const eventDateTime = new Date(`${formatDateForStatus(date)} ${adjustedTime}`);
@@ -119,18 +136,20 @@ const StatusIcon = ({ time, date, runtime }: { time: string; date: string; runti
   const timeDiff = eventDateTime.getTime() - now;
   const minutesRemaining = timeDiff / (1000 * 60);
 
-  const startingSoonThreshold = 60; // 15 minutes threshold for "Starting Soon"
+  const startingSoonThreshold = 15; // 15 minutes threshold for "Starting Soon"
   const endingSoonThreshold = 15; // 15 minutes threshold for "Ending Soon"
- // console.log(timeDiff)
-  if (minutesRemaining > 0 && minutesRemaining <= startingSoonThreshold) {
-    return <span className="flex w-3 h-3 bg-blue-500 rounded-full mx-4  animate-pulse ease-in-out delay-300"></span>;
-  } else if (minutesRemaining > startingSoonThreshold && minutesRemaining <= 0) {
-    return <span className="flex w-3 h-3 bg-green-500 rounded-full mx-4  animate-pulse ease-in-out delay-300"></span>;
-  } else if (minutesRemaining > 0 && minutesRemaining <= endingSoonThreshold) {
-    return <span className="flex w-3 h-3 bg-yellow-500 rounded-full mx-4  animate-pulse ease-in-out delay-300"></span>;
-  } else if (minutesRemaining <= 0 && now <= endTime) {
-    return <span className="flex w-3 h-3 bg-red-500 rounded-full mx-4"></span>;
+
+  if (minutesRemaining > 0) {
+    if (minutesRemaining <= startingSoonThreshold) {
+      return <span className="flex w-3 h-3 bg-blue-500 rounded-full mx-4 animate-pulse ease-in-out delay-300"></span>;
+    } else {
+      return <span className="flex w-3 h-3 bg-red-500 rounded-full mx-4"></span>;
+    }
+  } else if (now >= eventDateTime.getTime() && now <= endTime) {
+    return <span className="flex w-3 h-3 bg-green-500 rounded-full mx-4 animate-pulse ease-in-out delay-300"></span>;
+  } else if (minutesRemaining > -endingSoonThreshold) {
+    return <span className="flex w-3 h-3 bg-yellow-500 rounded-full mx-4 animate-pulse ease-in-out delay-300"></span>;
   } else {
-    return <span className="flex w-3 h-3 bg-red-500 rounded-full mx-4"></span>; // Default: No status icon if not within the defined thresholds
+    return <span className="flex w-3 h-3 bg-red-500 rounded-full mx-4"></span>;
   }
 };

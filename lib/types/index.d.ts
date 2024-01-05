@@ -1,5 +1,6 @@
 export interface AttendanceRecord {
     id: string| number, 
+    production: string
     production_season: string
     perf_name: string
     perf_dt: string // performance date
