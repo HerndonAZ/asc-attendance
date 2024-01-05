@@ -9,7 +9,8 @@ export const records: AttendanceRecord[] = [
       perf_time: '13:30:00 PM',
       theater: 'Giant Screen Theater',
       attendance: 9,
-      revenue: 72.0
+      revenue: 72.0, 
+      production: ''
     },
     {
       id: 2710,
@@ -19,7 +20,8 @@ export const records: AttendanceRecord[] = [
       perf_time: '17:30:00 PM',
       theater: 'Giant Screen Theater',
       attendance: 21,
-      revenue: 115.0
+      revenue: 115.0,      production: ''
+
     },
     {
       id: 2710,
@@ -29,6 +31,7 @@ export const records: AttendanceRecord[] = [
       perf_time: '17:30:00 PM',
       theater: 'Planetarium',
       attendance: 21,
-      revenue: 115.0
+      revenue: 115.0,      production: ''
+
     },
   ];
