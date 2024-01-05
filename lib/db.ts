@@ -45,7 +45,7 @@ const handleTessituraError = (response: Response) => {
 // Function to fetch data from Tessitura API
 export const fetchTess= async () => {
   if(credentials){
-    const customApiEndpoint = '/custom/Attendance_Update?perf_dt=2023-09-30'
+    const customApiEndpoint = '/custom/Attendance_Update?perf_dt=2024-01-05'
     const workingEndpoint = '/ReferenceData/PerformanceTypes/Summary'
     console.log(credentials, 'Credentials')
     try {
