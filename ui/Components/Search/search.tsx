@@ -6,8 +6,9 @@ import { useTransition, useRef, useEffect } from 'react';
 import { useSearchStore } from './searchStore';
 import { Card, Text, Title, List, ListItem, Divider } from '@tremor/react';
 import { records } from '../../../lib/test-data/testRecord';
+import { AttendanceRecord } from '../../../lib/types';
 
-export default function Search({ disabled }: { disabled?: boolean }) {
+export default function Search({ disabled, records }: { disabled?: boolean, records: AttendanceRecord[] }) {
   const { replace } = useRouter();
   const pathname = usePathname();
   const searchInputRef = useRef<HTMLInputElement>(null);

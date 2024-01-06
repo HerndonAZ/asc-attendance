@@ -7,6 +7,7 @@ import AttendanceChart from '../ui/AttendanceChart';
 import { auth } from './auth';
 import AuthComponent from '../ui/Auth/AuthComponent';
 export const dynamic = 'force-dynamic'
+
 export default async function IndexPage() {
   const users = null;
   //console.log(res)

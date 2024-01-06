@@ -13,7 +13,7 @@ const AttendanceChart = ({ records }: { records: AttendanceRecord[] }) => {
         Arizona Science Center realtime attendance reporting
       </Text>
      <Flex className='md:flex-row  flex-col'>
-      <Search />
+      <Search records={records}/>
       <DateRangePicker/>
       </Flex>
       <Card className="mt-6 bg-white dark:bg-gray-800 ">
