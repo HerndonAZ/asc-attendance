@@ -1,4 +1,3 @@
-
 import './globals.css';
 
 import { Analytics } from '@vercel/analytics/react';
@@ -9,8 +8,7 @@ import Providers from '../lib/providers';
 
 export const metadata = {
   title: 'ASC Realtime Attendancea',
-  description:
-    'Arizona Science Center realtime attendance reporting.'
+  description: 'Arizona Science Center realtime attendance reporting.'
 };
 
 export default function RootLayout({
@@ -19,21 +17,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning > 
-   
+    <html lang="en" suppressHydrationWarning>
       <body className="h-full bg-gray-50 dark:bg-gray-900 ">
         <Providers>
-        <Suspense>
-          <Nav />
-        </Suspense>
-        <main className="h-full relative">
-            {children}
-        </main>
-      
-        <Analytics />
-        <Toast />
-      </Providers>
-      </body>  
+          <Suspense>
+            <Nav />
+          </Suspense>
+          <main className="h-full relative">{children}</main>
+
+          <Analytics />
+          <Toast />
+        </Providers>
+      </body>
     </html>
   );
 }

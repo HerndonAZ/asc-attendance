@@ -1,5 +1,5 @@
-import { create } from "zustand";
-import { AttendanceRecord } from "../../../lib/types";
+import { create } from 'zustand';
+import { AttendanceRecord } from '../../../lib/types';
 
 export interface SearchState {
   searchTerm: string;
@@ -16,9 +16,9 @@ export interface SearchState {
 
 // Create the searchStore
 export const useSearchStore = create<SearchState>((set) => ({
-  searchTerm: "",
+  searchTerm: '',
   searchResults: {
-    perfs: [],
+    perfs: []
   },
   isOpen: false,
   isInputFocused: false,
@@ -27,7 +27,7 @@ export const useSearchStore = create<SearchState>((set) => ({
     set({ searchResults: newResults || [] }),
   setIsOpen: (newIsOpen: boolean) => set({ isOpen: newIsOpen }),
   setIsInputFocused: (newIsInputFocused: boolean) =>
-    set({ isInputFocused: newIsInputFocused }),
+    set({ isInputFocused: newIsInputFocused })
 }));
 
 // Usage in your component

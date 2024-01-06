@@ -1,24 +1,19 @@
-const tessitura = {
-	id: "1bf452bd-afb4-4b4f-888c-ce19505c06ee",
-	name: "Arizona Science Center LIVE",
-	values: [
-		{
-			key: "rest_api_url",
-			value: "https://AZSCICUSAZ0restprod.tnhs.cloud/TessituraService/",
-			enabled: true
-		},
-		{
-			key: "rest_username",
-			value: "RESTAPI:WEBAPI:RestAPI",
-			enabled: true
-		},
-		{
-			key: "rest_password",
-			value: "N3wS!t3forASC23!",
-			enabled: true
-		}
-	],
-	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2023-04-04T19:22:20.537Z",
-	"_postman_exported_using": "Postman/10.12.10"
-}
+const username = process.env.TESSITURA_USERNAME;
+const machine = process.env.TESSITURA_MACHINE;
+const apiUrl = process.env.TESSITURA_URL;
+const password = process.env.TESSITURA_API_PASSWORD;
+const usergroup = process.env.TESSITURA_USERGROUP;
+const credentials = Buffer.from(
+  `${username}:${usergroup}:${machine}:${password}`
+).toString('base64');
+
+const handleTessituraError = (response: Response) => {
+  console.error(`Error: HTTP Status Code: ${response.status}`);
+  return response.json().then((data) => {
+    console.error(`Tessitura returned ${JSON.stringify(response)} errors`);
+    console.error(`Tessitura responded: ${data.Error}`);
+    throw new Error('Tessitura API error');
+  });
+};
+
+export { credentials, apiUrl, handleTessituraError };

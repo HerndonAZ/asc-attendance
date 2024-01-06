@@ -12,9 +12,9 @@ const AttendanceChart = ({ records }: { records: AttendanceRecord[] }) => {
       <Text className="text-gray-900 dark:text-gray-100">
         Arizona Science Center realtime attendance reporting
       </Text>
-     <Flex className='md:flex-row  flex-col'>
-      <Search records={records}/>
-      <DateRangePicker/>
+      <Flex className="md:flex-row  flex-col">
+        <Search records={records} />
+        <DateRangePicker />
       </Flex>
       <Card className="mt-6 bg-white dark:bg-gray-800 ">
         <AttendanceTable records={records} />

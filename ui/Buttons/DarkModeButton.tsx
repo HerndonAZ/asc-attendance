@@ -1,1 +1,1 @@
-export {default} from '../../lib/providers/ThemeProvider/DarkModeSwitch'
+export { default } from '../../lib/providers/ThemeProvider/DarkModeSwitch';

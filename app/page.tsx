@@ -6,17 +6,17 @@ import AttendanceChart from '../ui/AttendanceChart';
 //import { records } from '../lib/test-data/testRecord';
 import { auth } from './auth';
 import AuthComponent from '../ui/Auth/AuthComponent';
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-dynamic';
 
 export default async function IndexPage() {
   const users = null;
   //console.log(res)
   const session = await auth();
-  const res: any = session && await fetchTess();
+  const res: any = session && (await fetchTess());
 
-  console.log(res?.Attendance_Update?.AttendanceUpdate)
+  console.log(res?.Attendance_Update?.AttendanceUpdate);
 
-  const records = res?.Attendance_Update?.AttendanceUpdate
+  const records = res?.Attendance_Update?.AttendanceUpdate;
 
   // if (res && session) {
   //   return <div className="p-4 md:p-10 mx-auto max-w-7xl h-screen">{JSON.stringify(res)}</div>;
@@ -34,12 +34,13 @@ export default async function IndexPage() {
   //     </main>
   //   );
   // }
- if (session){
-  return <AttendanceChart records={records} />
-} else {
-  return <AuthComponent/>
-}
-
-;
-
+  if (session) {
+    return <AttendanceChart records={records} />;
+  } else {
+    return (
+      <div className="min-h-[500px] flex items-center">
+        <AuthComponent />
+      </div>
+    );
+  }
 }

@@ -8,7 +8,13 @@ import { Card, Text, Title, List, ListItem, Divider } from '@tremor/react';
 import { records } from '../../../lib/test-data/testRecord';
 import { AttendanceRecord } from '../../../lib/types';
 
-export default function Search({ disabled, records }: { disabled?: boolean, records: AttendanceRecord[] }) {
+export default function Search({
+  disabled,
+  records
+}: {
+  disabled?: boolean;
+  records: AttendanceRecord[];
+}) {
   const { replace } = useRouter();
   const pathname = usePathname();
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -124,22 +130,22 @@ export default function Search({ disabled, records }: { disabled?: boolean, reco
         {isOpen && (
           <Card>
             <List>
-            {searchResults?.perfs.length > 0 ? (
-              <div>  
-                <Title>Performances</Title>
-                <Divider>Results</Divider>
+              {searchResults?.perfs.length > 0 ? (
+                <div>
+                  <Title>Performances</Title>
+                  <Divider>Results</Divider>
 
-               {searchResults?.perfs.map((result) => (
-                <ListItem key={result.id}>
-                  <span>{result.perf_name} - {result?.theater}</span>
-
-                </ListItem>
-               ))}
-
-              </div>
-            ) : (
-              <Text>No results match your search</Text>
-            )}
+                  {searchResults?.perfs.map((result) => (
+                    <ListItem key={result.id}>
+                      <span>
+                        {result.perf_name} - {result?.theater}
+                      </span>
+                    </ListItem>
+                  ))}
+                </div>
+              ) : (
+                <Text>No results match your search</Text>
+              )}
             </List>
           </Card>
         )}

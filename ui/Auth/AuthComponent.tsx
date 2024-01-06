@@ -1,8 +1,7 @@
-'use client'
+'use client';
 import { Card, Title, Text, Button } from '@tremor/react';
 import { signIn } from 'next-auth/react';
 import React from 'react';
-
 
 function AuthComponent() {
   return (

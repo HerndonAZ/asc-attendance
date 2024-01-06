@@ -9,8 +9,8 @@ import Image from 'next/image';
 import DarkModeButton from '../ui/Buttons/DarkModeButton';
 
 const navigation = [
-  { name: 'Dashboard', href: '/', hidden: false },
- // { name: 'Playground', href: '/playground' , hidden: true}
+  { name: 'Dashboard', href: '/', hidden: false }
+  // { name: 'Playground', href: '/playground' , hidden: true}
 ];
 
 function classNames(...classes: string[]) {
@@ -21,7 +21,10 @@ export default function Navbar({ user }: { user: any }) {
   const pathname = usePathname();
 
   return (
-    <Disclosure as="nav" className="shadow-sm bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800">
+    <Disclosure
+      as="nav"
+      className="shadow-sm bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800"
+    >
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -33,36 +36,37 @@ export default function Navbar({ user }: { user: any }) {
                     width={64}
                     height={32}
                     alt="asc-logo"
-                    className='visible dark:hidden'
+                    className="visible dark:hidden"
                   />
-                     <Image
+                  <Image
                     src="/images/logo_white-asc.png"
                     width={64}
                     height={32}
                     alt="asc-logo"
-                    className='hidden dark:block'
+                    className="hidden dark:block"
                   />
                 </div>
                 <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-                  {user && navigation.map((item) => { 
-
-                    return(
-                    <a
-                    
-                      key={item.name}
-                      href={item.href}
-                      className={classNames(
-                        pathname === item.href
-                          ? 'border-slate-500 text-gray-900 dark:text-gray-100'
-                          : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
-                        'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
-                      )}
-                      aria-current={pathname === item.href ? 'page' : undefined}
-                    >
-                      {item.name}
-                    </a>
-                  )
-                      })}
+                  {user &&
+                    navigation.map((item) => {
+                      return (
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          className={classNames(
+                            pathname === item.href
+                              ? 'border-slate-500 text-gray-900 dark:text-gray-100'
+                              : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
+                            'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium'
+                          )}
+                          aria-current={
+                            pathname === item.href ? 'page' : undefined
+                          }
+                        >
+                          {item.name}
+                        </a>
+                      );
+                    })}
                 </div>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:items-center">

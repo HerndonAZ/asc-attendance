@@ -1,4 +1,3 @@
-
 import { parseString } from 'xml2js';
 
 export const convertXmlToJson = (xmlString: string) => {
@@ -12,4 +11,3 @@ export const convertXmlToJson = (xmlString: string) => {
     });
   });
 };
-
