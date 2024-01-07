@@ -7,7 +7,6 @@ import AttendanceChart from '../ui/AttendanceChart';
 import { auth } from './auth';
 import AuthComponent from '../ui/Auth/AuthComponent';
 export const dynamic = 'force-dynamic';
-
 export default async function IndexPage() {
   const users = null;
   //console.log(res)
@@ -34,7 +33,7 @@ export default async function IndexPage() {
   //     </main>
   //   );
   // }
-  if (session) {
+  if (records) {
     return <AttendanceChart records={records} />;
   } else {
     return (

@@ -33,7 +33,7 @@ const DarkModeSwitch = () => {
         htmlFor="darkModeSwitch"
         className="flex items-center cursor-pointer"
       >
-        <div className="text-sm text-gray-800 dark:text-gray-100">
+        <div className="sm:text-sm text-gray-800 dark:text-gray-100">
           {currentTheme === 'dark' ? (
             <div className="flex space-x-2 items-center">
               <p>Dark Mode</p>

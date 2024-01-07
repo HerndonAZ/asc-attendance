@@ -7,6 +7,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { signIn, signOut } from 'next-auth/react';
 import Image from 'next/image';
 import DarkModeButton from '../ui/Buttons/DarkModeButton';
+import Clock from '../ui/Clock';
 
 const navigation = [
   { name: 'Dashboard', href: '/', hidden: false }
@@ -69,6 +70,7 @@ export default function Navbar({ user }: { user: any }) {
                     })}
                 </div>
               </div>
+              <Clock/>
               <div className="hidden sm:ml-6 sm:flex sm:items-center">
                 <Menu as="div" className="relative ml-3 ">
                   <div>
@@ -93,6 +95,7 @@ export default function Navbar({ user }: { user: any }) {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items className="border dark:border-gray-700 absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-gray-800 dark:text-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                     
                       {user ? (
                         <Menu.Item>
                           {({ active }) => (
@@ -186,6 +189,9 @@ export default function Navbar({ user }: { user: any }) {
                       </div>
                     </div>
                   </div>
+                        <div className="flex w-full px-4 py-2 mt-4 text-gray-700 ">
+                          <DarkModeButton />
+                        </div>
                   <div className="mt-3 space-y-1 hover:bg-gray-100 dark:hover:bg-gray-900">
                     <button
                       onClick={() => signOut()}

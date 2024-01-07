@@ -48,7 +48,7 @@ export default {
         // dark mode
         'dark-tremor': {
           background: {
-            muted: colors.gray[50],
+            muted: colors.gray[800],
             subtle: colors.gray[800],
             DEFAULT: colors.gray[900],
             emphasis: colors.gray[700],

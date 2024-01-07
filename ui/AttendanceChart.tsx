@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AttendanceRecord } from '../lib/types';
 import { Card, Text, Flex, Button } from '@tremor/react';
 import Search from './Components/Search';
@@ -17,14 +17,22 @@ const AttendanceChart = ({
   onRequest?: any;
 }) => {
   const [value, setValue] = useState('today');
-  return (
+  const [data, setData] = useState<any>(null)
+
+  useEffect(() => {
+    if (records) {
+      setData(records)
+    }
+  }, records)
+
+  return data && (
     <div className="p-4 md:p-10 mx-auto max-w-7xl relative">
       <h1 className="text-black dark:text-white">Realtime Attendance</h1>
       <Text className="text-gray-900 dark:text-gray-100">
         Arizona Science Center realtime attendance reporting
       </Text>
       <Flex className="md:flex-row  flex-col hidden">
-        <Search records={records} />
+        <Search records={data} />
         <DateRangePicker />
       </Flex>
       <Flex className="h-fit items-center mt-6">
@@ -35,12 +43,12 @@ const AttendanceChart = ({
         <RefreshButton />
       </Flex>
       <Card className="mt-6 bg-white dark:bg-gray-800 ">
-        <AttendanceTable records={records} />
+        <AttendanceTable records={data} />
       </Card>
     </div>
   );
 
-  
+
 };
 
 export default AttendanceChart;
