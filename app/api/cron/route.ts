@@ -1,6 +1,6 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(req: Response) {
+export async function GET(req:NextRequest) {
 
     if (req.headers.get('Authorization') !== `Bearer ${process.env.INTERNAL_API_KEY}`) {
 
