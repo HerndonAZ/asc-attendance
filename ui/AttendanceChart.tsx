@@ -39,6 +39,7 @@ const AttendanceChart = ({
       </Card>
     </div>
   );
+  
 };
 
 export default AttendanceChart;
