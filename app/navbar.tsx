@@ -6,7 +6,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { signIn, signOut } from 'next-auth/react';
 import Image from 'next/image';
-import DarkModeButton from '../ui/Buttons/DarkModeButton';
+import DarkModeButton from '../ui/Buttons/DarkModeButton/DarkModeButton';
 import Clock from '../ui/Clock';
 
 const navigation = [
