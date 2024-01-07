@@ -11,7 +11,7 @@ export default async function IndexPage() {
   const users = null;
   //console.log(res)
   const session = await auth();
-  const res: any = session && (await fetchTess());
+  const res: any = session && (await fetchTess(null, 'today'));
 
   console.log(res?.Attendance_Update?.AttendanceUpdate);
 

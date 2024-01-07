@@ -33,6 +33,7 @@ export default function Navbar({ user }: { user: any }) {
               <div className="flex">
                 <div className="flex flex-shrink-0 items-center">
                   <Image
+                  priority
                     src="/images/logo_black-asc.png"
                     width={64}
                     height={32}
@@ -40,6 +41,7 @@ export default function Navbar({ user }: { user: any }) {
                     className="visible dark:hidden"
                   />
                   <Image
+                  priority
                     src="/images/logo_white-asc.png"
                     width={64}
                     height={32}
@@ -173,6 +175,7 @@ export default function Navbar({ user }: { user: any }) {
                   <div className="flex items-center px-4">
                     <div className="flex-shrink-0">
                       <Image
+                        priority
                         className="h-8 w-8 rounded-full"
                         src={user.image}
                         height={32}
