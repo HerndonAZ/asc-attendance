@@ -49,7 +49,7 @@ export default {
         'dark-tremor': {
           background: {
             muted: colors.gray[50],
-            subtle: colors.gray[100],
+            subtle: colors.gray[800],
             DEFAULT: colors.gray[900],
             emphasis: colors.gray[700],
             inverted: colors.black
@@ -75,7 +75,11 @@ export default {
         'tremor-card':
           '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
         'tremor-dropdown':
-          '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)'
+          '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+             // dark
+        "dark-tremor-input": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+        "dark-tremor-card": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+        "dark-tremor-dropdown": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
       },
       borderRadius: {
         'tremor-small': '0.375rem',

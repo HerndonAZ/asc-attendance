@@ -5,7 +5,7 @@ import {
   handleTessituraError
 } from './providers/Tessitura';
 
-export const fetchTess = async () => {
+export const fetchTess = async (setTimeStamp?: any) => {
   if (credentials) {
     const date = new Date();
     const year = date.getFullYear();
@@ -24,20 +24,22 @@ export const fetchTess = async () => {
           'Content-Type': 'application/xml'
         }
       });
-
       if (!response.ok) {
         await handleTessituraError(response);
       }
 
       const xml = await response.text();
       const data = await convertXmlToJson(xml);
-
+     
       return data;
     } catch (error) {
       // Handle other errors (e.g., network issues, deserialization errors)
       console.error(error);
-    }
-  }
+    // } finally {
+    //  setTimeStamp(Date.now())
+
+    // }}
+  } }
 };
 
 // Call the fetchData function

@@ -7,6 +7,7 @@ const queryClient = new QueryClient();
 function Providers({ children }: { children: React.ReactNode }) {
   return (
     <Suspense>
+      <QueryClientProvider client={queryClient}>
       <ThemeProvider
         enableSystem={true}
         attribute="class"
@@ -15,6 +16,7 @@ function Providers({ children }: { children: React.ReactNode }) {
       >
         {children}
       </ThemeProvider>
+      </QueryClientProvider>
     </Suspense>
   );
 }
