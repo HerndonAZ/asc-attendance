@@ -18,12 +18,12 @@ const getYesterday = () => {
 export const fetchTess = async (setTimeStamp?: any | null, selectDate?: any) => {
   if (credentials) {
     const date = new Date();
-    const year = date.getFullYear();
+    const year = date.toLocaleDateString('en-US', { year: 'numeric', timeZone: 'America/Phoenix' });
     const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-    const day = selectDate === "today" ? String(date.getDate()).padStart(2, '0') : String(date.getDate() - 1).padStart(2, '0') ;
-
+    const day = (selectDate === "today") ? String(date.getDate()).padStart(2, '0') : String(date.getDate() - 1).padStart(2, '0');
     const fetchDate = `${year}-${month}-${day}`;
-    const yesterday = `${year}-${month}-${day}`;
+    
+
     const customApiEndpoint = '/custom/Attendance_Update?perf_dt=' + fetchDate;
     //const workingEndpoint = '/ReferenceData/PerformanceTypes/Summary'
     try {
@@ -42,7 +42,7 @@ export const fetchTess = async (setTimeStamp?: any | null, selectDate?: any) => 
       const xml = await response.text();
       const data = await convertXmlToJson(xml);
      
-      return data;
+      return {data, time: new Date()};
     } catch (error) {
       // Handle other errors (e.g., network issues, deserialization errors)
       console.error(error);
