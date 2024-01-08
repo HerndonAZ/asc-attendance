@@ -7,7 +7,7 @@ export interface AttendanceRecord {
   perf_time: string; // performance time
   theater?: string | null;
   attendance: number | null;
-  revenue: number | string | null;
+  revenue: number
 }
 
 export interface User {

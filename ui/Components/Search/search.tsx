@@ -5,7 +5,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useTransition, useRef, useEffect } from 'react';
 import { useSearchStore } from './searchStore';
 import { Card, Text, Title, List, ListItem, Divider } from '@tremor/react';
-import { records } from '../../../lib/test-data/testRecord';
 import { AttendanceRecord } from '../../../lib/types';
 
 export default function Search({
@@ -41,7 +40,7 @@ export default function Search({
       setSearchTerm(term);
       setIsOpen(true);
 
-      console.log(filteredResults, 'FR');
+      //console.log(filteredResults, 'FR');
       setSearchResults({ perfs: filteredResults });
     } else {
       params.delete('q');
@@ -67,7 +66,7 @@ export default function Search({
   useEffect(() => {
     handleSearch(searchTerm);
   }, [searchTerm, isInputFocused]);
-  console.log(searchResults);
+  //console.log(searchResults);
 
   return (
     <div className="relative mt-5 max-w-md w-full ">

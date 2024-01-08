@@ -14,10 +14,9 @@ import Loading from '../app/loading';
 
 const AttendanceChart = ({
   records,
-  onRequest
+
 }: {
   records: AttendanceRecord[];
-  onRequest?: any;
 }) => {
   const [value, setValue] = useState('today');
   const [data, setData] = useState<any>(null)
@@ -27,12 +26,15 @@ const AttendanceChart = ({
    // console.log(time, 'TIME')
     const records = data?.Attendance_Update?.AttendanceUpdate;
     setData(records)
+   // setTimeStamp(new Date())
     setLoading(false)
     }
+    //console.log(time)
 //console.log(value)
   useEffect(() => {
     if (records && value === 'today') {
       setData(records)
+   //   setTimeStamp(new Date())
       setLoading(false)
       return
     }
@@ -56,11 +58,6 @@ const AttendanceChart = ({
     )
   } 
 
-
-  // const options = { year: 'numeric' as const, month: '2-digit' as const, day: '2-digit' as const, timeZone: 'America/Phoenix' as const };
-  // const getDate = date.toLocaleDateString('en-US', options);
-  // const fetchDate = getDate // as YYYY-MM-DD
-  // console.log(fetchDate, "FETCH DATE")
   return data && !loading && (
     <div className="p-4 md:p-10 mx-auto max-w-7xl relative">
       <h1 className="text-black dark:text-white">Realtime Attendance</h1>
@@ -76,7 +73,7 @@ const AttendanceChart = ({
           <SelectItem className=" " value="today">Today</SelectItem>
           <SelectItem className=" " value="yday">Yesterday</SelectItem>
         </Select>
-        <RefreshButton />
+        <RefreshButton disabled={value === 'yday'} />
       </Flex>
       <Card className="mt-6 bg-white dark:bg-gray-800 ">
         <AttendanceTable records={data} />

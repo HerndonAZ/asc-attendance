@@ -22,6 +22,8 @@ export function AttendanceTable({ records }: { records: AttendanceRecord[] }) {
     recordsByTheater[record.theater!].push(record);
   });
 
+  const totalRevenue = records.reduce((total, record) => total + (record.revenue || 0), 0);
+
   return (
     <Table className="">
       <TableHead>
@@ -118,9 +120,11 @@ export function AttendanceTable({ records }: { records: AttendanceRecord[] }) {
                     </TableRow>
                   );
                 })}
+            
             </React.Fragment>
           )
         )}
+      
       </TableBody>
     </Table>
   );
