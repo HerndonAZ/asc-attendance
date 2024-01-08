@@ -17,10 +17,18 @@ const getYesterday = () => {
  
 export const fetchTess = async (setTimeStamp?: any | null, selectDate?: any) => {
   if (credentials) {
-    const date = new Date();
-    const year = date.toLocaleDateString('en-US', { year: 'numeric', timeZone: 'America/Phoenix' });
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-    const day = (selectDate === "today") ? String(date.getDate()).padStart(2, '0') : String(date.getDate() - 1).padStart(2, '0');
+    const currentDate = new Date();
+
+    // Create a new date object in the 'America/Phoenix' time zone
+    const phoenixDate = new Date(currentDate.toLocaleString('en-US', { timeZone: 'America/Phoenix' }));
+    
+    // Calculate the date for yesterday
+    const yesterday = (phoenixDate.getDate() - 1);
+    
+    // Extract year, month, and day
+    const year = phoenixDate.getFullYear();
+    const month = phoenixDate.getMonth() + 1; // Months are zero-based, so add 1
+    const day = selectDate === 'today' ? phoenixDate.getDate() : yesterday;
     const fetchDate = `${year}-${month}-${day}`;
     
 

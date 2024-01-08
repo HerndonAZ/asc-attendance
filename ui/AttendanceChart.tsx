@@ -42,7 +42,7 @@ const AttendanceChart = ({
       fetchData('today')
       return
     }
-    console.log(new Date())
+  //  console.log(new Date())
     if (value === "yday"){
       setLoading(true)
       fetchData('yday')   
@@ -55,7 +55,7 @@ const AttendanceChart = ({
       <Loading/>
     )
   } 
-  // const date = new Date();
+
 
   // const options = { year: 'numeric' as const, month: '2-digit' as const, day: '2-digit' as const, timeZone: 'America/Phoenix' as const };
   // const getDate = date.toLocaleDateString('en-US', options);
