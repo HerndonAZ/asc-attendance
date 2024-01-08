@@ -11,6 +11,7 @@ import { IoRefresh } from 'react-icons/io5';
 import RefreshButton from './Buttons/RefreshButton';
 import { fetchTess } from '../lib/db';
 import Loading from '../app/loading';
+
 const AttendanceChart = ({
   records,
   onRequest
@@ -24,7 +25,6 @@ const AttendanceChart = ({
   const fetchData = async (date: string) => {
     const res: any = await fetchTess(null, date)
     const records = res?.Attendance_Update?.AttendanceUpdate;
-    console.log(records, 'yday')
     setData(records)
     setLoading(false)
     }
@@ -39,7 +39,7 @@ const AttendanceChart = ({
       setLoading(true)
       fetchData('today')
     }
-
+    console.log(new Date())
     if (value === "yday"){
       setLoading(true)
       fetchData('yday')   
