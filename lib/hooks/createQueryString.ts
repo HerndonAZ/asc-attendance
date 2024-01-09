@@ -1,7 +1,7 @@
 "use client";
 import { useCallback } from "react";
 
-export const createQueryString = (
+export const useCreateQueryString = (
   searchParams:
     | string
     | string[][]

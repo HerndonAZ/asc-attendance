@@ -37,7 +37,6 @@ export const fetchTess = async (setTimeStamp?: any | null, selectDate?: any) => 
       const response = await fetch(apiUrl + customApiEndpoint, {
         cache: cache,
        // next:{revalidate : 30},
-      
         method: 'GET',
         headers: {
           Authorization: 'Basic ' + credentials,
@@ -50,8 +49,6 @@ export const fetchTess = async (setTimeStamp?: any | null, selectDate?: any) => 
       }
 
       const data = await response.json();
-     // const data = await convertXmlToJson(xml);
-     
       return {data, time: new Date()};
     } catch (error) {
       // Handle other errors (e.g., network issues, deserialization errors)
@@ -60,7 +57,7 @@ export const fetchTess = async (setTimeStamp?: any | null, selectDate?: any) => 
     //  setTimeStamp(Date.now())
 
     // }}
-  } }
+  }}
 };
 
 // Call the fetchData function

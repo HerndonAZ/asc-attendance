@@ -10,7 +10,7 @@ import RefreshButton from './Buttons/RefreshButton';
 import { fetchTess } from '../lib/db';
 import Loading from '../app/loading';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { createQueryString } from '../lib/hooks/createQueryString';
+import { useCreateQueryString } from '../lib/hooks/createQueryString';
 
 const AttendanceChart = ({
  // records:bigData,
@@ -25,7 +25,7 @@ const AttendanceChart = ({
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const queryDate = searchParams.get('date')
-  const url = createQueryString(searchParams);
+  const url = useCreateQueryString(searchParams);
   const handleSetDate = async (date: string) => {
     setLoading(true)
     try {
