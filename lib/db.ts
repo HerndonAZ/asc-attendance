@@ -21,8 +21,8 @@ export const fetchToday = async () => {
     //const workingEndpoint = '/ReferenceData/PerformanceTypes/Summary'
     try {
       const response = await fetch(apiUrl + customApiEndpoint, {
-        cache: cache,
-        next:{revalidate : 30},
+        // cache: cache,
+        next:{revalidate : 60},
         method: 'GET',
         headers: {
           Authorization: 'Basic ' + credentials,
