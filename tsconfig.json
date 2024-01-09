@@ -22,7 +22,8 @@
   },
   "paths": {
     "@/*": ["./*"],
-    "auth": ["./auth"]
+    "auth": ["./auth"],
+    "providers": ["./lib/providers/*"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

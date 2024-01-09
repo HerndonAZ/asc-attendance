@@ -1,5 +1,4 @@
 'use client';
-import { Circles, DNA, FallingLines } from 'react-loader-spinner';
 
 export default function Loading() {
   return (
