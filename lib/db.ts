@@ -4,14 +4,9 @@ import {
   apiUrl,
   handleTessituraError
 } from './providers/Tessitura';
-const getYesterday = () => {
-  const today = new Date();
-  const yesterday = new Date(today);
-  yesterday.setDate(today.getDate() - 1);
 
-  // Return the date for yesterday in a desired format
-  return yesterday.toISOString().split('T')[0];
-};
+
+
 export const fetchToday = async () => {
   if (credentials) {
     const currentDate = new Date();

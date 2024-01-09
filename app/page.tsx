@@ -4,7 +4,8 @@ import AttendanceChart from '../ui/AttendanceChart';
 import { auth } from './auth';
 import AuthComponent from '../ui/Auth/AuthComponent';
 import { cache } from 'react';
-export const dynamic = 'auto';
+
+export const dynamic = 'force-dynamic';
 
 const getInitialData = cache(async()  => {
 const data = await fetchToday()
