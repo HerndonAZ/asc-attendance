@@ -3,17 +3,12 @@ import { fetchToday } from '../lib/db';
 import AttendanceChart from '../ui/AttendanceChart';
 import { auth } from './auth';
 import AuthComponent from '../ui/Auth/AuthComponent';
-import { cache } from 'react';
-
 export const dynamic = 'force-dynamic';
 
-const getInitialData = cache(async()  => {
-const data = await fetchToday()
-return data?.data
-})
+
 export default async function IndexPage() {
   const session = await auth();
-  const initialData: any = session && (await getInitialData());
+  const {data:initialData}: any | null = session && (await fetchToday());
 
 
   console.log(initialData)
