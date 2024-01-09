@@ -4,10 +4,11 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 import { IoRefresh } from 'react-icons/io5'
 
-function RefreshButton({disabled} :{disabled: boolean}) {
+function RefreshButton({disabled, onClick} :{disabled: boolean, onClick: () => void}) {
     const router = useRouter()
     
     const refresh = () => {
+      onClick()
         window.location.reload();
       };
   return (

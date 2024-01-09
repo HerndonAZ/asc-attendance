@@ -1,5 +1,4 @@
 'use server'
-import { convertXmlToJson } from './hooks/convertXML';
 import {
   credentials,
   apiUrl,
@@ -40,15 +39,16 @@ export const fetchTess = async (setTimeStamp?: any | null, selectDate?: any) => 
         method: 'GET',
         headers: {
           Authorization: 'Basic ' + credentials,
-          'Content-Type': 'application/xml'
+          'Content-Type': 'application/json', 
+          'Accept': 'application/json'
         }
       });
       if (!response.ok) {
         await handleTessituraError(response);
       }
 
-      const xml = await response.text();
-      const data = await convertXmlToJson(xml);
+      const data = await response.json();
+     // const data = await convertXmlToJson(xml);
      
       return {data, time: new Date()};
     } catch (error) {

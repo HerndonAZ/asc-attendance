@@ -38,15 +38,15 @@ export default function Navbar({ user }: { user: any }) {
                     width={64}
                     height={32}
                     alt="asc-logo"
-                    className="visible dark:hidden"
+                    className="visible dark:hidden h-auto w-auto"
                   />
                   <Image
-                  priority
+                    priority
                     src="/images/logo_white-asc.png"
                     width={64}
                     height={32}
                     alt="asc-logo"
-                    className="hidden dark:block"
+                    className="hidden dark:block h-auto w-auto"
                   />
                 </div>
                 <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">

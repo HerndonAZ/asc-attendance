@@ -7,7 +7,6 @@ import { AttendanceTable } from './AttendanceTable';
 import DateRangePicker from './Components/DateRangePicker';
 import { Select, SelectItem } from '@tremor/react';
 import { useState } from 'react';
-import { IoRefresh } from 'react-icons/io5';
 import RefreshButton from './Buttons/RefreshButton';
 import { fetchTess } from '../lib/db';
 import Loading from '../app/loading';
@@ -22,41 +21,47 @@ const AttendanceChart = ({
   const [data, setData] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const fetchData = async (date: string) => {
-    const {data, time}: any = await fetchTess(null, date)
-   // console.log(time, 'TIME')
-    const records = data?.Attendance_Update?.AttendanceUpdate;
-    setData(records)
-   // setTimeStamp(new Date())
+    try {
+    const { data, time }: any = await fetchTess(null, date)
+    setData(data)
     setLoading(false)
+    }catch (error){
+      console.error(error)
     }
-    //console.log(time)
-//console.log(value)
+  }
+  //console.log(time)
+  //console.log(value)
   useEffect(() => {
-    if (records && value === 'today') {
-      setData(records)
-   //   setTimeStamp(new Date())
-      setLoading(false)
-      return
+
+    if (value === 'today') {
+
+      if (records) {
+        setData(records)
+        //   setTimeStamp(new Date())
+        setLoading(false)
+        return
+      } else {
+        setLoading(true)
+        fetchData('today')
+        return
+      }
+
     }
 
-    if (!records && value === 'today') {
-      setLoading(true)
-      fetchData('today')
-      return
-    }
-  //  console.log(new Date())
-    if (value === "yday"){
-      setLoading(true)
-      fetchData('yday')   
-      return
-    }
-  },[records, value])
 
-  if (loading){
+    //  console.log(new Date())
+    if (value === "yday") {
+      setLoading(true)
+      fetchData('yday')
+      return
+    }
+  }, [records, value])
+
+  if (loading) {
     return (
-      <Loading/>
+      <Loading />
     )
-  } 
+  }
 
   return data && !loading && (
     <div className="p-4 md:p-10 mx-auto max-w-7xl relative">
@@ -69,7 +74,7 @@ const AttendanceChart = ({
         <DateRangePicker />
       </Flex>
       <Flex className="h-fit items-center mt-6">
-        <Select defaultValue={value} onValueChange={(v: any) => setValue(v) } className="w-40">
+        <Select defaultValue={value} onValueChange={(v: any) => setValue(v)} className="w-40">
           <SelectItem className=" " value="today">Today</SelectItem>
           <SelectItem className=" " value="yday">Yesterday</SelectItem>
         </Select>
