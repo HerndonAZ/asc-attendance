@@ -1,4 +1,4 @@
-'use client';
+'use client' 
 import React, { useEffect } from 'react';
 import { AttendanceRecord } from '../lib/types';
 import { Card, Text, Flex, Button } from '@tremor/react';
@@ -13,54 +13,51 @@ import Loading from '../app/loading';
 
 const AttendanceChart = ({
   records,
-
 }: {
   records: AttendanceRecord[];
 }) => {
   const [value, setValue] = useState('today');
-  const [data, setData] = useState<any>(null)
-  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [fetchNeeded, setFetchNeeded] = useState(true);
+
   const fetchData = async (date: string) => {
     try {
-    const { data, time }: any = await fetchTess(null, date)
-    setData(data)
-    setLoading(false)
-    }catch (error){
-      console.error(error)
+      setLoading(true);
+      const { data, time }: any = await fetchTess(null, date);
+      setData(data);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
     }
-  }
-  //console.log(time)
-  //console.log(value)
+  };
+
   useEffect(() => {
-
-    if (value === 'today') {
-
-      if (records) {
-        setData(records)
-        //   setTimeStamp(new Date())
-        setLoading(false)
-        return
-      } else {
-        setLoading(true)
-        fetchData('today')
-        return
+    const fetchDataIfNeeded = async () => {
+      if (fetchNeeded) {
+        if (value === 'today') {
+          if (records) {
+            setData(records);
+            setLoading(false);
+          } else {
+            fetchData('today');
+          }
+        } else if (value === 'yday') {
+          fetchData('yday');
+        }
+        setFetchNeeded(false);
       }
+    };
 
-    }
+    fetchDataIfNeeded();
+  }, [records, value, fetchNeeded]);
 
-
-    //  console.log(new Date())
-    if (value === "yday") {
-      setLoading(true)
-      fetchData('yday')
-      return
-    }
-  }, [records, value])
+  const handleRefresh = () => {
+    setFetchNeeded(true);
+  };
 
   if (loading) {
-    return (
-      <Loading />
-    )
+    return <Loading />;
   }
 
   return data && !loading && (
@@ -75,18 +72,20 @@ const AttendanceChart = ({
       </Flex>
       <Flex className="h-fit items-center mt-6">
         <Select defaultValue={value} onValueChange={(v: any) => setValue(v)} className="w-40">
-          <SelectItem className=" " value="today">Today</SelectItem>
-          <SelectItem className=" " value="yday">Yesterday</SelectItem>
+          <SelectItem className=" " value="today">
+            Today
+          </SelectItem>
+          <SelectItem className=" " value="yday">
+            Yesterday
+          </SelectItem>
         </Select>
-        <RefreshButton disabled={value === 'yday'} />
+        <RefreshButton disabled={value === 'yday'} onClick={handleRefresh} />
       </Flex>
-      <Card className="mt-6 bg-white dark:bg-gray-800 ">
+      <Card className="mt-6 bg-white dark:bg-gray-800">
         <AttendanceTable records={data} />
       </Card>
     </div>
   );
-
-
 };
 
 export default AttendanceChart;
