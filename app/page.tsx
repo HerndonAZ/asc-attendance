@@ -11,13 +11,13 @@ export default async function IndexPage() {
   const users = null;
   //console.log(res)
   const session = await auth();
-  const data: any = session && (await fetchTess(null, 'today'));
-console.log(data)
-  const records = data?.data;
+  //const data: any = session && (await fetchTess(null, 'today'));
+//console.log(data)
+  //const records = data?.data;
 
 
-  if (records) {
-    return <AttendanceChart records={records} />;
+  if (session) {
+    return <AttendanceChart  />;
   } else {
     return (
       <div className="min-h-[500px] flex items-center">

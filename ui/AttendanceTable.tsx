@@ -114,7 +114,7 @@ export function AttendanceTable({ records }: { records: AttendanceRecord[] }) {
                       </TableCell>
                       <TableCell>
                         <Text className="text-gray-900 dark:text-gray-100">
-                          {record.revenue}
+                          ${record.revenue}
                         </Text>
                       </TableCell>
                     </TableRow>
