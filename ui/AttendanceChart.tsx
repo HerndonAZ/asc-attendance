@@ -5,7 +5,7 @@ import Search from './Components/Search';
 import { AttendanceTable } from './AttendanceTable';
 import DateRangePicker from './Components/DateRangePicker';
 import { Select, SelectItem } from '@tremor/react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import RefreshButton from './Buttons/RefreshButton';
 import { fetchTess } from '../lib/db';
 import Loading from '../app/loading';
@@ -13,18 +13,19 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useCreateQueryString } from '../lib/hooks/createQueryString';
 
 const AttendanceChart = ({
- // records:bigData,
+ initialData,
 
 }: {
- // records: AttendanceRecord[];
+ initialData: AttendanceRecord[];
 }) => {
   //const [value, setValue] = useState('today');
   const [data, setData] = useState<any>(null)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const queryDate = searchParams.get('date')
+  console.log(queryDate)
   const url = useCreateQueryString(searchParams);
   const handleSetDate = async (date: string) => {
     setLoading(true)
@@ -37,13 +38,6 @@ const AttendanceChart = ({
       }
   }
 
-  useEffect(() => {
-    if(!data){
-      handleSetDate(queryDate || 'today')
-    } else {
-      return
-    }
-  },[])
 
   if (loading) {
     return (
@@ -51,14 +45,14 @@ const AttendanceChart = ({
     )
   }
 
-  return (data ) && !loading && (
+  return (data || initialData) && !loading && (
     <div className="p-4 md:p-10 mx-auto max-w-7xl relative">
       <h1 className="text-black dark:text-white">Realtime Attendance</h1>
       <Text className="text-gray-900 dark:text-gray-100">
         Arizona Science Center realtime attendance reporting
       </Text>
       <Flex className="md:flex-row  flex-col hidden">
-        <Search records={data} />
+        <Search records={data || initialData} />
         <DateRangePicker />
       </Flex>
       <Flex className="h-fit items-center mt-6">
@@ -77,7 +71,7 @@ const AttendanceChart = ({
         <RefreshButton disabled={queryDate === 'yesterday'}/>
       </Flex>
       <Card className="mt-6 bg-white dark:bg-gray-800 ">
-        <AttendanceTable records={data} />
+        <AttendanceTable records={data || initialData} />
       </Card>
     </div>
   );
