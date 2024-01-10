@@ -4,8 +4,7 @@
       "schedule": "0 10 * * *"
     }],
     "functions": {
-     
-      "api/v1/*.ts": {
+      "api/v1/**/*.ts": {
         "maxDuration": 35
       }
     }
