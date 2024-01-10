@@ -38,7 +38,7 @@ export const fetchToday = async () => {
       });
       if (!response.ok) {
         await handleTessituraError(response);
-      }
+      } 
 
       const data = await response.json()
 //ß      console.log()

@@ -7,7 +7,7 @@
       "app/api/v1/**/*": {
         "maxDuration": 300
       },
-      "lib/**/*": {
+      "app/**/*": {
         "maxDuration": 300
       }
     }
