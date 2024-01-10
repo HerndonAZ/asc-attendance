@@ -7,7 +7,7 @@
       "auth/*": ["app/auth/*"],
       "app/*": ["app/*"],
       "ui/*": ["ui/*"],
-      "@lib/*" : ["lib/*"],
+      "lib/*" : ["lib/*"],
       "providers/*": ["./lib/providers/*"]
     },
     "target": "es5",
