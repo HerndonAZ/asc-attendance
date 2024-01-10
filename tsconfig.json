@@ -4,7 +4,7 @@
 
     "paths": {
       "@/*": ["./*"],
-      "auth": ["./auth"],
+      "auth/*": ["app/auth/*"],
       "app/*": ["app/*"],
       "ui/*": ["ui/*"],
       "@lib/*" : ["lib/*"],

@@ -10,7 +10,7 @@ const currentDate = new Date();
 const phoenixDate = new Date(currentDate.toLocaleString('en-US', { timeZone }));
 const year = phoenixDate.getFullYear();
 const month = phoenixDate.getMonth() + 1; 
-const baseUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://asc-rt-attendance.vercel.app"
+const baseUrl = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://rta.azscience.org"
 export const getToday = () => {
   const day =  phoenixDate.getDate()
   return `${year}-${month}-${day}` as const;

@@ -4,10 +4,10 @@ import { Analytics } from '@vercel/analytics/react';
 import Nav from './nav';
 import Toast from './toast';
 import { Suspense } from 'react';
-import Providers from '../lib/providers';
+import Providers from 'lib/providers';
 
 export const metadata = {
-  title: 'ASC Realtime Attendancea',
+  title: 'ASC Realtime Attendance',
   description: 'Arizona Science Center realtime attendance reporting.'
 };
 
