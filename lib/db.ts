@@ -41,7 +41,7 @@ export const fetchToday = async () => {
       }
 
       const data = await response.json()
-      console.log()
+//ß      console.log()
       return {data, time: new Date()};
     } catch (error) {
       console.error(error);
