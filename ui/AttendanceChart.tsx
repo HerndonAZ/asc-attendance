@@ -67,13 +67,14 @@ const AttendanceChart = ({
       <Flex className="h-fit items-center mt-6">
         <Flex className='justify-start space-x-2'>
         <Select 
+        disabled
         enableClear={false}
         defaultValue={queryDate || 'today'} 
         onValueChange={(v: string) => router.push(pathname + '?' + url('date', v))} className="w-40">
           <SelectItem className=" " value="today">Today</SelectItem>
           <SelectItem className=" " value="yesterday">Yesterday</SelectItem>
         </Select>
-        <Button disabled={!queryDate} onClick={() => handleSetDate(queryDate!)}>
+        <Button disabled onClick={() => handleSetDate(queryDate!)}>
           Go
         </Button>
         </Flex>
