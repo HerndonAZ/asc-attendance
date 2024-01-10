@@ -1,10 +1,22 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+
+    "paths": {
+      "@/*": ["./*"],
+      "auth": ["./auth"],
+      "app/*": ["app/*"],
+      "ui/*": ["ui/*"],
+      "@lib/*" : ["lib/*"],
+      "providers/*": ["./lib/providers/*"]
+    },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    "sourceMap": false,
+
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -20,11 +32,7 @@
       }
     ]
   },
-  "paths": {
-    "@/*": ["./*"],
-    "auth": ["./auth"],
-    "providers": ["./lib/providers/*"]
-  },
+
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

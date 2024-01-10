@@ -12,19 +12,21 @@ import { formatDateForStatus, formatDateForUI } from '../lib/hooks/convertDate';
 import { AttendanceRecord } from '../lib/types';
 import React from 'react';
 
-//console.log(recordsByTheater, 'RBT')
-export function AttendanceTable({ records }: { records: AttendanceRecord[] }) {
+export function AttendanceTable({ records }: { records: any }) {
   const recordsByTheater: Record<string, AttendanceRecord[]> = {};
-  records.map((record) => {
+  
+  
+  
+  records.map((record: any) => {
     if (!recordsByTheater[record.theater!]) {
       recordsByTheater[record.theater!] = [];
     }
     recordsByTheater[record.theater!].push(record);
   });
 
-  const totalRevenue = records.reduce((total, record) => total + (record.revenue || 0), 0);
+ /// const totalRevenue = records.reduce((total, record) => total + (record.revenue || 0), 0);
 
-  return (
+  return recordsByTheater && (
     <Table className="">
       <TableHead>
         <TableRow>

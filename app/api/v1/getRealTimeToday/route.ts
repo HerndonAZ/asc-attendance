@@ -8,7 +8,7 @@ import {
 import { getToday } from '@/lib/db';
 
 export const revalidate = 0;
-const cacheKey = "asc_perf_cache"
+const cacheKey = "asc_perf_cache_all"
 
 export async function GET(req:NextRequest) {
   const cachedResponse = await redisGet(cacheKey);
@@ -44,7 +44,7 @@ export async function GET(req:NextRequest) {
         const data = await response.json();
 
      
-        return NextResponse.json(JSON.stringify(data));
+        return NextResponse.json(data);
      
       } catch (error) {
 

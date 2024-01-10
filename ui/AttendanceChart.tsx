@@ -5,7 +5,7 @@ import Search from './Components/Search';
 import { AttendanceTable } from './AttendanceTable';
 import DateRangePicker from './Components/DateRangePicker';
 import { Select, SelectItem } from '@tremor/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 import RefreshButton from './Buttons/RefreshButton';
 import { fetchTess } from '../lib/db';
 import Loading from '../app/loading';
@@ -18,8 +18,8 @@ const AttendanceChart = ({
 }: {
  initialData: AttendanceRecord[];
 }) => {
-  console.log(initialData)
-  //const [value, setValue] = useState('today');
+
+
   const [data, setData] = useState<any>(null)
   const [ initialDataLoaded, setInitialDataLoaded] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -50,7 +50,9 @@ const AttendanceChart = ({
     return (
       <Loading />
     )
-  }
+  } 
+
+  
 
   return (data || initialData) && !loading && (
     <div className="p-4 md:p-10 mx-auto max-w-7xl relative">
