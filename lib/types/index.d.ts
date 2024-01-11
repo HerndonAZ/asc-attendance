@@ -8,7 +8,7 @@ export interface AttendanceRecord {
   theater?: string | null;
   attendance: number | null;
   revenue: number;
-  time?: string
+  time?: string;
 }
 
 export interface User {

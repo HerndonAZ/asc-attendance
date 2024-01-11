@@ -16,26 +16,26 @@ const AttendanceChart = ({
   timeUpdated
 }: {
   initialData: AttendanceRecord[];
-  previousDayData: AttendanceRecord[], 
-  timeUpdated: string
+  previousDayData: AttendanceRecord[];
+  timeUpdated: string;
 }) => {
   const [data, setData] = useState<any>(null);
   const [initialDataLoaded, setInitialDataLoaded] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [day, setDay] = useState('today')
+  const [day, setDay] = useState('today');
   // console.log(queryDate);
   const handleSetDate = (date: string) => {
     setLoading(true);
 
     if (date === 'today') {
-     // console.log(initialData)
-      setData(initialData)
+      // console.log(initialData)
+      setData(initialData);
     }
 
-    if (date === "yesterday") {
-      setData(previousDayData || [])
+    if (date === 'yesterday') {
+      setData(previousDayData || []);
     }
-    setDay(date)
+    setDay(date);
     setLoading(false);
   };
   useEffect(() => {
@@ -67,8 +67,7 @@ const AttendanceChart = ({
               //  disabled
               enableClear={false}
               defaultValue={day}
-              onValueChange={(v) => handleSetDate(v)
-              }
+              onValueChange={(v) => handleSetDate(v)}
               className="w-40"
             >
               <SelectItem className=" " value="today">
@@ -78,18 +77,13 @@ const AttendanceChart = ({
                 Yesterday
               </SelectItem>
             </Select>
-    
           </Flex>
-          <Flex className='justify-end space-x-4' >
-            <div hidden={ day=== 'yesterday' }>
-            <Text className='text-xs italic'>
-            Last Updated
-            </Text>
-            <Text className='text-xs'>
-            {useTimePassed(timeUpdated)}
-            </Text>
+          <Flex className="justify-end space-x-4">
+            <div hidden={day === 'yesterday'}>
+              <Text className="text-xs italic">Last Updated</Text>
+              <Text className="text-xs">{useTimePassed(timeUpdated)}</Text>
             </div>
-          <RefreshButton disabled={day === 'yesterday'} />
+            <RefreshButton disabled={day === 'yesterday'} />
           </Flex>
         </Flex>
         <Card className="mt-6 bg-white dark:bg-gray-800 ">

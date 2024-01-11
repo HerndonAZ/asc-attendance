@@ -10,8 +10,6 @@ import { getToday } from '@/lib/db';
 export const revalidate = 0;
 
 export async function GET(req: NextRequest) {
-
-
   if (req.method !== 'GET') {
     return NextResponse.json('error: Method Not Allowed', { status: 405 });
   }
@@ -40,7 +38,10 @@ export async function GET(req: NextRequest) {
     } catch (error) {
       console.error(error);
 
-      return NextResponse.json({ error: 'Error during API request' , message: error });
+      return NextResponse.json({
+        error: 'Error during API request',
+        message: error
+      });
     }
   }
 

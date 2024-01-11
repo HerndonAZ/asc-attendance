@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { credentials, apiUrl, handleTessituraError } from 'lib/providers/Tessitura';
+import {
+  credentials,
+  apiUrl,
+  handleTessituraError
+} from 'lib/providers/Tessitura';
 import { getYesterday } from 'lib/db';
 import { redis, redisGet, redisSet } from '@/lib/providers/Redis/redis';
 
@@ -34,8 +38,8 @@ export async function GET(req: NextRequest) {
         headers: {
           Authorization: `Basic ${credentials}`,
           'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
+          Accept: 'application/json'
+        }
       });
 
       if (!response.ok) {
@@ -47,16 +51,18 @@ export async function GET(req: NextRequest) {
       if (data) {
         try {
           await redisSet(cacheKey, JSON.stringify(data));
-          return NextResponse.json(data)
+          return NextResponse.json(data);
         } catch (err) {
           return NextResponse.json(JSON.stringify(err));
         }
       }
-
     }
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ error: 'Error during API request', message: error });
+    return NextResponse.json({
+      error: 'Error during API request',
+      message: error
+    });
   }
 
   return NextResponse.json({ error: 'Error during API request' });

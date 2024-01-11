@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { credentials, apiUrl, handleTessituraError } from 'lib/providers/Tessitura';
+import {
+  credentials,
+  apiUrl,
+  handleTessituraError
+} from 'lib/providers/Tessitura';
 import { getToday } from 'lib/db';
 
 export const maxDuration = 35;
@@ -23,8 +27,8 @@ export async function GET(req: NextRequest) {
           headers: {
             Authorization: `Basic ${credentials}`,
             'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
+            Accept: 'application/json'
+          }
         });
 
         if (!response.ok) {
