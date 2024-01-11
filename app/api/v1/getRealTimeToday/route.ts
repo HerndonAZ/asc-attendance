@@ -4,7 +4,7 @@ import {
     apiUrl,
     handleTessituraError
   } from 'lib/providers/Tessitura'
-  import { redis, redisGet, redisSet } from 'providers/Redis/redis';
+  import { redis, redisGet, redisSet } from 'lib/providers/Redis/redis';
 import { getToday } from '@/lib/db';
 export const maxDuration = 35
 export const revalidate = 0;

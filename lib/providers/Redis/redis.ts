@@ -3,8 +3,8 @@ import { promisify } from 'util';
 
 
 const getRedisUrl = () => {
-  if (process.env.REDIS_URL as string) {
-    return process.env.REDIS_URL! as string;
+  if (process.env.TEST_REDIS_URL as string) {
+    return process.env.TEST_REDIS_URL! as string;
   }
   throw new Error('REDIS url is not defined');
 };
@@ -21,6 +21,13 @@ const getRedisRestToken = () => {
         return process.env.UPSTASH_REDIS_REST_TOKEN! as string
     }
     throw new Error('REDIS Rest Token is not defined');
+}
+const testCS = 'asc.redis.cache.windows.net:6380,password=WkNZ3jUn3RSdqKAWnJbxjVM339P0fIV4vAzCaCs1PGE=,ssl=True,abortConnect=False'
+const azureRedisOptions = {
+  host: 'asc.redis.cache.windows.net',
+  port: 6379, // or 6379 for non-TLS connection
+  password: 'WkNZ3jUn3RSdqKAWnJbxjVM339P0fIV4vAzCaCs1PGE=',
+
 }
 const redis = new Redis(getRedisUrl());
 const redisRestUrl = getRedisRestUrl()

@@ -7,7 +7,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { signIn, signOut } from 'next-auth/react';
 import Image from 'next/image';
 import DarkModeButton from '../ui/Buttons/DarkModeButton/DarkModeButton';
-import Clock from '../ui/Clock';
+import Clock from '../ui/Components/Clock';
 
 const navigation = [
   { name: 'Dashboard', href: '/', hidden: false }
@@ -72,7 +72,9 @@ export default function Navbar({ user }: { user: any }) {
                     })}
                 </div>
               </div>
+              <div className={`${user && 'sm:mr-28'}`}>
               <Clock/>
+              </div>
               <div className="hidden sm:ml-6 sm:flex sm:items-center">
                 <Menu as="div" className="relative ml-3 ">
                   <div>

@@ -47,10 +47,16 @@ export async function GET(req:NextRequest) {
         const data = await response.json();
        // await new Promise((resolve) => setTimeout(resolve, 500));
 
-      
-        //  await redisSet(cacheKey, JSON.stringify(data));
+      if(data){
+        try {
+            await redisSet(cacheKey, JSON.stringify(data));
+
+        } catch (err){
+            return NextResponse.json(JSON.stringify(err))
+        }
+      }
      
-        return NextResponse.json(['data']);
+        return NextResponse.json(data);
      
       } catch (error) {
         // Handle other errors (e.g., network issues, deserialization errors)
