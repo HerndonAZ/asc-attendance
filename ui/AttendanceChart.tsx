@@ -80,7 +80,7 @@ const AttendanceChart = ({
             </Select>
     
           </Flex>
-          <Flex className='justify-end space-x-4'>
+          <Flex className='justify-end space-x-4' hidden={ day=== 'yesterday' }>
             <div>
             <Text className='text-xs italic'>
             Last Updated
