@@ -8,12 +8,46 @@ import {
   TableCell,
   Text
 } from '@tremor/react';
-import { formatDateForStatus, formatDateForUI } from '../lib/hooks/convertDate';
+import { formatDateForUI } from '../lib/hooks/convertDate';
 import { AttendanceRecord } from '../lib/types';
 import React from 'react';
 
 export function AttendanceTable({ records }: { records: any }) {
+  const customOrder = [
+    'Arizona Science Center', 
+    'Sybil B Harrington Galleries', 
+    'Dorrance Planetarium',
+    'Irene P. Flinn Theater',
+    'Sky Cycle',
+    'VerticalVenture',
+    'Education'
+  ]; // Define your custom order
+
   const recordsByTheater: Record<string, AttendanceRecord[]> = {};
+
+  
+  // Sort the theater names based on the custom order
+  records.sort((a: any, b: any) => {
+    const indexA = customOrder.indexOf(a.theater);
+    const indexB = customOrder.indexOf(b.theater);
+  
+    // If both theaters are in the custom order, compare their positions
+    if (indexA !== -1 && indexB !== -1) {
+      return indexA - indexB;
+    }
+  
+    // If only one theater is in the custom order, prioritize it
+    if (indexA !== -1) {
+      return -1;
+    }
+  
+    if (indexB !== -1) {
+      return 1;
+    }
+  
+    // If neither theater is in the custom order, maintain their original order
+    return 0;
+  });
 
   records.map((record: any) => {
     if (!recordsByTheater[record.theater!]) {
@@ -29,9 +63,6 @@ export function AttendanceTable({ records }: { records: any }) {
       <Table className="">
         <TableHead>
           <TableRow>
-            <TableHeaderCell className="text-black dark:text-white hidden">
-              Status
-            </TableHeaderCell>
             <TableHeaderCell className="text-black dark:text-white hidden">
               Theater
             </TableHeaderCell>
@@ -84,11 +115,7 @@ export function AttendanceTable({ records }: { records: any }) {
 
                     return (
                       <TableRow key={record.id}>
-                        <TableCell className="text-gray-900 dark:text-gray-100 hidden">
-                          <div className="mx-auto">
-                            <StatusIcon {...statusProps} />
-                          </div>
-                        </TableCell>
+           
                         <TableCell className="text-gray-900 dark:text-gray-100 hidden">
                           {record.theater}
                         </TableCell>
@@ -129,47 +156,3 @@ export function AttendanceTable({ records }: { records: any }) {
     )
   );
 }
-const StatusIcon = ({
-  time,
-  date,
-  runtime
-}: {
-  time: string;
-  date: string;
-  runtime?: any;
-}) => {
-  const now = Date.now();
-  const adjustedTime = time.replace(' PM', ''); // Remove " PM" if it's included
-  const eventDateTime = new Date(
-    `${formatDateForStatus(date)} ${adjustedTime}`
-  );
-  const runTimeInMilliseconds = runtime ? runtime * 60 * 1000 : 60 * 60 * 1000; // Convert runtime to milliseconds
-  const endTime = eventDateTime.getTime() + runTimeInMilliseconds;
-  const timeDiff = eventDateTime.getTime() - now;
-  const minutesRemaining = timeDiff / (1000 * 60);
-
-  const startingSoonThreshold = 15; // 15 minutes threshold for "Starting Soon"
-  const endingSoonThreshold = 15; // 15 minutes threshold for "Ending Soon"
-
-  if (minutesRemaining > 0) {
-    if (minutesRemaining <= startingSoonThreshold) {
-      return (
-        <span className="flex w-3 h-3 bg-blue-500 rounded-full mx-4 animate-pulse ease-in-out delay-300"></span>
-      );
-    } else {
-      return (
-        <span className="flex w-3 h-3 bg-red-500 rounded-full mx-4"></span>
-      );
-    }
-  } else if (now >= eventDateTime.getTime() && now <= endTime) {
-    return (
-      <span className="flex w-3 h-3 bg-green-500 rounded-full mx-4 animate-pulse ease-in-out delay-300"></span>
-    );
-  } else if (minutesRemaining > -endingSoonThreshold) {
-    return (
-      <span className="flex w-3 h-3 bg-yellow-500 rounded-full mx-4 animate-pulse ease-in-out delay-300"></span>
-    );
-  } else {
-    return <span className="flex w-3 h-3 bg-red-500 rounded-full mx-4"></span>;
-  }
-};
