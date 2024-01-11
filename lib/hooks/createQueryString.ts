@@ -1,5 +1,5 @@
-"use client";
-import { useCallback } from "react";
+'use client';
+import { useCallback } from 'react';
 
 export const useCreateQueryString = (
   searchParams:
@@ -7,7 +7,7 @@ export const useCreateQueryString = (
     | string[][]
     | Record<string, string>
     | URLSearchParams
-    | undefined,
+    | undefined
 ) =>
   useCallback(
     (name: string, value: string) => {
@@ -16,5 +16,5 @@ export const useCreateQueryString = (
 
       return params.toString();
     },
-    [searchParams],
+    [searchParams]
   );

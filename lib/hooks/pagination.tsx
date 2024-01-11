@@ -33,7 +33,7 @@ export default function Pagination(props: PaginationProps) {
           {totalItems}
         </div>
         <div className="text-sm text-zinc-700 dark:text-zinc-400 mr-2">
-          {" "}
+          {' '}
           results
         </div>
       </div>

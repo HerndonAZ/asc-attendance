@@ -13,80 +13,82 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useCreateQueryString } from '../lib/hooks/createQueryString';
 
 const AttendanceChart = ({
- initialData,
-
+  initialData,
+  previousDayData
 }: {
- initialData: AttendanceRecord[];
+  initialData: AttendanceRecord[];
+  previousDayData: AttendanceRecord[]
 }) => {
+  const [data, setData] = useState<any>(null);
+  const [initialDataLoaded, setInitialDataLoaded] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [day, setDay] = useState('today')
+  // console.log(queryDate);
+  const handleSetDate = (date: string) => {
+    setLoading(true);
 
-
-  const [data, setData] = useState<any>(null)
-  const [ initialDataLoaded, setInitialDataLoaded] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const queryDate = searchParams.get('date')
-  console.log(queryDate)
-  const url = useCreateQueryString(searchParams);
-  const handleSetDate = async (date: string) => {
-    setLoading(true)
-    try {
-      const { data, time }: any = await fetchTess(null, date)
-      setData(data)
-      setLoading(false)
-      } catch (error){
-        console.error(error)
-      }
-  }
-  useEffect(() => {
-    if(initialData && !initialDataLoaded){
+    if (date === 'today') {
+      console.log(initialData)
       setData(initialData)
-      setInitialDataLoaded(true)
     }
-  },[initialData, initialDataLoaded])
+
+    if (date === "yesterday") {
+      setData(previousDayData || [])
+    }
+    setDay(date)
+    setLoading(false);
+
+  };
+  useEffect(() => {
+    if (initialData && !initialDataLoaded) {
+      setData(initialData);
+      setInitialDataLoaded(true);
+    }
+  }, [initialData, initialDataLoaded]);
 
   if (loading) {
-    return (
-      <Loading />
-    )
-  } 
+    return <Loading />;
+  }
 
-  
-
-  return (data || initialData) && !loading && (
-    <div className="p-4 md:p-10 mx-auto max-w-7xl relative">
-      <h1 className="text-black dark:text-white">Realtime Attendance</h1>
-      <Text className="text-gray-900 dark:text-gray-100">
-        Arizona Science Center realtime attendance reporting
-      </Text>
-      <Flex className="md:flex-row  flex-col hidden">
-        <Search records={data || initialData} />
-        <DateRangePicker />
-      </Flex>
-      <Flex className="h-fit items-center mt-6">
-        <Flex className='justify-start space-x-2'>
-        <Select 
-        disabled
-        enableClear={false}
-        defaultValue={queryDate || 'today'} 
-        onValueChange={(v: string) => router.push(pathname + '?' + url('date', v))} className="w-40">
-          <SelectItem className=" " value="today">Today</SelectItem>
-          <SelectItem className=" " value="yesterday">Yesterday</SelectItem>
-        </Select>
-        <Button disabled onClick={() => handleSetDate(queryDate!)}>
-          Go
-        </Button>
+  return (
+    (data || initialData) &&
+    !loading && (
+      <div className="p-4 md:p-10 mx-auto max-w-7xl relative">
+        <h1 className="text-black dark:text-white">Realtime Attendance</h1>
+        <Text className="text-gray-900 dark:text-gray-100">
+          Arizona Science Center realtime attendance reporting
+        </Text>
+        <Flex className="md:flex-row  flex-col hidden">
+          <Search records={data || initialData} />
+          <DateRangePicker />
         </Flex>
-        <RefreshButton disabled={queryDate === 'yesterday'}/>
-      </Flex>
-      <Card className="mt-6 bg-white dark:bg-gray-800 ">
-        <AttendanceTable records={data || initialData} />
-      </Card>
-    </div>
+        <Flex className="h-fit items-center mt-6">
+          <Flex className="justify-start space-x-2">
+            <Select
+              //  disabled
+              enableClear={false}
+              defaultValue={day}
+              onValueChange={(v) => handleSetDate(v)
+              }
+              className="w-40"
+            >
+              <SelectItem className=" " value="today">
+                Today
+              </SelectItem>
+              <SelectItem className=" " value="yesterday">
+                Yesterday
+              </SelectItem>
+            </Select>
+    
+          </Flex>
+          <RefreshButton disabled={day === 'yesterday'} />
+        </Flex>
+        <Card className="mt-6 bg-white dark:bg-gray-800 ">
+          <AttendanceTable records={data || initialData} />
+        </Card>
+      </div>
+    )
   );
-
-
 };
 
 export default AttendanceChart;

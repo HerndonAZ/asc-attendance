@@ -8,14 +8,14 @@ function Providers({ children }: { children: React.ReactNode }) {
   return (
     <Suspense>
       <QueryClientProvider client={queryClient}>
-      <ThemeProvider
-        enableSystem={true}
-        attribute="class"
-        defaultTheme="dark"
-        // disableTransitionOnChange
-      >
-        {children}
-      </ThemeProvider>
+        <ThemeProvider
+          enableSystem={true}
+          attribute="class"
+          defaultTheme="dark"
+          // disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </QueryClientProvider>
     </Suspense>
   );

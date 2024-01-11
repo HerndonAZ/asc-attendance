@@ -24,7 +24,8 @@ export default function RootLayout({
             <Nav />
           </Suspense>
           <main className="h-full relative">
-            <Suspense>{children}</Suspense></main>
+            <Suspense>{children}</Suspense>
+          </main>
 
           <Analytics />
           <Toast />

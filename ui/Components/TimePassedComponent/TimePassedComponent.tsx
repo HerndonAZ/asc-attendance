@@ -1,4 +1,4 @@
-'use client'
+'use client';
 // TimeSinceLastRequest.tsx
 import { useEffect, useState } from 'react';
 
@@ -6,7 +6,9 @@ interface TimeSinceLastRequestProps {
   onRequest: () => Promise<void>;
 }
 
-const TimeSinceLastRequest: React.FC<TimeSinceLastRequestProps> = ({ onRequest }) => {
+const TimeSinceLastRequest: React.FC<TimeSinceLastRequestProps> = ({
+  onRequest
+}) => {
   const [lastRequestTime, setLastRequestTime] = useState<number | null>(null);
 
   const fetchAndUpdateTime = async () => {
@@ -29,7 +31,9 @@ const TimeSinceLastRequest: React.FC<TimeSinceLastRequestProps> = ({ onRequest }
     fetchAndUpdateTime();
   };
 
-  const timePassed = lastRequestTime ? Math.floor((Date.now() - lastRequestTime) / 1000) : 0;
+  const timePassed = lastRequestTime
+    ? Math.floor((Date.now() - lastRequestTime) / 1000)
+    : 0;
 
   return (
     <div>
