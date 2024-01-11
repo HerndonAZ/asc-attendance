@@ -4,6 +4,8 @@ import React from "react";
 function SiteInBetaNotice() {
   const cookieStore = cookies();
   const cookieString = 'site-beta-message'
+  const expirationTime = new Date(new Date().getTime() + 15 * 60 * 1000); // In fifteen moinutes
+
   const isHidden = cookieStore.get(cookieString);
   
   return (
@@ -27,7 +29,7 @@ function SiteInBetaNotice() {
       <div className="ms-3 text-sm font-medium">
         We are still testing this tool. Please be gentle and report any errors to herndonr@azscience.org
       </div>
-      <DismissButton cookieString={cookieString}/>
+      <DismissButton cookieString={cookieString} expiration={expirationTime}/>
     </div>) : (
     <div></div>)}
     </React.Fragment>
