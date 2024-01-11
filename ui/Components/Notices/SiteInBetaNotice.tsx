@@ -6,7 +6,7 @@ function SiteInBetaNotice() {
   const cookieString = 'site-beta-notice'
   const expirationTime = new Date(new Date().getTime() + 15 * 60 * 1000); // In fifteen moinutes
 
-  const isHidden = cookieStore.get(cookieString);
+  const isHidden = cookieStore.get(cookieString) ;
   console.log(isHidden)
   return (
     <React.Fragment>

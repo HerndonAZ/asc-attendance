@@ -1,16 +1,16 @@
 'use client';
-import { AttendanceRecord } from '../lib/types';
+import { AttendanceRecord } from '../../lib/types';
 import { Card, Text, Flex, Button } from '@tremor/react';
-import Search from './Components/Search';
+import Search from './Search';
 import { AttendanceTable } from './AttendanceTable';
-import DateRangePicker from './Components/DateRangePicker';
+import DateRangePicker from './DateRangePicker';
 import { Select, SelectItem } from '@tremor/react';
 import { useEffect, useState } from 'react';
-import RefreshButton from './Buttons/RefreshButton';
-import Loading from '../app/loading';
+import RefreshButton from '../Buttons/RefreshButton';
+import Loading from '../../app/loading';
 import useTimePassed from '@/lib/hooks/useTimePassed';
 
-const AttendanceChart = ({
+const AttendanceWrapper = ({
   initialData,
   previousDayData,
   timeUpdated
@@ -94,4 +94,4 @@ const AttendanceChart = ({
   );
 };
 
-export default AttendanceChart;
+export default AttendanceWrapper;

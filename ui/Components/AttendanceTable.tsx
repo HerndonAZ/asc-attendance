@@ -8,8 +8,8 @@ import {
   TableCell,
   Text
 } from '@tremor/react';
-import { formatDateForUI } from '../lib/hooks/convertDate';
-import { AttendanceRecord } from '../lib/types';
+import { formatDateForUI } from '../../lib/hooks/convertDate';
+import { AttendanceRecord } from '../../lib/types';
 import React from 'react';
 
 export function AttendanceTable({ records }: { records: any }) {
