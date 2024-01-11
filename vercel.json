@@ -6,7 +6,8 @@
     },
     {
       "path": "/api/cron/getAttendanceUpdatePreviousDate",
-      "schedule": "60 0 * * *"
+      "schedule": "60 0 * * *",
+      "maxDuration": 300
     }
   ],
   "functions": {
