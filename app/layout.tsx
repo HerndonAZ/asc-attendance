@@ -5,6 +5,7 @@ import Nav from './nav';
 import Toast from './toast';
 import { Suspense } from 'react';
 import Providers from 'lib/providers';
+import SiteInBetaNotice from '@/ui/Components/Notices/SiteInBetaNotice';
 
 export const metadata = {
   title: 'ASC Realtime Attendance',
@@ -22,6 +23,7 @@ export default function RootLayout({
         <Providers>
           <Suspense>
             <Nav />
+            <SiteInBetaNotice/>
           </Suspense>
           <main className="h-full relative">
             <Suspense>{children}</Suspense>
