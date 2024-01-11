@@ -5,19 +5,19 @@ import Search from './Components/Search';
 import { AttendanceTable } from './AttendanceTable';
 import DateRangePicker from './Components/DateRangePicker';
 import { Select, SelectItem } from '@tremor/react';
-import { useEffect, useState, useTransition } from 'react';
+import { useEffect, useState } from 'react';
 import RefreshButton from './Buttons/RefreshButton';
-import { fetchTess } from '../lib/db';
 import Loading from '../app/loading';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useCreateQueryString } from '../lib/hooks/createQueryString';
+import useTimePassed from '@/lib/hooks/useTimePassed';
 
 const AttendanceChart = ({
   initialData,
-  previousDayData
+  previousDayData,
+  timeUpdated
 }: {
   initialData: AttendanceRecord[];
-  previousDayData: AttendanceRecord[]
+  previousDayData: AttendanceRecord[], 
+  timeUpdated: string
 }) => {
   const [data, setData] = useState<any>(null);
   const [initialDataLoaded, setInitialDataLoaded] = useState(false);
@@ -37,7 +37,6 @@ const AttendanceChart = ({
     }
     setDay(date)
     setLoading(false);
-
   };
   useEffect(() => {
     if (initialData && !initialDataLoaded) {
@@ -81,7 +80,17 @@ const AttendanceChart = ({
             </Select>
     
           </Flex>
+          <Flex className='justify-end space-x-4'>
+            <div>
+            <Text className='text-xs italic'>
+            Last Updated
+            </Text>
+            <Text className='text-xs'>
+            {useTimePassed(timeUpdated)}
+            </Text>
+            </div>
           <RefreshButton disabled={day === 'yesterday'} />
+          </Flex>
         </Flex>
         <Card className="mt-6 bg-white dark:bg-gray-800 ">
           <AttendanceTable records={data || initialData} />

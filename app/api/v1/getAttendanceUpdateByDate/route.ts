@@ -8,12 +8,9 @@ import { redis, redisGet, redisSet } from 'providers/Redis/redis';
 import { getToday } from '@/lib/db';
 
 export const revalidate = 0;
-const cacheKey = 'asc_perf_cache';
 
 export async function GET(req: NextRequest) {
-  const cachedResponse = await redisGet(cacheKey);
-  const { searchParams } = new URL(req.url);
-  const noRefresh = searchParams.get('noRefresh');
+
 
   if (req.method !== 'GET') {
     return NextResponse.json('error: Method Not Allowed', { status: 405 });

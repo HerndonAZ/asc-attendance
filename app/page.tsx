@@ -9,7 +9,7 @@ export default async function IndexPage() {
   const initialData: any = session && (await fetchToday());
 
   const [
-    { data:today },
+    { data:today , time},
     { data:yesterday }]: any =
     session && 
     (await Promise.all([
@@ -21,6 +21,7 @@ export default async function IndexPage() {
 
   const dataProps = {
     initialData:today, 
+    timeUpdated: time,
     previousDayData:yesterday
   }
   if (session && {...dataProps}!!) {

@@ -55,7 +55,7 @@ export const fetchYesterday = async () => {
       const response = await fetch(
         baseUrl + '/api/v1/getAttendanceUpdatePreviousDate?noRefresh=true',
         {
-          cache: 'no-cache',
+          next: { revalidate: 3600 },
           method: 'GET',
           headers: {
             Authorization: 'Basic ' + credentials,
