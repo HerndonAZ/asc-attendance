@@ -6,7 +6,7 @@
     },
     {
       "path": "/api/cron/getAttendanceUpdatePreviousDate",
-      "schedule": "60 0 * * *"
+      "schedule": "10 * * * *"
     }
   ],
   "functions": {
