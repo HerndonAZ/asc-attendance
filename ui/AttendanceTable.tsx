@@ -70,19 +70,19 @@ export function AttendanceTable({ records }: { records: any }) {
               Season
             </TableHeaderCell>
             <TableHeaderCell className="text-black dark:text-white">
-              Performance
-            </TableHeaderCell>
-            <TableHeaderCell className="text-black dark:text-white">
-              Date
-            </TableHeaderCell>
-            <TableHeaderCell className="text-black dark:text-white">
-              Time
-            </TableHeaderCell>
-            <TableHeaderCell className="text-black dark:text-white">
-              Attendance
+             Attendance
             </TableHeaderCell>
             <TableHeaderCell className="text-black dark:text-white">
               Revenue
+            </TableHeaderCell>
+            <TableHeaderCell className="text-black dark:text-white">
+              Performance
+            </TableHeaderCell>
+            <TableHeaderCell className="text-black dark:text-white">
+             Date
+            </TableHeaderCell>
+            <TableHeaderCell className="text-black dark:text-white">
+              Time
             </TableHeaderCell>
           </TableRow>
         </TableHead>
@@ -115,7 +115,6 @@ export function AttendanceTable({ records }: { records: any }) {
 
                     return (
                       <TableRow key={record.id}>
-           
                         <TableCell className="text-gray-900 dark:text-gray-100 hidden">
                           {record.theater}
                         </TableCell>
@@ -123,26 +122,26 @@ export function AttendanceTable({ records }: { records: any }) {
                           {record.production_season}
                         </TableCell>
                         <TableCell className="text-gray-900 dark:text-gray-100">
+                          {record.attendance}
+                        </TableCell>
+                        <TableCell>
+                          <Text className="text-gray-900 dark:text-gray-100">
+                          ${record.revenue}                          
+                          </Text>
+                        </TableCell>
+                        <TableCell>
+                          <Text className="text-gray-900 dark:text-gray-100">
                           {record.production}
-                        </TableCell>
-                        <TableCell>
-                          <Text className="text-gray-900 dark:text-gray-100">
-                            {formattedDate}
                           </Text>
                         </TableCell>
                         <TableCell>
                           <Text className="text-gray-900 dark:text-gray-100">
-                            {record.perf_time}
+                              {formattedDate}
                           </Text>
                         </TableCell>
                         <TableCell>
                           <Text className="text-gray-900 dark:text-gray-100">
-                            {record.attendance}
-                          </Text>
-                        </TableCell>
-                        <TableCell>
-                          <Text className="text-gray-900 dark:text-gray-100">
-                            ${record.revenue}
+                          {record.perf_time}
                           </Text>
                         </TableCell>
                       </TableRow>
