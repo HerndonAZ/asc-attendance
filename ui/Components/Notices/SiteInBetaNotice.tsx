@@ -3,14 +3,14 @@ import { cookies } from "next/headers";
 import React from "react";
 function SiteInBetaNotice() {
   const cookieStore = cookies();
-  const cookieString = 'site-beta-message'
+  const cookieString = 'site-beta-notice'
   const expirationTime = new Date(new Date().getTime() + 15 * 60 * 1000); // In fifteen moinutes
 
   const isHidden = cookieStore.get(cookieString);
   
   return (
     <React.Fragment>
-    {isHidden ? (
+    {!isHidden ? (
     <div
       id="alert-1"
       className="flex items-center justify-center p-4 mb-4 text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 text-center "
@@ -29,7 +29,9 @@ function SiteInBetaNotice() {
       <div className="ms-3 text-sm font-medium">
         We are still testing this tool. Please be gentle and report any errors to herndonr@azscience.org
       </div>
+      <div className="px-4">
       <DismissButton cookieString={cookieString} expiration={expirationTime}/>
+      </div>
     </div>) : (
     <div></div>)}
     </React.Fragment>
