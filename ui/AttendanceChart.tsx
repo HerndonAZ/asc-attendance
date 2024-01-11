@@ -28,7 +28,7 @@ const AttendanceChart = ({
     setLoading(true);
 
     if (date === 'today') {
-      console.log(initialData)
+     // console.log(initialData)
       setData(initialData)
     }
 
@@ -80,8 +80,8 @@ const AttendanceChart = ({
             </Select>
     
           </Flex>
-          <Flex className='justify-end space-x-4' hidden={ day=== 'yesterday' }>
-            <div>
+          <Flex className='justify-end space-x-4' >
+            <div hidden={ day=== 'yesterday' }>
             <Text className='text-xs italic'>
             Last Updated
             </Text>

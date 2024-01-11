@@ -15,8 +15,8 @@ const useTimePassed = (timestamp: string) => {
       const minutes = Math.floor((diffInSeconds % 3600) / 60);
       const seconds = diffInSeconds % 60;
 
-      const formattedTime = `${hours}h ${minutes}m ${seconds}s ago`;
-      setTimePassed(formattedTime);
+      const formattedTime = `${hours > 0 ? hours + 'h' : ''} ${minutes > 0 ? minutes + 'm' : ''} ${seconds}s ago`;
+      setTimePassed(formattedTime.toString());
     }, 1000); // Update every second
 
     return () => clearInterval(updateInterval);
