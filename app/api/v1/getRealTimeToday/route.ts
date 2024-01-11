@@ -5,7 +5,7 @@ import {
     handleTessituraError
   } from 'lib/providers/Tessitura'
   import { redis, redisGet, redisSet } from 'lib/providers/Redis/redis';
-import { getToday } from '@/lib/db';
+import { getToday } from 'lib/db';
 export const maxDuration = 35
 export const revalidate = 0;
 const cacheKey = "asc_perf_cache_all"
