@@ -10,6 +10,7 @@ export default function DismissButton({cookieString, expiration} : {cookieString
     <button
       className="contents text-sm underline text-black dark:text-white pl-4"
       onClick={() => {
+        console.log('refreshing')
         Cookies.set(cookieString, 'true', {expires: expiration ? expiration : undefined});
         router.refresh();
       }}
