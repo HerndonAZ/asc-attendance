@@ -1,7 +1,7 @@
 import { fetchToday, fetchYesterday } from 'lib/db';
 import { auth } from './auth';
 import AuthComponent from '@/ui/Auth/AuthComponent';
-import AttendanceWrapper from '@/ui/Components/AttendanceWrapper';
+import AttendanceWrapper from '@/ui/Components/RealTime/AttendanceWrapper';
 export const dynamic = 'force-dynamic';
 
 export default async function IndexPage() {

@@ -8,8 +8,8 @@ import {
   TableCell,
   Text
 } from '@tremor/react';
-import { formatDateForUI } from '../../lib/hooks/convertDate';
-import { AttendanceRecord } from '../../lib/types';
+import { formatDateForUI } from 'lib/hooks/convertDate';
+import { AttendanceRecord } from 'lib/types';
 import React from 'react';
 
 export function AttendanceTable({ records }: { records: any }) {
@@ -22,7 +22,7 @@ export function AttendanceTable({ records }: { records: any }) {
     'VerticalVenture',
     'Education'
   ]; // Define your custom order
-
+  const hiddenTimes = ["08:00:00 PM","05:00:00 PM"]
   const recordsByTheater: Record<string, AttendanceRecord[]> = {};
 
   
@@ -141,7 +141,7 @@ export function AttendanceTable({ records }: { records: any }) {
                         </TableCell>
                         <TableCell>
                           <Text className="text-gray-900 dark:text-gray-100">
-                          {record.perf_time}
+                          {hiddenTimes.includes(record.perf_time) ? "---" : record.perf_time}
                           </Text>
                         </TableCell>
                       </TableRow>

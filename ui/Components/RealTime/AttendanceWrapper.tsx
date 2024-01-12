@@ -1,14 +1,14 @@
 'use client';
-import { AttendanceRecord } from '../../lib/types';
-import { Card, Text, Flex, Button } from '@tremor/react';
-import Search from './Search';
+import { AttendanceRecord } from 'lib/types';
+import { Card, Text, Flex, DateRangePicker } from '@tremor/react';
 import { AttendanceTable } from './AttendanceTable';
-import DateRangePicker from './DateRangePicker';
 import { Select, SelectItem } from '@tremor/react';
-import { useEffect, useState } from 'react';
-import RefreshButton from '../Buttons/RefreshButton';
-import Loading from '../../app/loading';
+import { useEffect } from 'react';
+import Loading from 'app/loading';
 import useTimePassed from '@/lib/hooks/useTimePassed';
+import RefreshButton from '@/ui/Buttons/RefreshButton';
+import Search from '../Search';
+import { useRealTimeStore } from './store';
 
 const AttendanceWrapper = ({
   initialData,
@@ -19,11 +19,16 @@ const AttendanceWrapper = ({
   previousDayData: AttendanceRecord[];
   timeUpdated: string;
 }) => {
-  const [data, setData] = useState<any>(null);
-  const [initialDataLoaded, setInitialDataLoaded] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [day, setDay] = useState('today');
-  // console.log(queryDate);
+const {
+  setLoading, 
+  setInitialDataLoaded, 
+  setDay,
+  setRealTimeData:setData, 
+  loading, 
+  initialDataLoaded,
+  data, 
+  day,
+} = useRealTimeStore()
   const handleSetDate = (date: string) => {
     setLoading(true);
 
