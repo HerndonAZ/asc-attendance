@@ -1,1 +1,1 @@
-export {default} from './DownloadAsCSV'
+export { default } from './DownloadAsCSV';

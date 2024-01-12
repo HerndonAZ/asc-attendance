@@ -21,16 +21,17 @@ export async function GET(req: NextRequest) {
   if (cachedResponse && !cron) {
     // If found in cache, return the cached response
     return NextResponse.json(JSON.parse(cachedResponse));
-  } else if (cron){ // If not found in cache, return a response indicating it's not in cache
-    await redis.del(cacheKey)
+  } else if (cron) {
+    // If not found in cache, return a response indicating it's not in cache
+    await redis.del(cacheKey);
   }
   if (credentials) {
-   // const cache = 'no-cache';
+    // const cache = 'no-cache';
     const endpoint = '/custom/Attendance_Update';
     try {
       const response = await fetch(apiUrl + endpoint, {
-       // cache: cache,
-        next:{revalidate : 3600},
+        // cache: cache,
+        next: { revalidate: 3600 },
         method: 'GET',
         headers: {
           Authorization: 'Basic ' + credentials,
@@ -49,12 +50,10 @@ export async function GET(req: NextRequest) {
         try {
           await redisSet(cacheKey, JSON.stringify(data));
           return NextResponse.json(data);
-
         } catch (err) {
           return NextResponse.json(JSON.stringify(err));
         }
       }
-
     } catch (error) {
       // Handle other errors (e.g., network issues, deserialization errors)
       console.error(error);

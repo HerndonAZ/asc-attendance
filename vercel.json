@@ -5,10 +5,10 @@
       "schedule": "0 8 * * *"
     },
     {
-      "path": "/api/cron/getAllAttendanceUpdates",
+      "path": "/api/cron/getAllAttendanceUpdates?cron=true",
       "schedule": "0 8 * * *"
     }
-  ], 
+  ],
   "functions": {
     "app/api/v1/**/*": {
       "maxDuration": 300

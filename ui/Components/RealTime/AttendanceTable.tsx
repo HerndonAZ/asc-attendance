@@ -14,37 +14,36 @@ import React from 'react';
 
 export function AttendanceTable({ records }: { records: any }) {
   const customOrder = [
-    'Arizona Science Center', 
-    'Sybil B Harrington Galleries', 
+    'Arizona Science Center',
+    'Sybil B Harrington Galleries',
     'Dorrance Planetarium',
     'Irene P. Flinn Theater',
     'Sky Cycle',
     'VerticalVenture',
     'Education'
   ]; // Define your custom order
-  const hiddenTimes = ["08:00:00 PM","05:00:00 PM"]
+  const hiddenTimes = ['08:00:00 PM', '05:00:00 PM'];
   const recordsByTheater: Record<string, AttendanceRecord[]> = {};
 
-  
   // Sort the theater names based on the custom order
   records.sort((a: any, b: any) => {
     const indexA = customOrder.indexOf(a.theater);
     const indexB = customOrder.indexOf(b.theater);
-  
+
     // If both theaters are in the custom order, compare their positions
     if (indexA !== -1 && indexB !== -1) {
       return indexA - indexB;
     }
-  
+
     // If only one theater is in the custom order, prioritize it
     if (indexA !== -1) {
       return -1;
     }
-  
+
     if (indexB !== -1) {
       return 1;
     }
-  
+
     // If neither theater is in the custom order, maintain their original order
     return 0;
   });
@@ -70,7 +69,7 @@ export function AttendanceTable({ records }: { records: any }) {
               Season
             </TableHeaderCell>
             <TableHeaderCell className="text-black dark:text-white">
-             Attendance
+              Attendance
             </TableHeaderCell>
             <TableHeaderCell className="text-black dark:text-white">
               Revenue
@@ -79,7 +78,7 @@ export function AttendanceTable({ records }: { records: any }) {
               Performance
             </TableHeaderCell>
             <TableHeaderCell className="text-black dark:text-white">
-             Date
+              Date
             </TableHeaderCell>
             <TableHeaderCell className="text-black dark:text-white">
               Time
@@ -121,22 +120,24 @@ export function AttendanceTable({ records }: { records: any }) {
                         </TableCell>
                         <TableCell>
                           <Text className="text-gray-900 dark:text-gray-100">
-                          ${record.revenue}                          
+                            ${record.revenue}
                           </Text>
                         </TableCell>
                         <TableCell>
                           <Text className="text-gray-900 dark:text-gray-100">
-                          {record.production}
+                            {record.production}
                           </Text>
                         </TableCell>
                         <TableCell>
                           <Text className="text-gray-900 dark:text-gray-100">
-                              {formattedDate}
+                            {formattedDate}
                           </Text>
                         </TableCell>
                         <TableCell>
                           <Text className="text-gray-900 dark:text-gray-100">
-                          {hiddenTimes.includes(record.perf_time) ? "---" : record.perf_time}
+                            {hiddenTimes.includes(record.perf_time)
+                              ? '---'
+                              : record.perf_time}
                           </Text>
                         </TableCell>
                       </TableRow>

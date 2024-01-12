@@ -20,16 +20,16 @@ const AttendanceWrapper = ({
   previousDayData: AttendanceRecord[];
   timeUpdated: string;
 }) => {
-const {
-  setLoading, 
-  setInitialDataLoaded, 
-  setDay,
-  setRealTimeData:setData, 
-  loading, 
-  initialDataLoaded,
-  data, 
-  day,
-} = useRealTimeStore()
+  const {
+    setLoading,
+    setInitialDataLoaded,
+    setDay,
+    setRealTimeData: setData,
+    loading,
+    initialDataLoaded,
+    data,
+    day
+  } = useRealTimeStore();
   const handleSetDate = (date: string) => {
     setLoading(true);
 
@@ -90,8 +90,9 @@ const {
               <Text className="text-xs">{useTimePassed(timeUpdated)}</Text>
             </div>
             <RefreshButton disabled={day === 'yesterday'} />
-            {data && process.env.NODE_ENV === 'development' &&
-            <DownloadAsCSV csvData={data}/>}
+            {data && process.env.NODE_ENV === 'development' && (
+              <DownloadAsCSV csvData={data} />
+            )}
           </Flex>
         </Flex>
         <Card className="mt-6 bg-white dark:bg-gray-800 ">

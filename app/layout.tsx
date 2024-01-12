@@ -23,7 +23,7 @@ export default function RootLayout({
         <Providers>
           <Suspense>
             <Nav />
-            <SiteInBetaNotice/>
+            <SiteInBetaNotice />
           </Suspense>
           <main className="h-full relative">
             <Suspense>{children}</Suspense>

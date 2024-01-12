@@ -2,14 +2,14 @@
 import { Card, Title, Text, Button } from '@tremor/react';
 import { signIn } from 'next-auth/react';
 import React from 'react';
-import SiteLogo, { SiteLogoLarge } from '../Components/SiteLogo';
+import { SiteLogoLarge } from '../Components/SiteLogo';
 
 function AuthComponent() {
   return (
     <div className="p-4 md:p-10 mx-auto max-w-3xl">
       <Card className="space-y-4 mx-auto">
-        <div className='mx-auto flex justify-center scale-50'>
-        <SiteLogoLarge/>
+        <div className="mx-auto flex justify-center scale-50">
+          <SiteLogoLarge />
         </div>
         <Title>Sign-in with your account.</Title>
         <Text>Only valid azscience.org emails are allowed.</Text>
