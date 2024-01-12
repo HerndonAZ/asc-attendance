@@ -31,6 +31,7 @@
     "prettier": "^3.0.3",
     "prop-types": "^15.8.1",
     "react": "18.2.0",
+    "react-csv": "^2.2.2",
     "react-dom": "18.2.0",
     "react-icons": "^4.12.0",
     "react-loader-spinner": "^6.1.6",
@@ -49,6 +50,7 @@
     "trailingComma": "none"
   },
   "devDependencies": {
+    "@types/react-csv": "^1.1.10",
     "@types/xml2js": "^0.4.14"
   }
 }

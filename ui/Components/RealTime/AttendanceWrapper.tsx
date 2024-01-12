@@ -9,6 +9,7 @@ import useTimePassed from '@/lib/hooks/useTimePassed';
 import RefreshButton from '@/ui/Buttons/RefreshButton';
 import Search from '../Search';
 import { useRealTimeStore } from './store';
+import DownloadAsCSV from '@/ui/Buttons/DownloadAsCSV';
 
 const AttendanceWrapper = ({
   initialData,
@@ -89,6 +90,8 @@ const {
               <Text className="text-xs">{useTimePassed(timeUpdated)}</Text>
             </div>
             <RefreshButton disabled={day === 'yesterday'} />
+            {data && process.env.NODE_ENV === 'development' &&
+            <DownloadAsCSV csvData={data}/>}
           </Flex>
         </Flex>
         <Card className="mt-6 bg-white dark:bg-gray-800 ">
