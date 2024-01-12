@@ -108,11 +108,6 @@ export function AttendanceTable({ records }: { records: any }) {
                   })
                   .map((record) => {
                     const formattedDate = formatDateForUI(record?.perf_dt);
-                    const statusProps = {
-                      time: record.perf_time,
-                      date: record.perf_dt
-                    };
-
                     return (
                       <TableRow key={record.id}>
                         <TableCell className="text-gray-900 dark:text-gray-100 hidden">

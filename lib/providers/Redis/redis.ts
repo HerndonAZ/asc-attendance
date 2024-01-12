@@ -3,7 +3,7 @@ import { promisify } from 'util';
 const port =
   process.env.NODE_ENV === 'development'
     ? '6379'
-    : '6380';
+    : '6379';
 const getRedisUrl = () => {
   if (process.env.AZURE_REDIS_URL as string) {
     return process.env.AZURE_REDIS_URL! + port as string;
