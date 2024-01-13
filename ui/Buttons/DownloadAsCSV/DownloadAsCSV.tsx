@@ -1,8 +1,8 @@
 'use client';
-import React, { useState } from 'react';
 import { Button } from '@tremor/react';
-import { IoDownload } from 'react-icons/io5';
+import { useState } from 'react';
 import { CSVLink } from 'react-csv';
+import { IoDownload } from 'react-icons/io5';
 function DownloadAsCSV({ csvData }: any) {
   const [tip, showTip] = useState(false);
   // const csvData = [

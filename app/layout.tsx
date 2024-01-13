@@ -1,11 +1,11 @@
 import './globals.css';
 
+import SiteInBetaNotice from '@/ui/Components/Notices/SiteInBetaNotice';
 import { Analytics } from '@vercel/analytics/react';
+import Providers from 'lib/providers';
+import { Suspense } from 'react';
 import Nav from './nav';
 import Toast from './toast';
-import { Suspense } from 'react';
-import Providers from 'lib/providers';
-import SiteInBetaNotice from '@/ui/Components/Notices/SiteInBetaNotice';
 
 export const metadata = {
   title: 'ASC Realtime Attendance',

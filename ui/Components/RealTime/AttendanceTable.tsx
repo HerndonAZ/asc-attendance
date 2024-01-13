@@ -1,11 +1,11 @@
 'use client';
 import {
   Table,
-  TableHead,
-  TableRow,
-  TableHeaderCell,
   TableBody,
   TableCell,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
   Text
 } from '@tremor/react';
 import { formatDateForUI } from 'lib/hooks/convertDate';

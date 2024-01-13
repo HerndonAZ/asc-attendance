@@ -1,10 +1,10 @@
 'use client';
-import React, { useState } from 'react';
 import {
-  DateRangePicker as RangePicker,
-  DateRangePickerValue
+  DateRangePickerItem,
+  DateRangePickerValue,
+  DateRangePicker as RangePicker
 } from '@tremor/react';
-import { DateRangePickerItem } from '@tremor/react';
+import { useState } from 'react';
 
 function DateRangePicker() {
   const [value, setValue] = useState<DateRangePickerValue>({

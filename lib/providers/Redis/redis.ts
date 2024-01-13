@@ -44,12 +44,8 @@ async function redisUpdate(hashName: string, field: string, value: string) {
 }
 
 export {
-  redisAppend,
-  redisGet,
-  redisSet,
-  redisUpdate,
-  redis,
-  redisRestToken,
-  redisRestUrl,
-  fetchRedisCache
+  fetchRedisCache, redis, redisAppend,
+  redisGet, redisRestToken,
+  redisRestUrl, redisSet,
+  redisUpdate
 };

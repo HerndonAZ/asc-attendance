@@ -1,5 +1,5 @@
+import { AttendanceRecord } from 'lib/types';
 import { create } from 'zustand';
-import { AttendanceRecord } from '../../../lib/types';
 
 export interface SearchState {
   searchTerm: string;

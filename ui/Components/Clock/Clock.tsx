@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function Clock() {
   const [date, setDate] = useState(new Date());

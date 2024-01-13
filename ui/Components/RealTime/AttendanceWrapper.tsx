@@ -1,15 +1,14 @@
 'use client';
-import { AttendanceRecord } from 'lib/types';
-import { Card, Text, Flex, DateRangePicker } from '@tremor/react';
-import { AttendanceTable } from './AttendanceTable';
-import { Select, SelectItem } from '@tremor/react';
-import { useEffect } from 'react';
-import Loading from 'app/loading';
 import useTimePassed from '@/lib/hooks/useTimePassed';
-import RefreshButton from '@/ui/Buttons/RefreshButton';
-import Search from '../Search';
-import { useRealTimeStore } from './store';
 import DownloadAsCSV from '@/ui/Buttons/DownloadAsCSV';
+import RefreshButton from '@/ui/Buttons/RefreshButton';
+import { Card, DateRangePicker, Flex, Select, SelectItem, Text } from '@tremor/react';
+import Loading from 'app/loading';
+import { AttendanceRecord } from 'lib/types';
+import { useEffect } from 'react';
+import Search from '../Search';
+import { AttendanceTable } from './AttendanceTable';
+import { useRealTimeStore } from './store';
 
 const AttendanceWrapper = ({
   initialData,

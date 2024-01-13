@@ -1,14 +1,14 @@
 'use client';
 
-import { Fragment } from 'react';
-import { usePathname } from 'next/navigation';
+import SiteLogo from '@/ui/Components/SiteLogo';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { signIn, signOut } from 'next-auth/react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { Fragment } from 'react';
 import DarkModeButton from '../ui/Buttons/DarkModeButton/DarkModeButton';
 import Clock from '../ui/Components/Clock';
-import SiteLogo from '@/ui/Components/SiteLogo';
 
 const navigation = [
   { name: 'Dashboard', href: '/', hidden: false }
