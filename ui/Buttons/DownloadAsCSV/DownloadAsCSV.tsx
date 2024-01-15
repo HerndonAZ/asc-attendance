@@ -3,15 +3,9 @@ import { Button } from '@tremor/react';
 import { useState } from 'react';
 import { CSVLink } from 'react-csv';
 import { IoDownload } from 'react-icons/io5';
-function DownloadAsCSV({ csvData }: any) {
+function DownloadAsCSV({ csvData, date }: any) {
   const [tip, showTip] = useState(false);
-  // const csvData = [
-  //     ["firstname", "lastname", "email"],
-  //     ["Ahmed", "Tomi", "ah@smthing.co.com"],
-  //     ["Raed", "Labes", "rl@smthing.co.com"],
-  //     ["Yezzi", "Min l3b", "ymin@cocococo.com"]
-  //   ];
-
+  const csvDate = date === 'yesterday' ? new Date(new Date().getTime() - 24 * 60 * 60 * 1000).toISOString() : new Date().toISOString();
   return (
     <div className="relative">
       {tip && (
@@ -20,7 +14,7 @@ function DownloadAsCSV({ csvData }: any) {
         </div>
       )}
       <CSVLink
-        filename={new Date().toISOString() + '-rta-report.csv'}
+        filename={(csvDate + '-rta-report.csv').toString()}
         data={csvData}
       >
         <Button

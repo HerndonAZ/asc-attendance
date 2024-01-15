@@ -89,8 +89,10 @@ const AttendanceWrapper = ({
               <Text className="text-xs">{useTimePassed(timeUpdated)}</Text>
             </div>
             <RefreshButton disabled={day === 'yesterday'} />
-            {data && process.env.NODE_ENV === 'development' && (
-              <DownloadAsCSV csvData={data} />
+            {data && (
+              <div className='hidden sm:block'>
+              <DownloadAsCSV csvData={data} date={day} />
+              </div>
             )}
           </Flex>
         </Flex>

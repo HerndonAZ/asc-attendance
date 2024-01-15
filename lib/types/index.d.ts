@@ -5,10 +5,11 @@ export interface AttendanceRecord {
   perf_name: string;
   perf_dt: string; // performance date
   perf_time: string; // performance time
-  theater?: string | null;
+  theater?: string | null;ß
   attendance: number | null;
   revenue: number;
   time?: string;
+  price_type?: string | null
 }
 
 export interface User {

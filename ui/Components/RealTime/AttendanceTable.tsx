@@ -20,7 +20,8 @@ export function AttendanceTable({ records }: { records: any }) {
     'Irene P. Flinn Theater',
     'Sky Cycle',
     'VerticalVenture',
-    'Education'
+    'Education', 
+    'Concessions'
   ]; // Define your custom order
   const hiddenVenues = ['Lunchroom']
   const hiddenTimes = ['08:00:00 PM', '05:00:00 PM'];
