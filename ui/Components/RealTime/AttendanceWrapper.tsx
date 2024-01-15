@@ -2,7 +2,14 @@
 import useTimePassed from '@/lib/hooks/useTimePassed';
 import DownloadAsCSV from '@/ui/Buttons/DownloadAsCSV';
 import RefreshButton from '@/ui/Buttons/RefreshButton';
-import { Card, DateRangePicker, Flex, Select, SelectItem, Text } from '@tremor/react';
+import {
+  Card,
+  DateRangePicker,
+  Flex,
+  Select,
+  SelectItem,
+  Text
+} from '@tremor/react';
 import Loading from 'app/loading';
 import { AttendanceRecord } from 'lib/types';
 import { useEffect } from 'react';
@@ -90,8 +97,8 @@ const AttendanceWrapper = ({
             </div>
             <RefreshButton disabled={day === 'yesterday'} />
             {data && (
-              <div className='hidden sm:block'>
-              <DownloadAsCSV csvData={data} date={day} />
+              <div className="hidden sm:block">
+                <DownloadAsCSV csvData={data} date={day} />
               </div>
             )}
           </Flex>

@@ -1,10 +1,10 @@
-import { toast } from "react-toastify";
-import { create } from "zustand";
+import { toast } from 'react-toastify';
+import { create } from 'zustand';
 
 export enum UserRoleTypes {
-  user = "user",
-  admin = "admin",
-  editor = "editor",
+  user = 'user',
+  admin = 'admin',
+  editor = 'editor'
 }
 export interface AuthState {
   user: any;
@@ -21,5 +21,5 @@ export const useAuthStore = create<AuthState>((set) => ({
   profile: null,
   isLoading: false,
   setUserRole: (userRole: any) => set({ userRole }),
-  unsubscribeAuthListener: () => {},
+  unsubscribeAuthListener: () => {}
 }));

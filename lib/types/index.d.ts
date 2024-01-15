@@ -9,7 +9,7 @@ export interface AttendanceRecord {
   attendance: number | null;
   revenue: number;
   time?: string;
-  price_type?: string | null
+  price_type?: string | null;
 }
 
 export interface User {
