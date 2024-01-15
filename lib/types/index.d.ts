@@ -5,7 +5,7 @@ export interface AttendanceRecord {
   perf_name: string;
   perf_dt: string; // performance date
   perf_time: string; // performance time
-  theater?: string | null;ß
+  theater?: string | null;
   attendance: number | null;
   revenue: number;
   time?: string;
