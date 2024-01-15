@@ -2,15 +2,15 @@
 import { Button } from '@tremor/react';
 import { useState } from 'react';
 import { CSVLink } from 'react-csv';
-import { IoDownload } from 'react-icons/io5';
+import { AiOutlineExport } from "react-icons/ai";
 function DownloadAsCSV({ csvData, date }: any) {
   const [tip, showTip] = useState(false);
   const csvDate = date === 'yesterday' ? new Date(new Date().getTime() - 24 * 60 * 60 * 1000).toISOString() : new Date().toISOString();
   return (
     <div className="relative">
       {tip && (
-        <div className="absolute left-16 w-24 text-xs hidden sm:flex">
-          Download as CSV
+        <div className="absolute bottom-12 w-24 text-xs hidden sm:flex">
+         Export as CSV
         </div>
       )}
       <CSVLink
@@ -22,7 +22,7 @@ function DownloadAsCSV({ csvData, date }: any) {
           onMouseLeave={() => showTip(false)}
           className=""
         >
-          <IoDownload className="text-xl " />
+          <AiOutlineExport className="text-xl " />
         </Button>
       </CSVLink>
     </div>
