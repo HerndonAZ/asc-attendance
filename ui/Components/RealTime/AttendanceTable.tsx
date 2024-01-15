@@ -22,6 +22,7 @@ export function AttendanceTable({ records }: { records: any }) {
     'VerticalVenture',
     'Education'
   ]; // Define your custom order
+  const hiddenVenues = ['Lunchroom']
   const hiddenTimes = ['08:00:00 PM', '05:00:00 PM'];
   const recordsByTheater: Record<string, AttendanceRecord[]> = {};
 
@@ -49,6 +50,11 @@ export function AttendanceTable({ records }: { records: any }) {
   });
 
   records.map((record: any) => {
+    if(hiddenVenues.includes(record?.theater!)) {
+      return null
+    }
+
+
     if (!recordsByTheater[record.theater!]) {
       recordsByTheater[record.theater!] = [];
     }
@@ -106,6 +112,7 @@ export function AttendanceTable({ records }: { records: any }) {
                     return timeA.getTime() - timeB.getTime();
                   })
                   .map((record) => {
+                
                     const formattedDate = formatDateForUI(record?.perf_dt);
                     return (
                       <TableRow key={record.id}>
