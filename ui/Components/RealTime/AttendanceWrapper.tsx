@@ -3,6 +3,7 @@ import useTimePassed from '@/lib/hooks/useTimePassed';
 import DownloadAsCSV from '@/ui/Buttons/DownloadAsCSV';
 import RefreshButton from '@/ui/Buttons/RefreshButton';
 import {
+  Button,
   Card,
   DateRangePicker,
   Flex,
@@ -13,8 +14,11 @@ import {
 import Loading from 'app/loading';
 import { AttendanceRecord } from 'lib/types';
 import { useEffect } from 'react';
+import { BsViewStacked } from "react-icons/bs";
+import { TfiViewList } from "react-icons/tfi";
 import Search from '../Search';
 import { AttendanceTable } from './AttendanceTable';
+import { getTableData } from './actions';
 import { useRealTimeStore } from './store';
 
 const AttendanceWrapper = ({
@@ -34,8 +38,24 @@ const AttendanceWrapper = ({
     loading,
     initialDataLoaded,
     data,
-    day
+    day,
+    //setUseMerged,
+    useMerged, 
+    toggleView
   } = useRealTimeStore();
+
+
+  useEffect(() => {
+    if (data){
+    getTableData({data, useMerged});
+    }
+
+}, [useMerged, data]); // Add data as a dependency if it's used inside getTableData
+
+
+
+  const dataToDisplay = getTableData({data, useMerged});
+
   const handleSetDate = (date: string) => {
     setLoading(true);
 
@@ -50,6 +70,7 @@ const AttendanceWrapper = ({
     setDay(date);
     setLoading(false);
   };
+
   useEffect(() => {
     if (initialData && !initialDataLoaded) {
       setData(initialData);
@@ -62,7 +83,7 @@ const AttendanceWrapper = ({
   }
 
   return (
-    (data || initialData) &&
+    (dataToDisplay || initialData) &&
     !loading && (
       <div className="p-4 md:p-10 mx-auto max-w-7xl relative">
         <h1 className="text-black dark:text-white">Realtime Attendance</h1>
@@ -91,11 +112,15 @@ const AttendanceWrapper = ({
             </Select>
           </Flex>
           <Flex className="justify-end space-x-4">
+          
             <div hidden={day === 'yesterday'}>
               <Text className="text-xs italic">Last Updated</Text>
               <Text className="text-xs">{useTimePassed(timeUpdated)}</Text>
             </div>
             <RefreshButton disabled={day === 'yesterday'} />
+            <Button onClick={toggleView}>
+              {useMerged ? <BsViewStacked className='text-xl'/> : <TfiViewList className='text-xl'/>}
+            </Button>
             {data && (
               <div className="hidden sm:block">
                 <DownloadAsCSV csvData={data} date={day} />
@@ -103,9 +128,10 @@ const AttendanceWrapper = ({
             )}
           </Flex>
         </Flex>
+        {dataToDisplay &&
         <Card className="mt-6 bg-white dark:bg-gray-800 ">
-          <AttendanceTable records={data || initialData} />
-        </Card>
+          <AttendanceTable records={dataToDisplay} />
+        </Card>}
       </div>
     )
   );

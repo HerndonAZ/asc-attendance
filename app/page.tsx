@@ -1,7 +1,7 @@
-import { fetchToday, fetchYesterday } from 'lib/db';
-import { auth } from './auth';
 import AuthComponent from '@/ui/Auth/AuthComponent';
 import AttendanceWrapper from '@/ui/Components/RealTime/AttendanceWrapper';
+import { fetchToday, fetchYesterday } from 'lib/db';
+import { auth } from './auth';
 export const dynamic = 'force-dynamic';
 
 export default async function IndexPage() {
@@ -19,6 +19,7 @@ export default async function IndexPage() {
     const [{ data: today, time }, { data: yesterday }]: any = await Promise.all(
       [fetchToday(), fetchYesterday()]
     );
+    console.log(yesterday);
     const dataProps = {
       initialData: today || [],
       timeUpdated: time,

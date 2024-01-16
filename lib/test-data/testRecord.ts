@@ -10,8 +10,8 @@ export const records: AttendanceRecord[] = [
     theater: 'Giant Screen Theater',
     attendance: 9,
     revenue: 72.0,
-    production: '',
-   // price_type: ''
+    production: ''
+    // price_type: ''
   },
   {
     id: 2710,
@@ -22,8 +22,8 @@ export const records: AttendanceRecord[] = [
     theater: 'Giant Screen Theater',
     attendance: 21,
     revenue: 115.0,
-    production: '',
-  //  price_type: ''
+    production: ''
+    //  price_type: ''
   },
   {
     id: 2710,
@@ -34,7 +34,7 @@ export const records: AttendanceRecord[] = [
     theater: 'Planetarium',
     attendance: 21,
     revenue: 115.0,
-    production: '',
-  //  price_type: ''
+    production: ''
+    //  price_type: ''
   }
 ];

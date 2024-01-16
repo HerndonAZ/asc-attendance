@@ -21,7 +21,7 @@ export function AttendanceTable({ records }: { records: any }) {
     'Sky Cycle',
     'VerticalVenture',
     'Education',
-    'Concessions'
+    'Consessions'
   ]; // Define your custom order
   const hiddenVenues = ['Lunchroom'];
   const hiddenTimes = ['08:00:00 PM', '05:00:00 PM'];
@@ -113,6 +113,7 @@ export function AttendanceTable({ records }: { records: any }) {
                   })
                   .map((record) => {
                     const formattedDate = formatDateForUI(record?.perf_dt);
+
                     return (
                       <TableRow key={record.id}>
                         <TableCell className="text-gray-900 dark:text-gray-100 hidden">

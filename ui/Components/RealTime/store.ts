@@ -8,6 +8,9 @@ interface RealTimeStore {
   setInitialDataLoaded: (loaded: boolean) => void;
   setLoading: (loading: boolean) => void;
   setDay: (day: string) => void;
+  useMerged: boolean;
+  setUseMerged: (merged: boolean) => void;
+  toggleView: () => void
 }
 
 export const useRealTimeStore = create<RealTimeStore>((set) => ({
@@ -18,5 +21,9 @@ export const useRealTimeStore = create<RealTimeStore>((set) => ({
   setRealTimeData: (data) => set({ data }),
   setInitialDataLoaded: (loaded) => set({ initialDataLoaded: loaded }),
   setLoading: (loading) => set({ loading }),
-  setDay: (day) => set({ day })
+  setDay: (day) => set({ day }),
+  useMerged: true,
+  setUseMerged: (useMerged: boolean) => set({ useMerged }),
+  toggleView: () => set((state) => ({ useMerged: !state.useMerged })), // Implemented toggleView
+
 }));

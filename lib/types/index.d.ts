@@ -10,7 +10,7 @@ export interface AttendanceRecord {
   revenue: number;
   time?: string;
   price_type_id?: string | number | null;
-  price_type_desc?: string | null
+  price_type_desc?: string | null;
 }
 
 export interface User {
