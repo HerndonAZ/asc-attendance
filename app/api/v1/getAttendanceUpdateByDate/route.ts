@@ -1,11 +1,10 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { getToday } from '@/lib/db';
 import {
-  credentials,
   apiUrl,
+  credentials,
   handleTessituraError
 } from 'lib/providers/Tessitura';
-import { redis, redisGet, redisSet } from 'providers/Redis/redis';
-import { getToday } from '@/lib/db';
+import { NextRequest, NextResponse } from 'next/server';
 
 export const revalidate = 0;
 

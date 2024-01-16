@@ -1,13 +1,13 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { redis, redisGet, redisSet } from '@/lib/providers/Redis/redis';
+import { getYesterday } from 'lib/db';
 import {
-  credentials,
   apiUrl,
+  credentials,
   handleTessituraError
 } from 'lib/providers/Tessitura';
-import { getYesterday } from 'lib/db';
-import { redis, redisGet, redisSet } from '@/lib/providers/Redis/redis';
+import { NextRequest, NextResponse } from 'next/server';
 
-export const maxDuration = 35;
+export const maxDuration = 300;
 export const revalidate = 0;
 const cacheKey = 'asc_perf_cache_previous_day';
 

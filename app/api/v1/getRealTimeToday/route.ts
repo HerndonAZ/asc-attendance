@@ -1,12 +1,12 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { getToday } from 'lib/db';
 import {
-  credentials,
   apiUrl,
+  credentials,
   handleTessituraError
 } from 'lib/providers/Tessitura';
-import { getToday } from 'lib/db';
+import { NextRequest, NextResponse } from 'next/server';
 
-export const maxDuration = 35;
+export const maxDuration = 300;
 export const revalidate = 0;
 
 export async function GET(req: NextRequest) {
