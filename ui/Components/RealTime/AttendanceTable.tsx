@@ -139,7 +139,7 @@ export function AttendanceTable({ records }: { records: any }) {
                         {!useMerged &&
                         <TableCell>
                           <Text className="text-gray-900 dark:text-gray-100">
-                            {record.price_type_id && getPriceType(record.price_type_id)}
+                            {record.price_type_id && getPriceType(record.price_type_id as number)}
                           </Text>
                         </TableCell>}
                         <TableCell>

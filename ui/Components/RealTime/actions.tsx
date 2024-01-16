@@ -32,12 +32,12 @@ export const getTableData = ({data, useMerged} : {data: any, useMerged: boolean}
 
 
 
-export const getPriceType = (priceType: string | number) => {
-const member: any[] = [7,21,956]
+export const getPriceType = (priceType: number) => {
+const member: number[] = [7,21,956,950]
 const group: any[] = [16]
 const nonMember: any[] = [2,1,3,5,6]
 const groupon: any = 350
-
+const upgrade: any = [70]
 
 
     if (member.includes(priceType)){
@@ -52,11 +52,15 @@ const groupon: any = 350
       return <PriceTypeBadge priceType="Group"/>
     }   
 
+    if (upgrade.includes(priceType)){
+      return <PriceTypeBadge priceType="Upgrade"/>
+    }   
+
     if (priceType === groupon){
       return <PriceTypeBadge priceType="Groupon"/>
     }
 
-    return null
+    return priceType.toString()
 
 }
 
@@ -69,18 +73,21 @@ return (
 
 if (priceType === "Non-Member")
 return (
-  <span className="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{priceType}</span>
+  <span className="bg-orange-100 text-orange-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-orange-900 dark:text-orange-300">{priceType}</span>
 )
 
-
+if (priceType === "Upgrade")
+return (
+  <span className="bg-pink-100 text-pink-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">{priceType}</span>
+)
 
 if (priceType === "Group")
 return (
-  <span className="bg-purple-100 text-purple-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{priceType}</span>
+  <span className="bg-purple-100 text-purple-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300">{priceType}</span>
 )
 
 if (priceType === "Groupon")
 return (
-  <span className="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">{priceType}</span>
+  <span className="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">{priceType}</span>
 )
 }
