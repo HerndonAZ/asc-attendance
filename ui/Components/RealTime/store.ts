@@ -10,7 +10,7 @@ interface RealTimeStore {
   setDay: (day: string) => void;
   useMerged: boolean;
   setUseMerged: (merged: boolean) => void;
-  toggleView: () => void
+  toggleView: () => void;
 }
 
 export const useRealTimeStore = create<RealTimeStore>((set) => ({
@@ -24,6 +24,5 @@ export const useRealTimeStore = create<RealTimeStore>((set) => ({
   setDay: (day) => set({ day }),
   useMerged: true,
   setUseMerged: (useMerged: boolean) => set({ useMerged }),
-  toggleView: () => set((state) => ({ useMerged: !state.useMerged })), // Implemented toggleView
-
+  toggleView: () => set((state) => ({ useMerged: !state.useMerged })) // Implemented toggleView
 }));

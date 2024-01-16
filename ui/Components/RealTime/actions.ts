@@ -28,3 +28,33 @@ export const getTableData = ({data, useMerged} : {data: any, useMerged: boolean}
       return data;
     }
   };
+
+
+
+export const getPriceType = (priceType: string | number) => {
+const member: any[] = [7,21,956]
+const group: any[] = [16]
+const nonMember: any[] = [2,1,3,5,6]
+const groupon: any = [350]
+
+
+
+    if (member.includes(priceType)){
+        return "Member"
+    }
+
+    if (nonMember.includes(priceType)){
+        return "Non-member"
+    }
+
+    if (group.includes(priceType)){
+        return "Group"
+    }   
+
+    if (priceType === groupon){
+        return "Groupon"
+    }
+
+    return null
+
+}

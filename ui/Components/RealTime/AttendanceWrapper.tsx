@@ -14,8 +14,8 @@ import {
 import Loading from 'app/loading';
 import { AttendanceRecord } from 'lib/types';
 import { useEffect } from 'react';
-import { BsViewStacked } from "react-icons/bs";
-import { TfiViewList } from "react-icons/tfi";
+import { BsViewStacked } from 'react-icons/bs';
+import { TfiViewList } from 'react-icons/tfi';
 import Search from '../Search';
 import { AttendanceTable } from './AttendanceTable';
 import { getTableData } from './actions';
@@ -40,21 +40,17 @@ const AttendanceWrapper = ({
     data,
     day,
     //setUseMerged,
-    useMerged, 
+    useMerged,
     toggleView
   } = useRealTimeStore();
 
-
   useEffect(() => {
-    if (data){
-    getTableData({data, useMerged});
+    if (data) {
+      getTableData({ data, useMerged });
     }
+  }, [useMerged, data]); // Add data as a dependency if it's used inside getTableData
 
-}, [useMerged, data]); // Add data as a dependency if it's used inside getTableData
-
-
-
-  const dataToDisplay = getTableData({data, useMerged});
+  const dataToDisplay = getTableData({ data, useMerged });
 
   const handleSetDate = (date: string) => {
     setLoading(true);
@@ -112,14 +108,17 @@ const AttendanceWrapper = ({
             </Select>
           </Flex>
           <Flex className="justify-end space-x-4">
-          
             <div hidden={day === 'yesterday'}>
               <Text className="text-xs italic">Last Updated</Text>
               <Text className="text-xs">{useTimePassed(timeUpdated)}</Text>
             </div>
             <RefreshButton disabled={day === 'yesterday'} />
             <Button onClick={toggleView}>
-              {useMerged ? <BsViewStacked className='text-xl'/> : <TfiViewList className='text-xl'/>}
+              {useMerged ? (
+                <BsViewStacked className="text-xl" />
+              ) : (
+                <TfiViewList className="text-xl" />
+              )}
             </Button>
             {data && (
               <div className="hidden sm:block">
@@ -128,10 +127,11 @@ const AttendanceWrapper = ({
             )}
           </Flex>
         </Flex>
-        {dataToDisplay &&
-        <Card className="mt-6 bg-white dark:bg-gray-800 ">
-          <AttendanceTable records={dataToDisplay} />
-        </Card>}
+        {dataToDisplay && (
+          <Card className="mt-6 bg-white dark:bg-gray-800 ">
+            <AttendanceTable records={dataToDisplay} />
+          </Card>
+        )}
       </div>
     )
   );
