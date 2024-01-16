@@ -60,7 +60,7 @@ const upgrade: any = [70]
       return <PriceTypeBadge priceType="Groupon"/>
     }
 
-    return priceType.toString()
+    return '---'
 
 }
 
@@ -78,7 +78,7 @@ return (
 
 if (priceType === "Upgrade")
 return (
-  <span className="bg-pink-100 text-pink-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">{priceType}</span>
+  <span className="bg-pink-100 text-pink-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-pink-900 dark:text-pink-300">{priceType}</span>
 )
 
 if (priceType === "Group")
