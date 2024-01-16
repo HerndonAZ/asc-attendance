@@ -11,7 +11,7 @@ export const records: AttendanceRecord[] = [
     attendance: 9,
     revenue: 72.0,
     production: '',
-    price_type: ''
+   // price_type: ''
   },
   {
     id: 2710,
@@ -23,7 +23,7 @@ export const records: AttendanceRecord[] = [
     attendance: 21,
     revenue: 115.0,
     production: '',
-    price_type: ''
+  //  price_type: ''
   },
   {
     id: 2710,
@@ -35,6 +35,6 @@ export const records: AttendanceRecord[] = [
     attendance: 21,
     revenue: 115.0,
     production: '',
-    price_type: ''
+  //  price_type: ''
   }
 ];
