@@ -25,6 +25,7 @@ export const getTableData = ({data, useMerged} : {data: any, useMerged: boolean}
       }, []);
       return mergedData;
     } else {
+      
       // If not using merged view, return the original records
       return data;
     }
