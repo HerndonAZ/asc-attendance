@@ -1,7 +1,7 @@
 {
   "crons": [
     {
-      "path": "/api/cron/getAttendanceUpdatePreviousDate",
+      "path": "/api/v1/getAttendanceUpdatePreviousDate?cron=true",
       "schedule": "0 8 * * *"
     },
     {

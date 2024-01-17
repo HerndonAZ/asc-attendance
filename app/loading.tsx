@@ -1,8 +1,12 @@
 'use client';
+import { CheckCircleIcon } from "@heroicons/react/24/solid";
+import { Callout } from "@tremor/react";
+
 
 export default function Loading() {
   return (
-    <main className="p-4 md:p-10 mx-auto max-w-7xl h-screen flex items-center">
+    <main className="h-screen relative">
+    <div className="p-4 md:p-10 mx-auto max-w-7xl h-[75vh] flex items-center">
       <svg
         aria-hidden="true"
         className="w-24 -mt-16 mx-auto text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
@@ -19,7 +23,14 @@ export default function Loading() {
           fill="currentFill"
         />
       </svg>
+      
       <span className="sr-only">Loading...</span>
+    </div>
+    <div>
+    <Callout className="mt-4 max-w-5xl px-8 mx-auto absolute right-0 left-0 top-4 dark:brightness-150" title="Fetching data from Tessitura" icon={CheckCircleIcon} color="teal">
+        Please do not refresh as this can take up to 1 minute.
+      </Callout>
+      </div>
     </main>
   );
 }

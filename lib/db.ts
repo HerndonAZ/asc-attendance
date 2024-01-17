@@ -1,7 +1,5 @@
 'use server';
-import { NextResponse } from 'next/server';
 import {
-  apiUrl,
   credentials,
   handleTessituraError
 } from './providers/Tessitura';
@@ -53,7 +51,7 @@ export const fetchYesterday = async () => {
   if (credentials) {
     try {
       const response = await fetch(
-        baseUrl + '/api/v1/getAttendanceUpdatePreviousDate?noRefresh=true',
+        baseUrl + '/api/v1/getAttendanceUpdatePreviousDate',
         {
           next: { revalidate: 3600 * 12 },
           method: 'GET',
@@ -76,46 +74,3 @@ export const fetchYesterday = async () => {
     }
   }
 };
-
-export const fetchTess = async (
-  setTimeStamp?: any | null,
-  selectDate?: any
-) => {
-  if (credentials) {
-    const yesterday = phoenixDate.getDate() - 1;
-    const month = phoenixDate.getMonth() + 1; // Months are zero-based, so add 1
-    const day =
-      selectDate === ('today' || 'initial') ? phoenixDate.getDate() : yesterday;
-    const fetchDate = `${year}-${month}-${day}`;
-    const cache = 'no-cache';
-    const customApiEndpoint = '/custom/Attendance_Update?perf_dt=' + fetchDate;
-    //const workingEndpoint = '/ReferenceData/PerformanceTypes/Summary'
-    try {
-      const response = await fetch(apiUrl + customApiEndpoint, {
-        cache: cache,
-        // next:{revalidate : 30},
-        method: 'GET',
-        headers: {
-          Authorization: 'Basic ' + credentials,
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        }
-      });
-      if (!response.ok) {
-        await handleTessituraError(response);
-      }
-
-      const data = await response.json();
-      return NextResponse.json(data);
-    } catch (error) {
-      // Handle other errors (e.g., network issues, deserialization errors)
-      console.error(error);
-      // } finally {
-      //  setTimeStamp(Date.now())
-
-      // }}
-    }
-  }
-};
-
-// Call the fetchData function

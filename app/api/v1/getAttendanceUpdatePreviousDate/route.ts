@@ -19,17 +19,17 @@ export async function GET(req: NextRequest) {
 
     const cachedResponse = await redisGet(cacheKey);
     const searchParams = req.nextUrl.searchParams;
-    const noRefresh = searchParams.get('noRefresh');
+    const cron = searchParams.get('cron');
 
-    if (!noRefresh) {
+    if (cron) {
       await redis.del(cacheKey);
-    } else if (cachedResponse && !noRefresh) {
+    } else if (cachedResponse && !cron) {
       return NextResponse.json(JSON.parse(cachedResponse));
     }
 
     if (credentials) {
       const fetchDate = getYesterday();
-      const cache = noRefresh ? 'force-cache' : 'no-cache';
+      const cache = !cron ? 'force-cache' : 'no-cache';
       const customApiEndpoint = `/custom/Attendance_Update?perf_dt=${fetchDate}`;
 
       const response = await fetch(apiUrl + customApiEndpoint, {
