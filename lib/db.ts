@@ -53,7 +53,7 @@ export const fetchYesterday = async () => {
       const response = await fetch(
         baseUrl + '/api/v1/getAttendanceUpdatePreviousDate',
         {
-          next: { revalidate: 3600 * 12 },
+          next: { revalidate: 3600 * 6 },
           method: 'GET',
           headers: {
             Authorization: 'Basic ' + credentials,
