@@ -1,5 +1,4 @@
 'use client';
-
 import SiteLogo from '@/ui/Components/SiteLogo';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
