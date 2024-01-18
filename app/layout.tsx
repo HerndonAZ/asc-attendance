@@ -21,10 +21,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="h-full bg-gray-50 dark:bg-gray-900 ">
         <Providers>
-          <Suspense>
             <Nav />
             <SiteInBetaNotice />
-          </Suspense>
           <main className="h-full relative">
             <Suspense>{children}</Suspense>
           </main>
