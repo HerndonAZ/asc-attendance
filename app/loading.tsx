@@ -27,7 +27,7 @@ export default function Loading() {
       <span className="sr-only">Loading...</span>
     </div>
     <div>
-    <Callout className="mt-4 max-w-5xl px-8 mx-auto absolute right-0 left-0 top-4 dark:brightness-150" title="Fetching data from Tessitura" icon={CheckCircleIcon} color="teal">
+    <Callout className="mt-4 max-w-5xl px-8 mx-auto absolute right-0 left-0 top-4 dark:brightness-150 animate-pulse duration-300 ease-in-out" title="Fetching data from Tessitura" icon={CheckCircleIcon} color="teal">
         Please do not refresh as this can take up to 1 minute.
       </Callout>
       </div>
