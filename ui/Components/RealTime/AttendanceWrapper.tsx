@@ -113,6 +113,7 @@ const AttendanceWrapper = ({
               <Text className="text-xs">{useTimePassed(timeUpdated)}</Text>
             </div>
             <RefreshButton disabled={day === 'yesterday'} />
+            <div className='hidden'>
             <Button onClick={toggleView}>
               {useMerged ? (
                 <BsViewStacked className="text-xl" />
@@ -120,6 +121,7 @@ const AttendanceWrapper = ({
                 <TfiViewList className="text-xl" />
               )}
             </Button>
+            </div>
             {data && (
               <div className="hidden sm:block">
                 <DownloadAsCSV csvData={data} date={day} />
