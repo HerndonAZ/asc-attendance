@@ -22,10 +22,11 @@ export function AttendanceTable({ records }: { records: any }) {
     'Irene P. Flinn Theater',
     'Sky Cycle',
     'VerticalVenture',
+    'CREATE',
     'Education',
     'Consessions'
   ]; // Define your custom order
-  const hiddenVenues = ['Lunchroom'];
+  const hiddenVenues = ['Lunchroom','Voucher'];
   const hiddenTimes = ['08:00:00 PM', '05:00:00 PM'];
   const recordsByTheater: Record<string, AttendanceRecord[]> = {};
   const {useMerged} = useRealTimeStore()
