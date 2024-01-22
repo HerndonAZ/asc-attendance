@@ -1,7 +1,10 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "cSpell.words": ["usergroup"],
+  "cSpell.words": [
+    "tzoffset",
+    "usergroup"
+  ],
   "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit"
   }
