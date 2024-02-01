@@ -25,7 +25,9 @@ export default function RootLayout({
             <Nav />
            
           </Suspense>
+          <div className='hidden'>
           <SiteInBetaNotice />
+          </div>
           <main className="h-full relative">
             <Suspense>{children}</Suspense>
           </main>
