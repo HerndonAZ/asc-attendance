@@ -29,7 +29,7 @@ export function AttendanceTable({ records }: { records: any }) {
   const hiddenVenues = ['Lunchroom','Voucher'];
   const hiddenTimes = ['08:00:00 PM', '05:00:00 PM'];
   const recordsByTheater: Record<string, AttendanceRecord[]> = {};
-  const {useMerged} = useRealTimeStore()
+  const { useMerged } = useRealTimeStore();
   // Sort the theater names based on the custom order
   records.sort((a: any, b: any) => {
     const indexA = customOrder.indexOf(a.theater);
@@ -83,10 +83,11 @@ export function AttendanceTable({ records }: { records: any }) {
             <TableHeaderCell className="text-black dark:text-white">
               Revenue
             </TableHeaderCell>
-            {!useMerged &&
-            <TableHeaderCell className="text-black dark:text-white">
-              Price Type
-            </TableHeaderCell>}
+            {!useMerged && (
+              <TableHeaderCell className="text-black dark:text-white">
+                Price Type
+              </TableHeaderCell>
+            )}
             <TableHeaderCell className="text-black dark:text-white">
               Performance
             </TableHeaderCell>
@@ -137,12 +138,14 @@ export function AttendanceTable({ records }: { records: any }) {
                             ${record.revenue}
                           </Text>
                         </TableCell>
-                        {!useMerged &&
-                        <TableCell>
-                          <Text className="text-gray-900 dark:text-gray-100">
-                            {record.price_type_id && getPriceType(record.price_type_id as number)}
-                          </Text>
-                        </TableCell>}
+                        {!useMerged && (
+                          <TableCell>
+                            <Text className="text-gray-900 dark:text-gray-100">
+                              {record.price_type_id &&
+                                getPriceType(record.price_type_id as number)}
+                            </Text>
+                          </TableCell>
+                        )}
                         <TableCell>
                           <Text className="text-gray-900 dark:text-gray-100">
                             {record.production}

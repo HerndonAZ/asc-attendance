@@ -23,7 +23,6 @@ export default function RootLayout({
         <Providers>
           <Suspense>
             <Nav />
-           
           </Suspense>
           <div className='hidden'>
           <SiteInBetaNotice />

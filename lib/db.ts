@@ -1,8 +1,5 @@
 'use server';
-import {
-  credentials,
-  handleTessituraError
-} from './providers/Tessitura';
+import { credentials, handleTessituraError } from './providers/Tessitura';
 const timeZone = 'America/Phoenix';
 const currentDate = new Date();
 const phoenixDate = new Date(currentDate.toLocaleString('en-US', { timeZone }));

@@ -1,7 +1,6 @@
 'use client';
-import { CheckCircleIcon } from "@heroicons/react/24/solid";
-import { Callout } from "@tremor/react";
-
+import { CheckCircleIcon } from '@heroicons/react/24/solid';
+import { Callout } from '@tremor/react';
 
 export default function Loading() {
   return (
