@@ -1,4 +1,3 @@
-import { getToday } from 'lib/db';
 import {
   apiUrl,
   credentials,
@@ -8,6 +7,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export const maxDuration = 300;
 export const revalidate = 0;
+export const dynamic = 'force-dynamic'
 
 export async function GET(req: NextRequest) {
   try {
@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
     }
 
     if (credentials) {
-      const fetchDate = getToday();
+      const fetchDate = '4-18-24' //getToday();
       const cache = 'no-cache';
       const customApiEndpoint = `/custom/Attendance_Update?perf_dt=${fetchDate}`;
 
@@ -33,9 +33,13 @@ export async function GET(req: NextRequest) {
 
         if (!response.ok) {
           await handleTessituraError(response);
+
+
         }
 
         const data = await response.json();
+
+        console.log(fetchDate)
 
         return NextResponse.json(data);
       } catch (error) {
