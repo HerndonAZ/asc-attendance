@@ -9,15 +9,15 @@ import { NextRequest, NextResponse } from 'next/server';
 export const maxDuration = 300;
 export const revalidate = 0;
 export const dynamic = 'force-dynamic'
-
+const fetchDate = getToday();
 export async function GET(req: NextRequest) {
   try {
     if (req.method !== 'GET') {
       return NextResponse.json('error: Method Not Allowed', { status: 405 });
     }
 
-    if (credentials) {
-      const fetchDate = getToday();
+    if (credentials && fetchDate) {
+
       const cache = 'no-cache';
       const customApiEndpoint = `/custom/Attendance_Update?perf_dt=${fetchDate}`;
 
