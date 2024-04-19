@@ -1,27 +1,11 @@
 'use server';
 import { credentials, handleTessituraError } from './providers/Tessitura';
-const timeZone = 'America/Phoenix';
-const currentDate = new Date();
-const phoenixDate = new Date(currentDate.toLocaleString('en-US', { timeZone }));
-const year = phoenixDate.getFullYear();
-const month = phoenixDate.getMonth() + 1;
+
 const baseUrl =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
     : 'https://rta.azscience.org';
-export const getToday = () => {
-  const day = phoenixDate.getDate();
-  if(day){
-    return `${year}-${month}-${day}` as string;
-  }
-};
 
-export const getYesterday = () => {
-  const day = phoenixDate.getDate() + 1;
-  if(day){
-    return `${year}-${month}-${day}` as string;
-  }
-};
 
 export const fetchToday = async () => {
   if (credentials) {
