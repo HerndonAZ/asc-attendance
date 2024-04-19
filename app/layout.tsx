@@ -12,6 +12,7 @@ export const metadata = {
   description: 'Arizona Science Center realtime attendance reporting.'
 };
 
+
 export default function RootLayout({
   children
 }: {

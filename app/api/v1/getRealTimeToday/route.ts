@@ -1,3 +1,4 @@
+import { getToday } from '@/lib/db';
 import {
   apiUrl,
   credentials,
@@ -16,7 +17,7 @@ export async function GET(req: NextRequest) {
     }
 
     if (credentials) {
-      const fetchDate = '4-18-24' //getToday();
+      const fetchDate = getToday();
       const cache = 'no-cache';
       const customApiEndpoint = `/custom/Attendance_Update?perf_dt=${fetchDate}`;
 
