@@ -11,12 +11,16 @@ const baseUrl =
     : 'https://rta.azscience.org';
 export const getToday = () => {
   const day = phoenixDate.getDate();
-  return `${year}-${month}-${day}` as const;
+  if(day){
+    return `${year}-${month}-${day}` as string;
+  }
 };
 
 export const getYesterday = () => {
-  const day = phoenixDate.getDate() - 1;
-  return `${year}-${month}-${day}` as const;
+  const day = phoenixDate.getDate() + 1;
+  if(day){
+    return `${year}-${month}-${day}` as string;
+  }
 };
 
 export const fetchToday = async () => {
