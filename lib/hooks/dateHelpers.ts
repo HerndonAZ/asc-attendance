@@ -12,7 +12,7 @@ export const getToday = () => {
   };
   
   export const getYesterday = () => {
-    const day = phoenixDate.getDate() + 1;
+    const day = phoenixDate.getDate() - 1;
     if(day){
       return `${year}-${month}-${day}` as string;
     }
