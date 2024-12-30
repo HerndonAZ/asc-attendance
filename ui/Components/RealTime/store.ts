@@ -48,5 +48,7 @@ export const priceTypes = [
   { id: 21, longName: 'Member Child (3-17)', shortName: 'Mem Child', badgeColor: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300' },
   { id: 1040, longName: 'Member Child Under3', shortName: 'Mem Under 3', badgeColor: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300' },
   { id: 956, longName: 'Member Guest', shortName: 'Mem Guest', badgeColor: 'bg-orange-200 text-orange-900 dark:bg-orange-800 dark:text-orange-200' },
-  { id: 59, longName: 'Member Senior (62+)', shortName: 'Mem Senior', badgeColor: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300' }
+  { id: 59, longName: 'Member Senior (62+)', shortName: 'Mem Senior', badgeColor: 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300' },
+  {id: 999, longName: "MuseumsForAll Adult", shortName: "MFA Adult", badgeColor: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300"},
+  {id: 1000, longName: "MuseumsForAll Child (3-17)", shortName: "MFA Child", badgeColor: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300"},
 ];

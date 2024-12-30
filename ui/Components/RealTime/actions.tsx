@@ -80,5 +80,8 @@ export const priceTypes = [
   {id: 78, longName: "VIP Pass", shortName: "VIP Pass", badgeColor: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300"},
   {id: 49, longName:"ASTC", shortName: "ASTC", badgeColor: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300"},
   { id: 1041, longName: "GA PASS", shortName: "GA PASS", badgeColor: "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300" },
-  { id: 1014, longName: "POGO Pass Member", shortName: "POGO Pass", badgeColor: "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300" }
+  { id: 1014, longName: "POGO Pass Member", shortName: "POGO Pass", badgeColor: "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300" },
+  {id: 999, longName: "MuseumsForAll Adult", shortName: "MFA Adult", badgeColor: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300"},
+  {id: 1000, longName: "MuseumsForAll Child (3-17)", shortName: "MFA Child", badgeColor: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300"},
+
 ];

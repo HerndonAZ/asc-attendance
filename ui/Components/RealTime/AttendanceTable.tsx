@@ -65,6 +65,10 @@ export function AttendanceTable({ records }: { records: any }) {
   });
 
   /// const totalRevenue = records.reduce((total, record) => total + (record.revenue || 0), 0);
+  const grandTotals = {
+    attendance: 0,
+    revenue: 0
+  };
 
   return (
     recordsByTheater && (
@@ -101,7 +105,20 @@ export function AttendanceTable({ records }: { records: any }) {
         </TableHead>
         <TableBody>
           {Object.entries(recordsByTheater).map(
-            ([theater, recordsForTheater]) => (
+            ([theater, recordsForTheater]) => {
+              const sectionTotals = recordsForTheater.reduce(
+                (acc, record) => ({
+                  attendance: acc.attendance + (record.attendance || 0),
+                  revenue: acc.revenue + (record.revenue || 0)
+                }),
+                { attendance: 0, revenue: 0 }
+              );
+  
+              // Add to grand totals
+              grandTotals.attendance += sectionTotals.attendance;
+              grandTotals.revenue += sectionTotals.revenue;
+  
+              return (
               <React.Fragment key={theater}>
                 {/* Theater header */}
                 <TableRow>
@@ -127,6 +144,8 @@ export function AttendanceTable({ records }: { records: any }) {
                             "Corp",
                             "Corporate",
                             "Group",
+                            "MuseumsForAll",
+                            "MFA",
                             "COMP", 
                             "Comp",
                             "POGO",
@@ -157,8 +176,7 @@ export function AttendanceTable({ records }: { records: any }) {
                           })
                           .map((record) => {
                           const formattedDate = formatDateForUI(record?.perf_dt);
-                          console.log(record)
-
+                            console.log('record', record);  
 
                     return (
                       <TableRow key={record.id}>
@@ -201,11 +219,34 @@ export function AttendanceTable({ records }: { records: any }) {
                           </Text>
                         </TableCell>
                       </TableRow>
+                      
                     );
                   })}
+                    {/* Section total row */}
+                <TableRow className="bg-gray-50 dark:bg-gray-800 font-semibold">
+                  <TableCell className="hidden"></TableCell>
+                  <TableCell className="pl-8">Section Total</TableCell>
+                  <TableCell>{sectionTotals.attendance}</TableCell>
+                  <TableCell>${sectionTotals.revenue.toFixed(2)}</TableCell>
+                  {!useMerged && <TableCell></TableCell>}
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell></TableCell>
+                </TableRow>
               </React.Fragment>
-            )
+            )}
           )}
+             {/* Grand total row
+             <TableRow className="font-bold">
+            <TableCell className="hidden"></TableCell>
+            <TableCell className="pl-8">GRAND TOTAL</TableCell>
+            <TableCell>{grandTotals.attendance}</TableCell>
+            <TableCell>${grandTotals.revenue.toFixed(2)}</TableCell>
+            {!useMerged && <TableCell></TableCell>}
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
+          </TableRow> */}
         </TableBody>
       </Table>
     )
