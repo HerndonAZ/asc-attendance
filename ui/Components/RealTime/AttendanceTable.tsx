@@ -11,7 +11,7 @@ import {
 import { formatDateForUI } from 'lib/hooks/convertDate';
 import { AttendanceRecord } from 'lib/types';
 import React from 'react';
-import { getPriceType } from './actions';
+import { PriceTypeBadge } from './actions';
 import { useRealTimeStore } from './store';
 
 export function AttendanceTable({ records }: { records: any }) {
@@ -110,17 +110,55 @@ export function AttendanceTable({ records }: { records: any }) {
                   </TableHeaderCell>
                 </TableRow>
                 {/* Theater records */}
-                {recordsForTheater
-                  .slice()
-                  .sort((a, b) => {
-                    // Convert the time strings to Date objects for proper comparison
-                    const timeA = new Date(`2022-01-01 ${a.perf_time}`);
-                    const timeB = new Date(`2022-01-01 ${b.perf_time}`);
+                        {recordsForTheater
+                          .slice()
+                          .sort((a, b) => {
+                          // First sort by time
+                          const timeA = new Date(`2022-01-01 ${a.perf_time}`);
+                          const timeB = new Date(`2022-01-01 ${b.perf_time}`);
+                          const timeComparison = timeA.getTime() - timeB.getTime();
+                            const priceTypeOrder = [
+                            "AI",
+                            "All-Inclusive",
+                            "GA",
+                            "General Admission",
+                            "Mem",
+                            "Member",
+                            "Corp",
+                            "Corporate",
+                            "Group",
+                            "COMP", 
+                            "Comp",
+                            "POGO",
+                            "VIP",
+                            "ASTC",
+                            ];
 
-                    return timeA.getTime() - timeB.getTime();
-                  })
-                  .map((record) => {
-                    const formattedDate = formatDateForUI(record?.perf_dt);
+                            // If times are equal, sort by price type
+                            if (timeComparison === 0) {
+                            const getPriceTypeIndex = (priceType: string) => {
+                              return priceTypeOrder.findIndex(orderType => 
+                              priceType?.toLowerCase().startsWith(orderType.toLowerCase())
+                              );
+                            };
+
+                            const indexA = getPriceTypeIndex(a.price_type_desc || '');
+                            const indexB = getPriceTypeIndex(b.price_type_desc || '');
+
+                            if (indexA !== -1 && indexB !== -1) {
+                              return indexA - indexB;
+                            }
+                            if (indexA !== -1) return -1;
+                            if (indexB !== -1) return 1;
+                            return (a.price_type_desc || '').localeCompare(b.price_type_desc || '');
+                            }
+
+                          return timeComparison;
+                          })
+                          .map((record) => {
+                          const formattedDate = formatDateForUI(record?.perf_dt);
+                          console.log(record)
+
 
                     return (
                       <TableRow key={record.id}>
@@ -140,10 +178,9 @@ export function AttendanceTable({ records }: { records: any }) {
                         </TableCell>
                         {!useMerged && (
                           <TableCell>
-                            <Text className="text-gray-900 dark:text-gray-100">
-                              {record.price_type_id &&
-                                getPriceType(record.price_type_id as number)}
-                            </Text>
+                            {record.price_type_id && (
+                              <PriceTypeBadge priceType={record.price_type_id as number} priceTypeName={record.price_type_desc || ""} />
+                            )}
                           </TableCell>
                         )}
                         <TableCell>

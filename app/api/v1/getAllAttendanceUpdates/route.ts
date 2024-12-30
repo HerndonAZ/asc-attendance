@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server';
 import {
-  credentials,
   apiUrl,
+  credentials,
   handleTessituraError
 } from 'lib/providers/Tessitura';
+import { NextRequest, NextResponse } from 'next/server';
 import { redis, redisGet, redisSet } from 'providers/Redis/redis';
 
 export const revalidate = 0;
@@ -27,7 +27,7 @@ export async function GET(req: NextRequest) {
   }
   if (credentials) {
     // const cache = 'no-cache';
-    const endpoint = '/custom/Attendance_Update';
+    const endpoint = '/custom/Attendance_Update_priceType';
     try {
       const response = await fetch(apiUrl + endpoint, {
         // cache: cache,

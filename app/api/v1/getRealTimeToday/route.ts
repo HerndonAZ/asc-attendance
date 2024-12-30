@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
     if (credentials && fetchDate) {
 
       const cache = 'no-cache';
-      const customApiEndpoint = `/custom/Attendance_Update?perf_dt=${fetchDate}`;
+      const customApiEndpoint = `/custom/Attendance_Update_priceType?perf_dt=${fetchDate}`;
 
       try {
         const response = await fetch(apiUrl + customApiEndpoint, {
