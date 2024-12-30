@@ -223,7 +223,7 @@ export function AttendanceTable({ records }: { records: any }) {
                     );
                   })}
                     {/* Section total row */}
-                <TableRow className="bg-gray-50 dark:bg-gray-800 font-semibold">
+                <TableRow className="bg-gray-50 dark:bg-gray-700 font-bold text-lg">
                   <TableCell className="hidden"></TableCell>
                   <TableCell className="pl-8">Section Total</TableCell>
                   <TableCell>{sectionTotals.attendance}</TableCell>
