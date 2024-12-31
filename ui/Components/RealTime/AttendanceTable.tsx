@@ -1,4 +1,5 @@
 'use client';
+import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import {
   Table,
   TableBody,
@@ -10,7 +11,7 @@ import {
 } from '@tremor/react';
 import { formatDateForUI } from 'lib/hooks/convertDate';
 import { AttendanceRecord } from 'lib/types';
-import React from 'react';
+import React, { useState } from 'react';
 import { PriceTypeBadge } from './actions';
 import { useRealTimeStore } from './store';
 
@@ -30,6 +31,16 @@ export function AttendanceTable({ records }: { records: any }) {
   const hiddenTimes = ['08:00:00 PM', '05:00:00 PM'];
   const recordsByTheater: Record<string, AttendanceRecord[]> = {};
   const { useMerged } = useRealTimeStore();
+  const [expandedSections, setExpandedSections] = useState<string[]>([]);
+  // ... other existing code remains same
+
+  const toggleSection = (theater: string) => {
+    setExpandedSections(prev => 
+      prev.includes(theater) 
+        ? prev.filter(t => t !== theater)
+        : [...prev, theater]
+    );
+  };
   // Sort the theater names based on the custom order
   records.sort((a: any, b: any) => {
     const indexA = customOrder.indexOf(a.theater);
@@ -106,6 +117,8 @@ export function AttendanceTable({ records }: { records: any }) {
         <TableBody>
           {Object.entries(recordsByTheater).map(
             ([theater, recordsForTheater]) => {
+              const isExpanded = expandedSections.includes(theater);
+
               const sectionTotals = recordsForTheater.reduce(
                 (acc, record) => ({
                   attendance: acc.attendance + (record.attendance || 0),
@@ -123,11 +136,21 @@ export function AttendanceTable({ records }: { records: any }) {
                 {/* Theater header */}
                 <TableRow>
                   <TableHeaderCell className="text-gray-900 dark:text-gray-200 text-lg">
-                    {theater}
+                  <button 
+                      onClick={() => toggleSection(theater)}
+                      className="flex items-center space-x-2 focus:outline-none"
+                    >
+                      {isExpanded ? (
+                        <ChevronDownIcon className="h-5 w-5" />
+                      ) : (
+                        <ChevronRightIcon className="h-5 w-5" />
+                      )}
+                      <span>{theater}</span>
+                    </button>
                   </TableHeaderCell>
                 </TableRow>
                 {/* Theater records */}
-                        {recordsForTheater
+                        {isExpanded && recordsForTheater
                           .slice()
                           .sort((a, b) => {
                           // First sort by time
