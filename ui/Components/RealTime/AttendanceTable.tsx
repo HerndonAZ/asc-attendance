@@ -236,17 +236,18 @@ export function AttendanceTable({ records }: { records: any }) {
               </React.Fragment>
             )}
           )}
-             {/* Grand total row
-             <TableRow className="font-bold">
-            <TableCell className="hidden"></TableCell>
-            <TableCell className="pl-8">GRAND TOTAL</TableCell>
+                              {/* Daily total row */}
+
+                <TableRow className="bg-gray-200 dark:bg-gray-900 font-bold text-lg ">
+                <TableCell className="hidden"></TableCell>
+            <TableCell className="pl-8">Daily Total</TableCell>
             <TableCell>{grandTotals.attendance}</TableCell>
             <TableCell>${grandTotals.revenue.toFixed(2)}</TableCell>
             {!useMerged && <TableCell></TableCell>}
             <TableCell></TableCell>
             <TableCell></TableCell>
             <TableCell></TableCell>
-          </TableRow> */}
+          </TableRow>
         </TableBody>
       </Table>
     )
