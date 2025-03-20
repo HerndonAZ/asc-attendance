@@ -1,4 +1,3 @@
-
 import { getToday } from '@/lib/hooks/dateHelpers';
 import {
   apiUrl,
@@ -9,7 +8,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export const maxDuration = 300;
 export const revalidate = 0;
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-dynamic';
 const fetchDate = getToday();
 export async function GET(req: NextRequest) {
   try {
@@ -18,7 +17,6 @@ export async function GET(req: NextRequest) {
     }
 
     if (credentials && fetchDate) {
-
       const cache = 'no-cache';
       const customApiEndpoint = `/custom/Attendance_Update_priceType?perf_dt=${fetchDate}`;
 
@@ -35,13 +33,11 @@ export async function GET(req: NextRequest) {
 
         if (!response.ok) {
           await handleTessituraError(response);
-
-
         }
 
         const data = await response.json();
 
-        console.log(fetchDate)
+        console.log(fetchDate);
 
         return NextResponse.json(data);
       } catch (error) {
@@ -55,4 +51,4 @@ export async function GET(req: NextRequest) {
   }
 
   return NextResponse.json({ error: 'Error during API request' });
-} 
+}

@@ -39,7 +39,10 @@ export function AttendanceTable({ records }: { records: any }) {
       if (hiddenVenues.includes(record?.theater!)) return acc;
 
       let theaterName = record.theater!;
-      if (theaterName === 'Sybil B Harrington Galleries' && record.perf_name === 'Group Admissions') {
+      if (
+        theaterName === 'Sybil B Harrington Galleries' &&
+        record.perf_name === 'Group Admissions'
+      ) {
         theaterName = 'Groups';
       }
 
@@ -55,20 +58,24 @@ export function AttendanceTable({ records }: { records: any }) {
   const { useMerged } = useRealTimeStore();
   const [expandedSections, setExpandedSections] = useState<string[]>([]);
   const toggleSection = (theater: string) => {
-    setExpandedSections(prev =>
-      prev.includes(theater) ? prev.filter(t => t !== theater) : [...prev, theater]
+    setExpandedSections((prev) =>
+      prev.includes(theater)
+        ? prev.filter((t) => t !== theater)
+        : [...prev, theater]
     );
   };
 
   // Sort the sections using customOrder.
-  const sortedSections = Object.entries(recordsByTheater).sort(([theaterA], [theaterB]) => {
-    const indexA = customOrder.indexOf(theaterA);
-    const indexB = customOrder.indexOf(theaterB);
-    if (indexA === -1 && indexB === -1) return 0;
-    if (indexA === -1) return 1;
-    if (indexB === -1) return -1;
-    return indexA - indexB;
-  });
+  const sortedSections = Object.entries(recordsByTheater).sort(
+    ([theaterA], [theaterB]) => {
+      const indexA = customOrder.indexOf(theaterA);
+      const indexB = customOrder.indexOf(theaterB);
+      if (indexA === -1 && indexB === -1) return 0;
+      if (indexA === -1) return 1;
+      if (indexB === -1) return -1;
+      return indexA - indexB;
+    }
+  );
 
   const grandTotals = {
     attendance: 0,
@@ -172,19 +179,27 @@ export function AttendanceTable({ records }: { records: any }) {
 
                       if (timeComparison === 0) {
                         const getPriceTypeIndex = (priceType: string) => {
-                          return priceTypeOrder.findIndex(orderType =>
-                            priceType?.toLowerCase().startsWith(orderType.toLowerCase())
+                          return priceTypeOrder.findIndex((orderType) =>
+                            priceType
+                              ?.toLowerCase()
+                              .startsWith(orderType.toLowerCase())
                           );
                         };
 
-                        const indexA = getPriceTypeIndex(a.price_type_desc || '');
-                        const indexB = getPriceTypeIndex(b.price_type_desc || '');
+                        const indexA = getPriceTypeIndex(
+                          a.price_type_desc || ''
+                        );
+                        const indexB = getPriceTypeIndex(
+                          b.price_type_desc || ''
+                        );
                         if (indexA !== -1 && indexB !== -1) {
                           return indexA - indexB;
                         }
                         if (indexA !== -1) return -1;
                         if (indexB !== -1) return 1;
-                        return (a.price_type_desc || '').localeCompare(b.price_type_desc || '');
+                        return (a.price_type_desc || '').localeCompare(
+                          b.price_type_desc || ''
+                        );
                       }
                       return timeComparison;
                     })
@@ -192,7 +207,10 @@ export function AttendanceTable({ records }: { records: any }) {
                       const formattedDate = formatDateForUI(record?.perf_dt);
                       return (
                         <TableRow
-                          key={record.id + (record?.price_type_id?.toString() || '')}
+                          key={
+                            record.id +
+                            (record?.price_type_id?.toString() || '')
+                          }
                         >
                           <TableCell className="text-gray-900 dark:text-gray-100 hidden">
                             {record.theater}
@@ -255,8 +273,8 @@ export function AttendanceTable({ records }: { records: any }) {
           {/* Grand Total (Daily Total) */}
           <TableRow className="bg-gray-200 dark:bg-gray-900 font-bold text-lg">
             <TableCell className="hidden"></TableCell>
-            <TableCell className="pl-8">Daily Total</TableCell>
-            <TableCell>{grandTotals.attendance}</TableCell>
+            <TableCell className="pl-8">Daily Revenue Total</TableCell>
+            <TableCell></TableCell>
             <TableCell>${grandTotals.revenue.toFixed(2)}</TableCell>
             {!useMerged && <TableCell></TableCell>}
             <TableCell></TableCell>

@@ -1,4 +1,4 @@
-import { priceTypes } from "./store";
+import { priceTypes } from './store';
 
 export const getTableData = ({
   data,
@@ -36,16 +36,20 @@ export const getTableData = ({
   }
 };
 
-export const PriceTypeBadge = ({ priceType, priceTypeName }: { priceType: number, priceTypeName?: string }) => {
-
-  const matchedType = priceTypes.find(pt => pt.id === priceType);
-
+export const PriceTypeBadge = ({
+  priceType,
+  priceTypeName
+}: {
+  priceType: number;
+  priceTypeName?: string;
+}) => {
+  const matchedType = priceTypes.find((pt) => pt.id === priceType);
 
   return (
-    <span className={`text-xs font-medium me-2 px-2.5 py-0.5 rounded ${matchedType?.badgeColor}`}>
+    <span
+      className={`text-xs font-medium me-2 px-2.5 py-0.5 rounded ${matchedType?.badgeColor}`}
+    >
       {matchedType?.shortName || priceType}
     </span>
   );
 };
-
-

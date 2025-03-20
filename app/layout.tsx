@@ -13,7 +13,6 @@ export const metadata = {
   description: 'Arizona Science Center realtime attendance reporting.'
 };
 
-
 export default function RootLayout({
   children
 }: {
@@ -21,17 +20,25 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-          <head>
-        <link rel="stylesheet" href="https://use.typekit.net/smr3juh.css"></link>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://use.typekit.net/smr3juh.css"
+        ></link>
       </head>
-      <Script defer src="https://unpkg.com/@tinybirdco/flock.js" data-host="https://api.tinybird.co" data-token="p.eyJ1IjogImRhZmVkZjE2LTc1ZTYtNGMwOS1hZWFmLTRlM2Q2MDEwYjA5OSIsICJpZCI6ICI4OTEwMjJhZi0xOGU4LTQ4N2UtYjdiNy02M2YxMjMxZjk1MzEiLCAiaG9zdCI6ICJldV9zaGFyZWQifQ.hmpG5z0MvTXwJl8WSHaUcyWkrLn3mb5pqLTlwGRD9C4"></Script>
+      <Script
+        defer
+        src="https://unpkg.com/@tinybirdco/flock.js"
+        data-host="https://api.tinybird.co"
+        data-token="p.eyJ1IjogImRhZmVkZjE2LTc1ZTYtNGMwOS1hZWFmLTRlM2Q2MDEwYjA5OSIsICJpZCI6ICI4OTEwMjJhZi0xOGU4LTQ4N2UtYjdiNy02M2YxMjMxZjk1MzEiLCAiaG9zdCI6ICJldV9zaGFyZWQifQ.hmpG5z0MvTXwJl8WSHaUcyWkrLn3mb5pqLTlwGRD9C4"
+      ></Script>
       <body className="h-full bg-gray-50 dark:bg-gray-900 font-Futura ">
         <Providers>
           <Suspense>
             <Nav />
           </Suspense>
-          <div className='hidden'>
-          <SiteInBetaNotice />
+          <div className="hidden">
+            <SiteInBetaNotice />
           </div>
           <main className="h-full relative">
             <Suspense>{children}</Suspense>

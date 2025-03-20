@@ -11,7 +11,10 @@ function Clock() {
     };
   });
   return (
-    <div suppressHydrationWarning className="flex h-full items-center text-sm">
+    <div
+      suppressHydrationWarning
+      className="flex h-full items-center text-sm text-white"
+    >
       {date.toLocaleTimeString()}
     </div>
   );
