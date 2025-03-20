@@ -4,13 +4,14 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { signIn, signOut } from 'next-auth/react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Fragment } from 'react';
 import DarkModeButton from '../ui/Buttons/DarkModeButton/DarkModeButton';
 import Clock from '../ui/Components/Clock';
 
 const navigation = [
-  { name: 'Dashboard', href: '/', hidden: false }
+  { name: 'DASHBOARD', href: '/', hidden: false }
   // { name: 'Playground', href: '/playground' , hidden: true}
 ];
 
@@ -34,25 +35,25 @@ export default function Navbar({ user }: { user: any }) {
                 <div className="flex flex-shrink-0 items-center">
                   <SiteLogo />
                 </div>
-                <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+                <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8 font-bold">
                   {user &&
                     navigation.map((item) => {
                       return (
-                        <a
+                        <Link
                           key={item.name}
                           href={item.href}
                           className={classNames(
                             pathname === item.href
                               ? 'border-slate-500 text-gray-900 dark:text-gray-100'
                               : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
-                            'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium bg-white dark:bg-gray-950  border-gray-200 dark:border-gray-800'
+                            'inline-flex items-center px-1 pt-1 border-b-2 text-sm font-bold bg-white dark:bg-gray-950  border-gray-200 dark:border-gray-800'
                           )}
                           aria-current={
                             pathname === item.href ? 'page' : undefined
                           }
                         >
                           {item.name}
-                        </a>
+                        </Link>
                       );
                     })}
                 </div>
