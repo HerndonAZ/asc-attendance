@@ -6,81 +6,46 @@ const baseUrl =
     ? 'http://localhost:3000'
     : 'https://rta.azscience.org';
 
-export const fetchLast7Days = async () => {
-  if (credentials) {
-    try {
-      const response = await fetch(baseUrl + '/api/v1/getLast7Days', {
-        //   next: { revalidate: 3600 * 6 },
-        cache: 'no-cache',
-        method: 'GET',
-        headers: {
-          Authorization: 'Basic ' + credentials,
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        }
-      });
-      if (!response.ok) {
-        await handleTessituraError(response);
-      }
+type TessituraResult<T = unknown> = {
+  data: T;
+  time: Date;
+};
 
-      const data = await response.json();
-      //ß      console.log()
-      return { data, time: new Date() };
-    } catch (error) {
-      console.error(error);
+export const requestTessitura = async <T = unknown>(
+  endpoint: string,
+  cache: RequestCache = 'no-cache'
+): Promise<TessituraResult<T> | undefined> => {
+  if (!credentials) return;
+  try {
+    const response = await fetch(baseUrl + endpoint, {
+      method: 'GET',
+      cache,
+      headers: {
+        Authorization: 'Basic ' + credentials,
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    });
+    if (!response.ok) {
+      await handleTessituraError(response);
     }
+    const data: T = await response.json();
+    return { data, time: new Date() };
+  } catch (error) {
+    console.error(error);
   }
 };
 
-export const fetchToday = async () => {
-  if (credentials) {
-    try {
-      const response = await fetch(baseUrl + '/api/v1/getRealTimeToday', {
-        cache: 'no-cache',
-        method: 'GET',
-        headers: {
-          Authorization: 'Basic ' + credentials,
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        }
-      });
-      if (!response.ok) {
-        await handleTessituraError(response);
-      }
+export const fetchLast7Days = () => requestTessitura('/api/v1/getLast7Days');
 
-      const data = await response.json();
-      //ß      console.log()
-      return { data, time: new Date() };
-    } catch (error) {
-      console.error(error);
-    }
-  }
-};
+export const fetchToday = () => requestTessitura('/api/v1/getRealTimeToday');
 
 export const fetchYesterday = async () => {
-  if (credentials) {
-    try {
-      const response = await fetch(
-        baseUrl + '/api/v1/getAttendanceUpdatePreviousDate',
-        {
-          next: { revalidate: 3600 * 6 },
-          method: 'GET',
-          headers: {
-            Authorization: 'Basic ' + credentials,
-            'Content-Type': 'application/json',
-            Accept: 'application/json'
-          }
-        }
-      );
-      if (!response.ok) {
-        await handleTessituraError(response);
-      }
-
-      const data = await response.json();
-      //ß      console.log()
-      return { data: data || [], time: new Date() };
-    } catch (error) {
-      console.error(error);
-    }
+  const result = await requestTessitura<unknown[]>(
+    '/api/v1/getAttendanceUpdatePreviousDate',
+    'force-cache'
+  );
+  if (result) {
+    return { data: result.data || [], time: result.time };
   }
 };
