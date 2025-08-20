@@ -1,52 +1,55 @@
 'use client';
 import { useQuery } from '@tanstack/react-query';
-import React, { createContext, useCallback, useContext, useMemo } from 'react';
-import { AuthState, useAuthStore } from './store';
+import type { Session } from 'next-auth';
+import React, { createContext, useContext, useMemo } from 'react';
+import { useAuthStore } from './store';
 import { auth } from '.';
-import { useRouter } from 'next/navigation';
 
-// const refresh = () => {
-//   window.location.reload();
-// };
+export interface SessionState {
+  session: Session | null;
+  userRole: string | null;
+  isLoading: boolean;
+}
 
-export const AuthContext = createContext<AuthState | any>(
-  useAuthStore.getState()
-);
+export const AuthContext = createContext<SessionState>({
+  session: null,
+  userRole: null,
+  isLoading: false,
+});
 
 export const AuthContextProvider = ({
-  children
+  children,
 }: {
   children: React.ReactNode;
 }) => {
-  const { setUserRole, userRole, isLoading } = useAuthStore();
-  const setProfileState = (profile: any) => useAuthStore.setState({ profile });
+  const { userRole } = useAuthStore();
 
-  const setProfile = useCallback(
-    (profile: any) => {
-      setProfileState(profile);
-    },
-    [setProfileState]
-  );
-
-  const router = useRouter();
-
-  const { data: session } = useQuery({
+  const {
+    data: session,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['session'],
-    queryFn: () => auth()
+    queryFn: () => auth(),
+    retry: false,
   });
 
-  const value = useMemo(
+  const value = useMemo<SessionState>(
     () => ({
-      session: session,
-      isLoading,
+      session: session ?? null,
       userRole,
-      setUserRole
+      isLoading,
     }),
-    [session, userRole, setUserRole, isLoading]
+    [session, userRole, isLoading]
   );
+
+  if (error) {
+    return <div>Authentication error</div>;
+  }
+
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-export const useAuthProvider = () => {
+export const useAuthProvider = (): SessionState => {
   return useContext(AuthContext);
 };
