@@ -1,6 +1,10 @@
 'use client';
 
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/ui/ui/chart';
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent
+} from '@/ui/ui/chart';
 import { useEffect, useState } from 'react';
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 
@@ -15,8 +19,6 @@ function LastSevenDays() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -25,12 +27,12 @@ function LastSevenDays() {
           throw new Error('Failed to fetch data');
         }
         const json = await res.json();
-        
+
         // Calculate the last 7 days from today
         const today = new Date();
         const sevenDaysAgo = new Date();
         sevenDaysAgo.setDate(today.getDate() - 6); // 7 days total (today + 6 previous days)
-        
+
         const aggregated: Record<
           string,
           { attendance: number; revenue: number }
@@ -48,7 +50,7 @@ function LastSevenDays() {
         json.reduce((acc: any, record: any) => {
           const recordDate = record.perf_dt?.split('T')[0];
           if (!recordDate) return acc;
-          
+
           // Only include records from the last 7 days
           const perfDate = new Date(recordDate);
           if (perfDate >= sevenDaysAgo && perfDate <= today) {
@@ -95,20 +97,20 @@ function LastSevenDays() {
 
   const chartConfig = {
     Attendance: {
-      label: "Attendance",
-      color: "#3b82f6",
+      label: 'Attendance',
+      color: '#3b82f6'
     },
     Revenue: {
-      label: "Revenue",
-      color: "#10b981",
-    },
+      label: 'Revenue',
+      color: '#10b981'
+    }
   };
 
   return (
     <ChartContainer config={chartConfig} className="h-80 w-full">
       <AreaChart data={data}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis 
+        <XAxis
           dataKey="date"
           tickFormatter={(value) => new Date(value).toLocaleDateString()}
         />

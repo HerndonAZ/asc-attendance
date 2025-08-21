@@ -6,7 +6,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from '@/ui/ui/dropdown-menu';
 import { Sheet, SheetContent, SheetTrigger } from '@/ui/ui/sheet';
 import { Bars3Icon } from '@heroicons/react/24/outline';
@@ -26,10 +26,12 @@ const navigation = [
 export default function Navbar({ user }: { user: any }) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  { console.log(user) }
+  {
+    console.log(user);
+  }
 
   return (
-    <nav 
+    <nav
       style={{ backgroundColor: '#80298F' }}
       className="shadow-sm bg-card border-b border-border"
     >
@@ -59,17 +61,17 @@ export default function Navbar({ user }: { user: any }) {
                 })}
             </div>
           </div>
-          
+
           <div className={`${user && 'sm:mr-28'}`}>
             <Clock />
           </div>
-          
+
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
             {user && (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button 
-                    variant="ghost" 
+                  <Button
+                    variant="ghost"
                     className="relative h-10 w-10 rounded-full p-0 hover:ring-2 hover:ring-ring hover:ring-offset-2"
                   >
                     <Image
@@ -82,56 +84,58 @@ export default function Navbar({ user }: { user: any }) {
                     />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent 
-                  className="w-56 dark:bg-gray-900 bg-gray-200 text-popover-foreground border border-border shadow-lg" 
-                  align="end" 
+                <DropdownMenuContent
+                  className="w-56 dark:bg-gray-900 bg-gray-200 text-popover-foreground border border-border shadow-lg"
+                  align="end"
                   forceMount
                 >
-                {user ? (
-                  <>
-                    <div className="flex items-center justify-start gap-2 p-2">
-                      <Image
-                        className="h-8 w-8 rounded-full"
-                        src={user?.image || 'https://avatar.vercel.sh/leerob'}
-                        height={32}
-                        width={32}
-                        alt={`${user?.name || 'placeholder'} avatar`}
-                      />
-                      <div className="flex flex-col space-y-0">
-                        <p className="text-sm font-medium leading-none">{user.name}</p>
-                        <p className="text-xs leading-none text-muted-foreground">
-                          {user.email}
-                        </p>
+                  {user ? (
+                    <>
+                      <div className="flex items-center justify-start gap-2 p-2">
+                        <Image
+                          className="h-8 w-8 rounded-full"
+                          src={user?.image || 'https://avatar.vercel.sh/leerob'}
+                          height={32}
+                          width={32}
+                          alt={`${user?.name || 'placeholder'} avatar`}
+                        />
+                        <div className="flex flex-col space-y-0">
+                          <p className="text-sm font-medium leading-none">
+                            {user.name}
+                          </p>
+                          <p className="text-xs leading-none text-muted-foreground">
+                            {user.email}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem 
-                      onClick={() => signOut()}
-                      className="text-destructive focus:text-destructive"
-                    >
-                      Sign out
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <div className="flex w-full justify-center px-2 py-1">
-                      <DarkModeButton />
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <DropdownMenuItem onClick={() => signIn('google')}>
-                      Sign in with Google
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <div className="flex w-full justify-center px-2 py-1">
-                      <DarkModeButton />
-                    </div>
-                  </>
-                )}
-              </DropdownMenuContent>
-            </DropdownMenu>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem
+                        onClick={() => signOut()}
+                        className="text-destructive focus:text-destructive"
+                      >
+                        Sign out
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <div className="flex w-full justify-center px-2 py-1">
+                        <DarkModeButton />
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <DropdownMenuItem onClick={() => signIn('google')}>
+                        Sign in with Google
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <div className="flex w-full justify-center px-2 py-1">
+                        <DarkModeButton />
+                      </div>
+                    </>
+                  )}
+                </DropdownMenuContent>
+              </DropdownMenu>
             )}
           </div>
-          
+
           {/* Mobile menu button */}
           <div className="flex items-center sm:hidden">
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
@@ -159,7 +163,7 @@ export default function Navbar({ user }: { user: any }) {
                     </Link>
                   ))}
                 </div>
-                
+
                 <div className="border-t border-border pt-4 pb-3">
                   {user ? (
                     <>
@@ -168,7 +172,9 @@ export default function Navbar({ user }: { user: any }) {
                           <Image
                             priority
                             className="h-10 w-10 rounded-full object-cover"
-                            src={user?.image || 'https://avatar.vercel.sh/leerob'}
+                            src={
+                              user?.image || 'https://avatar.vercel.sh/leerob'
+                            }
                             height={40}
                             width={40}
                             alt={`${user?.name || 'User'} avatar`}
@@ -183,11 +189,11 @@ export default function Navbar({ user }: { user: any }) {
                           </div>
                         </div>
                       </div>
-                      
+
                       <div className="flex w-full px-4 py-2 mt-4">
                         <DarkModeButton />
                       </div>
-                      
+
                       <div className="mt-3 space-y-1">
                         <Button
                           variant="ghost"

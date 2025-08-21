@@ -55,7 +55,9 @@ export default function PlaygroundPage() {
               <CardTitle>{item.category}</CardTitle>
               <div className="flex items-baseline space-x-2">
                 <span className="text-3xl font-bold">{item.stat}</span>
-                <span className="text-sm text-muted-foreground">Total views</span>
+                <span className="text-sm text-muted-foreground">
+                  Total views
+                </span>
               </div>
             </CardHeader>
             <CardContent>
@@ -65,13 +67,15 @@ export default function PlaygroundPage() {
               </div>
               <div className="space-y-3">
                 {item.data.map((dataItem, index) => {
-                  const maxValue = Math.max(...item.data.map(d => d.value));
+                  const maxValue = Math.max(...item.data.map((d) => d.value));
                   const percentage = (dataItem.value / maxValue) * 100;
                   return (
                     <div key={dataItem.name} className="space-y-1">
                       <div className="flex justify-between text-sm">
                         <span className="truncate">{dataItem.name}</span>
-                        <span>{Intl.NumberFormat('us').format(dataItem.value)}</span>
+                        <span>
+                          {Intl.NumberFormat('us').format(dataItem.value)}
+                        </span>
                       </div>
                       <Progress value={percentage} className="h-2" />
                     </div>

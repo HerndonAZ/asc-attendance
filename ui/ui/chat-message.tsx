@@ -1,60 +1,60 @@
-"use client";
+'use client';
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger,
-} from "@/ui/ui/accordion";
-import { FilePreview } from "@/ui/ui/file-preview";
-import { MarkdownRenderer } from "@/ui/ui/markdown-renderer";
-import { cva, type VariantProps } from "class-variance-authority";
-import { Ban, Code2, Loader2, Terminal } from "lucide-react";
-import type React from "react";
-import { useMemo } from "react";
+  AccordionTrigger
+} from '@/ui/ui/accordion';
+import { FilePreview } from '@/ui/ui/file-preview';
+import { MarkdownRenderer } from '@/ui/ui/markdown-renderer';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { Ban, Code2, Loader2, Terminal } from 'lucide-react';
+import type React from 'react';
+import { useMemo } from 'react';
 
 const chatBubbleVariants = cva(
-  "relative break-words rounded-lg  text-sm w-full",
+  'relative break-words rounded-lg  text-sm w-full',
   {
     variants: {
       isUser: {
-        true: "bg-muted",
-        false: "bg-muted text-foreground",
+        true: 'bg-muted',
+        false: 'bg-muted text-foreground'
       },
       animation: {
-        none: "",
-        slide: "duration-300 animate-in fade-in-0",
-        scale: "duration-300 animate-in fade-in-0 zoom-in-75",
-        fade: "duration-500 animate-in fade-in-0",
-      },
+        none: '',
+        slide: 'duration-300 animate-in fade-in-0',
+        scale: 'duration-300 animate-in fade-in-0 zoom-in-75',
+        fade: 'duration-500 animate-in fade-in-0'
+      }
     },
     compoundVariants: [
       {
         isUser: true,
-        animation: "slide",
-        class: "slide-in-from-right",
+        animation: 'slide',
+        class: 'slide-in-from-right'
       },
       {
         isUser: false,
-        animation: "slide",
-        class: "slide-in-from-left",
+        animation: 'slide',
+        class: 'slide-in-from-left'
       },
       {
         isUser: true,
-        animation: "scale",
-        class: "origin-bottom-right",
+        animation: 'scale',
+        class: 'origin-bottom-right'
       },
       {
         isUser: false,
-        animation: "scale",
-        class: "origin-bottom-left",
-      },
-    ],
-  },
+        animation: 'scale',
+        class: 'origin-bottom-left'
+      }
+    ]
+  }
 );
 
-type Animation = VariantProps<typeof chatBubbleVariants>["animation"];
+type Animation = VariantProps<typeof chatBubbleVariants>['animation'];
 
 interface Attachment {
   name?: string;
@@ -63,17 +63,17 @@ interface Attachment {
 }
 
 interface PartialToolCall {
-  state: "partial-call";
+  state: 'partial-call';
   toolName: string;
 }
 
 interface ToolCall {
-  state: "call";
+  state: 'call';
   toolName: string;
 }
 
 interface ToolResult {
-  state: "result";
+  state: 'result';
   toolName: string;
   result: {
     __cancelled?: boolean;
@@ -84,30 +84,30 @@ interface ToolResult {
 type ToolInvocation = PartialToolCall | ToolCall | ToolResult;
 
 interface ReasoningPart {
-  type: "reasoning";
+  type: 'reasoning';
   reasoning: string;
 }
 
 interface ToolInvocationPart {
-  type: "tool-invocation";
+  type: 'tool-invocation';
   toolInvocation: ToolInvocation;
 }
 
 interface TextPart {
-  type: "text";
+  type: 'text';
   text: string;
 }
 
 // For compatibility with AI SDK types, not used
 interface SourcePart {
-  type: "source";
+  type: 'source';
 }
 
 type MessagePart = TextPart | ReasoningPart | ToolInvocationPart | SourcePart;
 
 export interface Message {
   id: string;
-  role: "user" | "assistant" | (string & {});
+  role: 'user' | 'assistant' | (string & {});
   content: string;
   createdAt?: Date;
   experimental_attachments?: Attachment[];
@@ -124,25 +124,25 @@ export interface ChatMessageProps extends Message {
 export const ChatMessage: React.FC<ChatMessageProps> = ({
   role,
   content,
-  animation = "scale",
+  animation = 'scale',
   actions,
   experimental_attachments,
   toolInvocations,
-  parts,
+  parts
 }) => {
   const files = useMemo(() => {
     return experimental_attachments?.map((attachment) => {
       const dataArray = dataUrlToUint8Array(attachment.url);
-      const file = new File([dataArray], attachment.name ?? "Unknown");
+      const file = new File([dataArray], attachment.name ?? 'Unknown');
       return file;
     });
   }, [experimental_attachments]);
 
-  const isUser = role === "user";
+  const isUser = role === 'user';
 
   if (isUser) {
     return (
-      <div className={cn("flex flex-col items-start")}>
+      <div className={cn('flex flex-col items-start')}>
         {files ? (
           <div className="mb-1 flex flex-wrap gap-2">
             {files.map((file, index) => {
@@ -154,7 +154,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
           <div
             className={cn(
               chatBubbleVariants({ isUser, animation }),
-              "bg-zinc-900 px-4 py-2 rounded-xl",
+              'bg-zinc-900 px-4 py-2 rounded-xl'
             )}
           >
             <MarkdownRenderer>{content}</MarkdownRenderer>
@@ -166,13 +166,13 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
 
   if (parts && parts.length > 0) {
     return parts.map((part, index) => {
-      if (part.type === "text") {
+      if (part.type === 'text') {
         return (
           <div key={`text-${index}`} className="flex px-4 py-2 gap-2">
             <div
               className={cn(
                 chatBubbleVariants({ isUser, animation }),
-                "px-3 py-2 rounded-lg",
+                'px-3 py-2 rounded-lg'
               )}
             >
               <MarkdownRenderer>{part.text}</MarkdownRenderer>
@@ -186,12 +186,12 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
         );
       }
 
-      if (part.type === "reasoning") {
-        console.log("reasoning", part);
+      if (part.type === 'reasoning') {
+        console.log('reasoning', part);
         return <ReasoningBlock key={`reasoning-${index}`} part={part} />;
       }
 
-      if (part.type === "tool-invocation") {
+      if (part.type === 'tool-invocation') {
         return (
           <ToolCall
             key={`tool-${index}`}
@@ -209,7 +209,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
   }
 
   return (
-    <div className={cn("flex flex-col", isUser ? "items-end" : "items-start")}>
+    <div className={cn('flex flex-col', isUser ? 'items-end' : 'items-start')}>
       <div className={cn(chatBubbleVariants({ isUser, animation }))}>
         <MarkdownRenderer>{content}</MarkdownRenderer>
         {actions ? (
@@ -223,8 +223,8 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({
 };
 
 function dataUrlToUint8Array(data: string) {
-  const base64 = data.split(",")[1];
-  const buf = Buffer.from(base64, "base64");
+  const base64 = data.split(',')[1];
+  const buf = Buffer.from(base64, 'base64');
   return new Uint8Array(buf);
 }
 
@@ -250,15 +250,15 @@ const ReasoningBlock = ({ part }: { part: ReasoningPart }) => {
 };
 
 function ToolCall({
-  toolInvocations,
-}: Pick<ChatMessageProps, "toolInvocations">) {
+  toolInvocations
+}: Pick<ChatMessageProps, 'toolInvocations'>) {
   if (!toolInvocations?.length) return null;
 
   return (
     <div className="flex flex-col items-start gap-2 px-4">
       {toolInvocations.map((invocation, index) => {
         const isCancelled =
-          invocation.state === "result" &&
+          invocation.state === 'result' &&
           invocation.result.__cancelled === true;
 
         if (isCancelled) {
@@ -269,11 +269,11 @@ function ToolCall({
             >
               <Ban className="h-4 w-4" />
               <span>
-                Cancelled{" "}
+                Cancelled{' '}
                 <span className="font-mono">
-                  {"`"}
+                  {'`'}
                   {invocation.toolName}
-                  {"`"}
+                  {'`'}
                 </span>
               </span>
             </div>
@@ -281,8 +281,8 @@ function ToolCall({
         }
 
         switch (invocation.state) {
-          case "partial-call":
-          case "call":
+          case 'partial-call':
+          case 'call':
             return (
               <div
                 key={index}
@@ -290,18 +290,18 @@ function ToolCall({
               >
                 <Terminal className="h-4 w-4" />
                 <span>
-                  Calling{" "}
+                  Calling{' '}
                   <span className="font-mono">
-                    {"`"}
+                    {'`'}
                     {invocation.toolName}
-                    {"`"}
+                    {'`'}
                   </span>
                   ...
                 </span>
                 <Loader2 className="h-3 w-3 animate-spin" />
               </div>
             );
-          case "result":
+          case 'result':
             return <ToolResult key={index} invocation={invocation} />;
           default:
             return null;

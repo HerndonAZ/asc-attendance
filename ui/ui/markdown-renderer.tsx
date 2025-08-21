@@ -1,17 +1,17 @@
-"use client";
-import { cn } from "@/lib/utils";
+'use client';
+import { cn } from '@/lib/utils';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger,
-} from "@/ui/ui/accordion";
-import { ScrollArea, ScrollBar } from "@/ui/ui/scroll-area";
-import { LogsIcon } from "lucide-react";
-import type { JSX } from "react";
-import React, { Suspense } from "react";
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+  AccordionTrigger
+} from '@/ui/ui/accordion';
+import { ScrollArea, ScrollBar } from '@/ui/ui/scroll-area';
+import { LogsIcon } from 'lucide-react';
+import type { JSX } from 'react';
+import React, { Suspense } from 'react';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface MarkdownRendererProps {
   children: string;
@@ -42,7 +42,7 @@ const HighlightedPre = React.memo(
       const loadTokens = async () => {
         try {
           const { getSingletonHighlighter: getHighlighter, bundledLanguages } =
-            await import("shiki");
+            await import('shiki');
 
           // Check if language is supported
           if (!language || !(language in bundledLanguages)) {
@@ -51,23 +51,23 @@ const HighlightedPre = React.memo(
           }
 
           const highlighter = await getHighlighter({
-            themes: ["min-dark"],
-            langs: [language as keyof typeof bundledLanguages],
+            themes: ['min-dark'],
+            langs: [language as keyof typeof bundledLanguages]
           });
 
           const result = await highlighter.codeToTokens(children, {
             lang: language as keyof typeof bundledLanguages,
             themes: {
-              light: "min-dark",
-              dark: "min-dark",
-            },
+              light: 'min-dark',
+              dark: 'min-dark'
+            }
           });
 
           if (mounted) {
             setTokens(result.tokens);
           }
         } catch (error) {
-          console.error("Failed to load syntax highlighting:", error);
+          console.error('Failed to load syntax highlighting:', error);
         }
       };
 
@@ -90,7 +90,7 @@ const HighlightedPre = React.memo(
               <span>
                 {line.map((token: any, tokenIndex: number) => {
                   const style =
-                    typeof token.htmlStyle === "string"
+                    typeof token.htmlStyle === 'string'
                       ? undefined
                       : token.htmlStyle;
 
@@ -105,15 +105,15 @@ const HighlightedPre = React.memo(
                   );
                 })}
               </span>
-              {lineIndex !== tokens.length - 1 && "\n"}
+              {lineIndex !== tokens.length - 1 && '\n'}
             </React.Fragment>
           ))}
         </code>
       </pre>
     );
-  },
+  }
 );
-HighlightedPre.displayName = "HighlightedCode";
+HighlightedPre.displayName = 'HighlightedCode';
 
 interface CodeBlockProps extends React.HTMLAttributes<HTMLPreElement> {
   children: React.ReactNode;
@@ -127,13 +127,13 @@ const CodeBlock = ({
   language,
   ...rest
 }: CodeBlockProps) => {
-  const code = typeof children === "string" ? children : String(children);
+  const code = typeof children === 'string' ? children : String(children);
 
   return (
     <div className="relative w-full group/code">
       <Suspense fallback={<pre className={className}>{code}</pre>}>
         <ScrollArea>
-          <pre className={cn("overflow-x-auto", className)}>
+          <pre className={cn('overflow-x-auto', className)}>
             <HighlightedPre language={language} className="rounded-md">
               {code}
             </HighlightedPre>
@@ -146,7 +146,7 @@ const CodeBlock = ({
 };
 
 function childrenTakeAllStringContents(element: any): string {
-  if (typeof element === "string") {
+  if (typeof element === 'string') {
     return element;
   }
 
@@ -156,60 +156,60 @@ function childrenTakeAllStringContents(element: any): string {
     if (Array.isArray(children)) {
       return children
         .map((child) => childrenTakeAllStringContents(child))
-        .join("");
+        .join('');
     }
     return childrenTakeAllStringContents(children);
   }
 
-  return "";
+  return '';
 }
 
 const COMPONENTS = {
   h1: withClass(
-    "h1",
-    "scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl mb-6 mt-8 first:mt-0",
-    { slug: true },
+    'h1',
+    'scroll-m-20 text-4xl font-bold tracking-tight lg:text-5xl mb-6 mt-8 first:mt-0',
+    { slug: true }
   ),
   h2: withClass(
-    "h2",
-    "scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight mb-4 mt-8 first:mt-0",
-    { slug: true },
+    'h2',
+    'scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight mb-4 mt-8 first:mt-0',
+    { slug: true }
   ),
   h3: withClass(
-    "h3",
-    "scroll-m-20 text-2xl font-semibold tracking-tight mb-3 mt-6",
-    { slug: true },
+    'h3',
+    'scroll-m-20 text-2xl font-semibold tracking-tight mb-3 mt-6',
+    { slug: true }
   ),
   h4: withClass(
-    "h4",
-    "scroll-m-20 text-xl font-semibold tracking-tight mb-2 mt-4",
-    { slug: true },
+    'h4',
+    'scroll-m-20 text-xl font-semibold tracking-tight mb-2 mt-4',
+    { slug: true }
   ),
   h5: withClass(
-    "h5",
-    "scroll-m-20 text-lg font-medium tracking-tight mb-2 mt-3",
-    { slug: true },
+    'h5',
+    'scroll-m-20 text-lg font-medium tracking-tight mb-2 mt-3',
+    { slug: true }
   ),
   h6: withClass(
-    "h6",
-    "scroll-m-20 text-base font-medium tracking-tight mb-2 mt-3",
-    { slug: true },
+    'h6',
+    'scroll-m-20 text-base font-medium tracking-tight mb-2 mt-3',
+    { slug: true }
   ),
-  strong: withClass("strong", "font-semibold"),
-  em: withClass("em", "italic"),
+  strong: withClass('strong', 'font-semibold'),
+  em: withClass('em', 'italic'),
   a: withClass(
-    "a",
-    "font-medium text-primary underline underline-offset-4 hover:text-primary/80 transition-colors",
+    'a',
+    'font-medium text-primary underline underline-offset-4 hover:text-primary/80 transition-colors'
   ),
   blockquote: withClass(
-    "blockquote",
-    "mt-6 border-l-2 border-primary pl-6 italic text-muted-foreground",
+    'blockquote',
+    'mt-6 border-l-2 border-primary pl-6 italic text-muted-foreground'
   ),
   code: ({ children, className, node, ...rest }: any) => {
-    const match = /language-(\w+)/.exec(className || "");
+    const match = /language-(\w+)/.exec(className || '');
     const language = match ? match[1].toLowerCase() : undefined;
 
-    if (language === "json" && children.includes("segments")) {
+    if (language === 'json' && children.includes('segments')) {
       return (
         <Accordion
           type="single"
@@ -242,7 +242,7 @@ const COMPONENTS = {
     ) : (
       <code
         className={cn(
-          "relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold",
+          'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold'
         )}
         {...rest}
       >
@@ -251,40 +251,40 @@ const COMPONENTS = {
     );
   },
   pre: ({ children }: any) => children,
-  ol: withClass("ol", "my-6 ml-6 list-decimal [&>li]:mt-2"),
-  ul: withClass("ul", "my-6 ml-6 list-disc [&>li]:mt-2"),
-  li: withClass("li", "leading-7"),
+  ol: withClass('ol', 'my-6 ml-6 list-decimal [&>li]:mt-2'),
+  ul: withClass('ul', 'my-6 ml-6 list-disc [&>li]:mt-2'),
+  li: withClass('li', 'leading-7'),
   table: withClass(
-    "table",
-    "my-6 w-full overflow-y-auto rounded-md border border-border",
+    'table',
+    'my-6 w-full overflow-y-auto rounded-md border border-border'
   ),
   th: withClass(
-    "th",
-    "border border-border px-4 py-2 text-left font-bold bg-muted/50 [&[align=center]]:text-center [&[align=right]]:text-right",
+    'th',
+    'border border-border px-4 py-2 text-left font-bold bg-muted/50 [&[align=center]]:text-center [&[align=right]]:text-right'
   ),
   td: withClass(
-    "td",
-    "border border-border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right",
+    'td',
+    'border border-border px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right'
   ),
-  tr: withClass("tr", "m-0 border-t border-border p-0 even:bg-muted/50"),
-  p: withClass("p", "leading-7 [&:not(:first-child)]:mt-6"),
-  hr: withClass("hr", "my-8 border-border"),
-  img: withClass("img", "rounded-lg border my-4"),
+  tr: withClass('tr', 'm-0 border-t border-border p-0 even:bg-muted/50'),
+  p: withClass('p', 'leading-7 [&:not(:first-child)]:mt-6'),
+  hr: withClass('hr', 'my-8 border-border'),
+  img: withClass('img', 'rounded-lg border my-4')
 };
 
 function withClass(
   Tag: keyof JSX.IntrinsicElements,
   classes: string,
-  options: { slug?: boolean } = {},
+  options: { slug?: boolean } = {}
 ) {
   const Component = ({ node, ...props }: any) => {
     let id: string | undefined;
     if (options.slug) {
       const text = childrenTakeAllStringContents(props.children)
         .toLowerCase()
-        .replace(/[^a-z0-9\s-]/g, "")
+        .replace(/[^a-z0-9\s-]/g, '')
         .trim()
-        .replace(/\s+/g, "-");
+        .replace(/\s+/g, '-');
       id = text || undefined;
     }
 

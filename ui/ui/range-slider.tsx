@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 interface RangeSliderProps {
   min: number;
@@ -19,7 +19,7 @@ export function RangeSlider({
   onChange,
   formatLabel = (val) => val.toString(),
   step = 1,
-  className = "",
+  className = ''
 }: RangeSliderProps) {
   // Initialize with full duration if no value provided, otherwise use provided value
   const [range, setRange] = useState<[number, number]>(value || [min, max]);
@@ -47,7 +47,7 @@ export function RangeSlider({
         className="absolute top-0 h-full bg-purple-500 rounded-lg"
         style={{
           left: `${((range[0] - min) / (max - min)) * 100}%`,
-          width: `${((range[1] - range[0]) / (max - min)) * 100}%`,
+          width: `${((range[1] - range[0]) / (max - min)) * 100}%`
         }}
       />
 
@@ -55,7 +55,7 @@ export function RangeSlider({
       <div
         className="absolute top-1/2 w-4 h-4 bg-white border-2 border-purple-500 rounded-full cursor-pointer transform -translate-y-1/2 shadow-md hover:scale-110 transition-transform"
         style={{
-          left: `calc(${((range[0] - min) / (max - min)) * 100}% - 8px)`,
+          left: `calc(${((range[0] - min) / (max - min)) * 100}% - 8px)`
         }}
         onMouseDown={(e) => {
           e.preventDefault();
@@ -69,18 +69,18 @@ export function RangeSlider({
             const deltaValue = (deltaPercent / 100) * (max - min);
             const newStart = Math.max(
               min,
-              Math.min(range[1] - step, startValue + deltaValue),
+              Math.min(range[1] - step, startValue + deltaValue)
             );
             handleChange([newStart, range[1]]);
           };
 
           const handleMouseUp = () => {
-            document.removeEventListener("mousemove", handleMouseMove);
-            document.removeEventListener("mouseup", handleMouseUp);
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
           };
 
-          document.addEventListener("mousemove", handleMouseMove);
-          document.addEventListener("mouseup", handleMouseUp);
+          document.addEventListener('mousemove', handleMouseMove);
+          document.addEventListener('mouseup', handleMouseUp);
         }}
       />
 
@@ -88,7 +88,7 @@ export function RangeSlider({
       <div
         className="absolute top-1/2 w-4 h-4 bg-white border-2 border-purple-500 rounded-full cursor-pointer transform -translate-y-1/2 shadow-md hover:scale-110 transition-transform"
         style={{
-          left: `calc(${((range[1] - min) / (max - min)) * 100}% - 8px)`,
+          left: `calc(${((range[1] - min) / (max - min)) * 100}% - 8px)`
         }}
         onMouseDown={(e) => {
           e.preventDefault();
@@ -102,18 +102,18 @@ export function RangeSlider({
             const deltaValue = (deltaPercent / 100) * (max - min);
             const newEnd = Math.max(
               range[0] + step,
-              Math.min(max, startValue + deltaValue),
+              Math.min(max, startValue + deltaValue)
             );
             handleChange([range[0], newEnd]);
           };
 
           const handleMouseUp = () => {
-            document.removeEventListener("mousemove", handleMouseMove);
-            document.removeEventListener("mouseup", handleMouseUp);
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
           };
 
-          document.addEventListener("mousemove", handleMouseMove);
-          document.addEventListener("mouseup", handleMouseUp);
+          document.addEventListener('mousemove', handleMouseMove);
+          document.addEventListener('mouseup', handleMouseUp);
         }}
       />
 

@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import MarkdownRenderer from "@/ui/ui/markdown-renderer";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import MarkdownRenderer from '@/ui/ui/markdown-renderer';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 interface DocsPageProps {
   markdownContent: string;
@@ -11,9 +11,9 @@ interface DocsPageProps {
 
 export default function DocsPageClient({
   markdownContent,
-  headings,
+  headings
 }: DocsPageProps) {
-  const [activeId, setActiveId] = useState<string>("");
+  const [activeId, setActiveId] = useState<string>('');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -22,15 +22,15 @@ export default function DocsPageClient({
         const visibleEntries = entries.filter((entry) => entry.isIntersecting);
         if (visibleEntries.length > 0) {
           const mostVisible = visibleEntries.reduce((prev, current) =>
-            current.intersectionRatio > prev.intersectionRatio ? current : prev,
+            current.intersectionRatio > prev.intersectionRatio ? current : prev
           );
           setActiveId(mostVisible.target.id);
         }
       },
       {
-        rootMargin: "-20% 0px -35% 0px", // Trigger when heading is in the middle third of viewport
-        threshold: [0, 0.25, 0.5, 0.75, 1],
-      },
+        rootMargin: '-20% 0px -35% 0px', // Trigger when heading is in the middle third of viewport
+        threshold: [0, 0.25, 0.5, 0.75, 1]
+      }
     );
 
     // Observe all headings
@@ -66,34 +66,34 @@ export default function DocsPageClient({
                   block py-2 px-3 rounded-md text-sm transition-all duration-200 
                   hover:bg-accent hover:text-accent-foreground
                   focus:bg-accent focus:text-accent-foreground focus:outline-none
-                  ${isActive ? "bg-accent text-accent-foreground" : ""}
-                  ${level === 1 ? "font-semibold text-foreground border-l-2" : ""}
-                  ${level === 1 && isActive ? "border-primary" : level === 1 ? "border-primary/40" : ""}
-                  ${level === 2 ? "font-medium text-foreground/90 ml-2" : ""}
-                  ${level === 3 ? "text-muted-foreground ml-4" : ""}
-                  ${level === 4 ? "text-muted-foreground ml-6" : ""}
-                  ${level >= 5 ? "text-muted-foreground/80 ml-8" : ""}
+                  ${isActive ? 'bg-accent text-accent-foreground' : ''}
+                  ${level === 1 ? 'font-semibold text-foreground border-l-2' : ''}
+                  ${level === 1 && isActive ? 'border-primary' : level === 1 ? 'border-primary/40' : ''}
+                  ${level === 2 ? 'font-medium text-foreground/90 ml-2' : ''}
+                  ${level === 3 ? 'text-muted-foreground ml-4' : ''}
+                  ${level === 4 ? 'text-muted-foreground ml-6' : ''}
+                  ${level >= 5 ? 'text-muted-foreground/80 ml-8' : ''}
                 `}
               >
                 <span className="flex items-center gap-2">
                   {level === 1 && (
                     <div
                       className={`w-1.5 h-1.5 rounded-full transition-colors ${
-                        isActive ? "bg-primary" : "bg-primary/40"
+                        isActive ? 'bg-primary' : 'bg-primary/40'
                       }`}
                     />
                   )}
                   {level === 2 && (
                     <div
                       className={`w-1 h-1 rounded-full transition-colors ${
-                        isActive ? "bg-primary" : "bg-primary/60"
+                        isActive ? 'bg-primary' : 'bg-primary/60'
                       }`}
                     />
                   )}
                   {level >= 3 && (
                     <div
                       className={`w-0.5 h-0.5 rounded-full transition-colors ${
-                        isActive ? "bg-primary" : "bg-muted-foreground"
+                        isActive ? 'bg-primary' : 'bg-muted-foreground'
                       }`}
                     />
                   )}

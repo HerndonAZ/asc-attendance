@@ -14,11 +14,11 @@ export interface SessionState {
 export const AuthContext = createContext<SessionState>({
   session: null,
   userRole: null,
-  isLoading: false,
+  isLoading: false
 });
 
 export const AuthContextProvider = ({
-  children,
+  children
 }: {
   children: React.ReactNode;
 }) => {
@@ -27,18 +27,18 @@ export const AuthContextProvider = ({
   const {
     data: session,
     isLoading,
-    error,
+    error
   } = useQuery({
     queryKey: ['session'],
     queryFn: () => auth(),
-    retry: false,
+    retry: false
   });
 
   const value = useMemo<SessionState>(
     () => ({
       session: session ?? null,
       userRole,
-      isLoading,
+      isLoading
     }),
     [session, userRole, isLoading]
   );

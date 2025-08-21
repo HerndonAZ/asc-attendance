@@ -4,7 +4,13 @@ import DownloadAsCSV from '@/ui/Buttons/DownloadAsCSV';
 import RefreshButton from '@/ui/Buttons/RefreshButton';
 import { Button } from '@/ui/ui/button';
 import { Card } from '@/ui/ui/card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/ui/ui/select';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/ui/ui/select';
 
 //import { TabsContent, TabsTrigger, TabsList, Tabs } from '../Tremor/Components';
 import Loading from 'app/loading';
@@ -85,9 +91,7 @@ const AttendanceWrapper = ({
     !loading && (
       <div className="p-4 md:p-10 mx-auto max-w-7xl relative">
         <Suspense>
-          <h1 className=" text-xl font-bold uppercase">
-            Realtime Attendance
-          </h1>
+          <h1 className=" text-xl font-bold uppercase">Realtime Attendance</h1>
           <p className="text-foreground">
             Arizona Science Center realtime attendance and revenue reporting
           </p>
@@ -98,7 +102,6 @@ const AttendanceWrapper = ({
           <div className="h-fit items-center mt-6 flex justify-between">
             <div className="justify-start space-x-2">
               <Select
-                
                 //  disabled
                 defaultValue={day}
                 onValueChange={(v) => handleSetDate(v)}
@@ -106,21 +109,18 @@ const AttendanceWrapper = ({
                 <SelectTrigger className="w-40 dark:bg-gray-900 bg-gray-100">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className='dark:bg-gray-900 bg-gray-100'>
-                  <SelectItem value="today">
-                    Today
-                  </SelectItem>
-                  <SelectItem value="yesterday">
-                    Yesterday
-                  </SelectItem>
-                  <SelectItem value="last7days">
-                    Last 7 Days
-                  </SelectItem>
+                <SelectContent className="dark:bg-gray-900 bg-gray-100">
+                  <SelectItem value="today">Today</SelectItem>
+                  <SelectItem value="yesterday">Yesterday</SelectItem>
+                  <SelectItem value="last7days">Last 7 Days</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div className="justify-end space-x-4 flex text-white">
-              <div className='text-black dark:text-white' hidden={day === 'yesterday'}>
+              <div
+                className="text-black dark:text-white"
+                hidden={day === 'yesterday'}
+              >
                 <p className="text-xs italic">Last Updated</p>
                 <p className="text-xs">{useTimePassed(timeUpdated)}</p>
               </div>

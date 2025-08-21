@@ -1,7 +1,11 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/ui/ui/card';
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/ui/ui/chart';
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent
+} from '@/ui/ui/chart';
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 
 const data = [
@@ -25,36 +29,38 @@ const data = [
 export default function Example() {
   const chartConfig = {
     Sales: {
-      label: "Sales",
-      color: "#6366f1",
+      label: 'Sales',
+      color: '#6366f1'
     },
     Profit: {
-      label: "Profit",
-      color: "#d946ef",
-    },
+      label: 'Profit',
+      color: '#d946ef'
+    }
   };
 
   return (
     <Card className="mt-8">
       <CardHeader>
         <CardTitle>Performance</CardTitle>
-        <p className="text-sm text-muted-foreground">Comparison between Sales and Profit</p>
+        <p className="text-sm text-muted-foreground">
+          Comparison between Sales and Profit
+        </p>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig} className="h-80">
           <AreaChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="Month" />
-            <YAxis 
-              tickFormatter={(value) => 
+            <YAxis
+              tickFormatter={(value) =>
                 `$${Intl.NumberFormat('us').format(value)}`
               }
             />
-            <ChartTooltip 
+            <ChartTooltip
               content={<ChartTooltipContent />}
               formatter={(value) => [
                 `$${Intl.NumberFormat('us').format(value as number)}`,
-                ""
+                ''
               ]}
             />
             <Area

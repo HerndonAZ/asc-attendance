@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { Check, Copy } from "lucide-react";
+import { Check, Copy } from 'lucide-react';
 
-import { useCopyToClipboard } from "@/lib/hooks/use-copy-to-clipboard";
-import { cn } from "@/lib/utils";
-import { Button } from "@/ui/ui/button";
+import { useCopyToClipboard } from '@/lib/hooks/use-copy-to-clipboard';
+import { cn } from '@/lib/utils';
+import { Button } from '@/ui/ui/button';
 
 type CopyButtonProps = {
   content: string;
@@ -25,15 +25,15 @@ export function CopyButton({ content, copyMessage }: CopyButtonProps) {
       <div className="absolute inset-0 flex items-center justify-center">
         <Check
           className={cn(
-            "h-4 w-4 transition-transform ease-in-out",
-            isCopied ? "scale-100" : "scale-0",
+            'h-4 w-4 transition-transform ease-in-out',
+            isCopied ? 'scale-100' : 'scale-0'
           )}
         />
       </div>
       <Copy
         className={cn(
-          "h-4 w-4 transition-transform ease-in-out",
-          isCopied ? "scale-0" : "scale-100",
+          'h-4 w-4 transition-transform ease-in-out',
+          isCopied ? 'scale-0' : 'scale-100'
         )}
       />
     </Button>

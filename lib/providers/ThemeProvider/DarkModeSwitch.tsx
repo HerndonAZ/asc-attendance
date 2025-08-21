@@ -1,8 +1,8 @@
-"use client";
-import { Button } from "@/ui/ui/button";
-import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+'use client';
+import { Button } from '@/ui/ui/button';
+import { Moon, Sun } from 'lucide-react';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 const DarkModeSwitch = () => {
   const [mounted, setMounted] = useState(false);
@@ -18,13 +18,13 @@ const DarkModeSwitch = () => {
 
   return (
     <div className=" z-50 bg-background/80 backdrop-blur-sm border border-border hover:bg-accent p-2 rounded-lg shadow-lg transition-colors duration-300 flex items-center justify-center">
-      <Button 
-        variant="ghost" 
-        size="sm" 
-        onClick={() => setTheme(theme === "dark" ? "light" : "dark")} 
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
         className="p-2 h-8 w-8"
       >
-        {theme === "dark" ? (
+        {theme === 'dark' ? (
           <Sun className="w-4 h-4" />
         ) : (
           <Moon className="w-4 h-4" />
@@ -49,13 +49,13 @@ export const SidebarDarkModeSwitch = () => {
   }
 
   return (
-    <Button 
-      variant="ghost" 
-      size="sm" 
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")} 
+    <Button
+      variant="ghost"
+      size="sm"
+      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       className="p-2"
     >
-      {theme === "dark" ? (
+      {theme === 'dark' ? (
         <Sun className="w-4 h-4" />
       ) : (
         <Moon className="w-4 h-4" />

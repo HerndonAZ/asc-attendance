@@ -86,32 +86,16 @@ export function AttendanceTable({ records }: { records: any }) {
       <Table className="">
         <TableHeader>
           <TableRow>
-            <TableHead className="text-foreground hidden">
-              Theater
-            </TableHead>
-            <TableHead className="text-foreground">
-              Season
-            </TableHead>
-            <TableHead className="text-foreground">
-              Attendance
-            </TableHead>
-            <TableHead className="text-foreground">
-              Revenue
-            </TableHead>
+            <TableHead className="text-foreground hidden">Theater</TableHead>
+            <TableHead className="text-foreground">Season</TableHead>
+            <TableHead className="text-foreground">Attendance</TableHead>
+            <TableHead className="text-foreground">Revenue</TableHead>
             {!useMerged && (
-              <TableHead className="text-foreground">
-                Price Type
-              </TableHead>
+              <TableHead className="text-foreground">Price Type</TableHead>
             )}
-            <TableHead className="text-foreground">
-              Performance
-            </TableHead>
-            <TableHead className="text-foreground">
-              Date
-            </TableHead>
-            <TableHead className="text-foreground">
-              Time
-            </TableHead>
+            <TableHead className="text-foreground">Performance</TableHead>
+            <TableHead className="text-foreground">Date</TableHead>
+            <TableHead className="text-foreground">Time</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

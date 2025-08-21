@@ -1,7 +1,4 @@
-import {
-  apiUrl,
-  credentials
-} from 'lib/providers/Tessitura';
+import { apiUrl, credentials } from 'lib/providers/Tessitura';
 import { NextRequest, NextResponse } from 'next/server';
 import { redisGet } from 'providers/Redis/redis';
 
@@ -30,20 +27,20 @@ export async function GET(req: NextRequest) {
 
   // If no cached data or forcing refresh, fallback to live fetch
   console.log('No cached data found, falling back to live fetch');
-  
+
   if (credentials) {
     try {
       const today = new Date();
       const allData = [];
-      
+
       // Fetch data for each of the last 7 days independently
       for (let i = 0; i < 7; i++) {
         const date = new Date(today);
         date.setDate(today.getDate() - i);
         const dateStr = date.toISOString().split('T')[0]; // Format: YYYY-MM-DD
-        
+
         console.log(`Live fetch: Getting data for ${dateStr}...`);
-        
+
         try {
           const endpoint = `/custom/Attendance_Update_priceType?perf_dt=${dateStr}`;
           const response = await fetch(apiUrl + endpoint, {
@@ -57,31 +54,42 @@ export async function GET(req: NextRequest) {
           });
 
           if (!response.ok) {
-            console.warn(`Live fetch: Failed to fetch data for ${dateStr}: ${response.status}`);
+            console.warn(
+              `Live fetch: Failed to fetch data for ${dateStr}: ${response.status}`
+            );
             continue; // Skip this date and continue with others
           }
 
           const dayData = await response.json();
-          
+
           if (dayData && Array.isArray(dayData)) {
             allData.push(...dayData);
-            console.log(`Live fetch: Got ${dayData.length} records for ${dateStr}`);
+            console.log(
+              `Live fetch: Got ${dayData.length} records for ${dateStr}`
+            );
           }
-          
+
           // Add a small delay between requests
-          await new Promise(resolve => setTimeout(resolve, 100));
-          
+          await new Promise((resolve) => setTimeout(resolve, 100));
         } catch (dayError) {
-          console.error(`Live fetch: Error fetching data for ${dateStr}:`, dayError);
+          console.error(
+            `Live fetch: Error fetching data for ${dateStr}:`,
+            dayError
+          );
           continue;
         }
       }
 
       if (allData.length > 0) {
-        console.log(`Live fetch completed: Retrieved ${allData.length} total records for last 7 days`);
+        console.log(
+          `Live fetch completed: Retrieved ${allData.length} total records for last 7 days`
+        );
         return NextResponse.json(allData);
       } else {
-        return NextResponse.json({ error: 'No data available for the last 7 days' }, { status: 404 });
+        return NextResponse.json(
+          { error: 'No data available for the last 7 days' },
+          { status: 404 }
+        );
       }
     } catch (error) {
       console.error(error);

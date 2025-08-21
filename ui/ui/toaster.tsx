@@ -1,12 +1,12 @@
-import { useToast } from "@/lib/hooks/use-toast";
+import { useToast } from '@/lib/hooks/use-toast';
 import {
   Toast,
   ToastClose,
   ToastDescription,
   ToastProvider,
   ToastTitle,
-  ToastViewport,
-} from "@/ui/ui/toast";
+  ToastViewport
+} from '@/ui/ui/toast';
 
 export function Toaster() {
   const { toasts } = useToast();
