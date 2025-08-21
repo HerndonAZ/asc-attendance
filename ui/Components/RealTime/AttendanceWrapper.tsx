@@ -22,17 +22,16 @@ import Search from '../Search';
 import { AttendanceTable } from './AttendanceTable';
 import { getTableData } from './actions';
 import { useRealTimeStore } from './store';
+import LastSevenDays from './LastSevenDays';
 
 const AttendanceWrapper = ({
   initialData,
   previousDayData,
-  timeUpdated,
-  last7days
+  timeUpdated
 }: {
   initialData: AttendanceRecord[];
   previousDayData: AttendanceRecord[];
   timeUpdated: string;
-  last7days: AttendanceRecord[] | undefined;
 }) => {
   const {
     setLoading,
@@ -69,7 +68,7 @@ const AttendanceWrapper = ({
     }
 
     if (date === 'last7days') {
-      setData(last7days || []);
+      setData(null);
     }
     setDay(date);
     setLoading(false);
@@ -149,11 +148,10 @@ const AttendanceWrapper = ({
               <AttendanceTable records={dataToDisplay} />
             </Card>
           )}
-          {dataToDisplay && day === 'last7days' && last7days && (
+          {day === 'last7days' && (
             <Suspense>
               <Card className="mt-6 bg-white dark:bg-gray-800 ">
-                7 days update
-                {JSON.stringify(last7days)}
+                <LastSevenDays />
               </Card>
             </Suspense>
           )}
