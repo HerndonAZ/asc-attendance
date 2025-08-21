@@ -10,16 +10,24 @@ export const revalidate = 0;
 
 const cacheKey = 'asc_perf_cache';
 
+/**
+ * Fetch attendance update data for the seven-day window surrounding a
+ * reference date. By default the reference date is today, but it may be
+ * overridden with the `start` query parameter (format: YYYY-MM-DD). The API
+ * responds with performances from three days before through three days after
+ * the reference date.
+ */
 export async function GET(req: NextRequest) {
   const cachedResponse = await redisGet(cacheKey);
   const searchParams = req.nextUrl.searchParams;
   const cron = searchParams.get('cron');
+  const startParam = searchParams.get('start');
 
   if (req.method !== 'GET') {
     return NextResponse.json('error: Method Not Allowed', { status: 405 });
   }
 
-  if (cachedResponse && !cron) {
+  if (cachedResponse && !cron && !startParam) {
     return NextResponse.json(JSON.parse(cachedResponse));
   } else if (cron) {
     await redis.del(cacheKey);
@@ -46,10 +54,18 @@ export async function GET(req: NextRequest) {
 
       if (data && Array.isArray(data)) {
         try {
-          // Get the reference date (assume first item in list)
-          const referenceDate = new Date(data[0].perf_dt);
+          // Determine the reference date.
+          // - use ?start=YYYY-MM-DD if provided and valid
+          // - otherwise fall back to the current date
+          let referenceDate = new Date();
+          if (startParam) {
+            const parsed = new Date(startParam);
+            if (!isNaN(parsed.getTime())) {
+              referenceDate = parsed;
+            }
+          }
 
-          // Define start and end range
+          // Compute the window three days before and after the reference date.
           const startDate = new Date(referenceDate);
           startDate.setDate(startDate.getDate() - 3);
 
@@ -62,8 +78,10 @@ export async function GET(req: NextRequest) {
             return perfDate >= startDate && perfDate <= endDate;
           });
 
-          // Cache and return filtered data
-          await redisSet(cacheKey, JSON.stringify(filteredData));
+          // Cache and return filtered data (only when not using a custom start)
+          if (!startParam) {
+            await redisSet(cacheKey, JSON.stringify(filteredData));
+          }
           console.log(filteredData, 'DATA FILTERED');
           return NextResponse.json(filteredData);
         } catch (err) {
