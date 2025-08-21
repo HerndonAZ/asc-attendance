@@ -1,4 +1,194 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@import url('https://use.typekit.net/smr3juh.css');
+@import 'tailwindcss';
+/* @import url('https://use.typekit.net/smr3juh.css'); */
+
+@custom-variant dark (&:is(.dark *));
+
+
+@layer base {
+  :root {
+    /* Font families */
+    --font-futura: 'futura-pt', sans-serif;
+    
+    /* Radix UI / shadcn/ui CSS variables */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    
+    /* Light mode tremor colors */
+    --tremor-brand-faint: 239 246 255; /* blue-50 */
+    --tremor-brand-muted: 191 219 254; /* blue-200 */
+    --tremor-brand-subtle: 96 165 250; /* blue-400 */
+    --tremor-brand: 59 130 246; /* blue-500 */
+    --tremor-brand-emphasis: 29 78 216; /* blue-700 */
+    --tremor-brand-inverted: 255 255 255; /* white */
+    
+    --tremor-background-muted: 249 250 251; /* gray-50 */
+    --tremor-background-subtle: 243 244 246; /* gray-100 */
+    --tremor-background: 255 255 255; /* white */
+    --tremor-background-emphasis: 55 65 81; /* gray-700 */
+    
+    --tremor-border: 229 231 235; /* gray-200 */
+    --tremor-ring: 229 231 235; /* gray-200 */
+    
+    --tremor-content-subtle: 156 163 175; /* gray-400 */
+    --tremor-content: 107 114 128; /* gray-500 */
+    --tremor-content-emphasis: 55 65 81; /* gray-700 */
+    --tremor-content-strong: 17 24 39; /* gray-900 */
+    --tremor-content-inverted: 255 255 255; /* white */
+  }
+  
+  .dark {
+    /* Radix UI / shadcn/ui dark mode variables */
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    
+    /* Dark mode tremor colors */
+    --tremor-background-muted: 31 41 55; /* gray-800 */
+    --tremor-background-subtle: 31 41 55; /* gray-800 */
+    --tremor-background: 17 24 39; /* gray-900 */
+    --tremor-background-emphasis: 55 65 81; /* gray-700 */
+    --tremor-background-inverted: 0 0 0; /* black */
+    
+    --tremor-border: 55 65 81; /* gray-700 */
+    --tremor-ring: 55 65 81; /* gray-700 */
+    
+    --tremor-content-subtle: 156 163 175; /* gray-400 */
+    --tremor-content: 209 213 219; /* gray-300 */
+    --tremor-content-emphasis: 229 231 235; /* gray-200 */
+    --tremor-content-strong: 243 244 246; /* gray-100 */
+    --tremor-content-inverted: 0 0 0; /* black */
+  }
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+@layer utilities {
+  /* Font family utilities */
+  .font-futura {
+    font-family: var(--font-futura);
+  }
+  
+  /* Tremor component styles */
+  .tremor-brand-faint {
+    background-color: rgb(var(--tremor-brand-faint));
+  }
+  
+  .tremor-brand-muted {
+    background-color: rgb(var(--tremor-brand-muted));
+  }
+  
+  .tremor-brand-subtle {
+    background-color: rgb(var(--tremor-brand-subtle));
+  }
+  
+  .tremor-brand {
+    background-color: rgb(var(--tremor-brand));
+  }
+  
+  .tremor-brand-emphasis {
+    background-color: rgb(var(--tremor-brand-emphasis));
+  }
+  
+  .tremor-brand-inverted {
+    background-color: rgb(var(--tremor-brand-inverted));
+  }
+  
+  /* Background utilities */
+  .tremor-background-muted {
+    background-color: rgb(var(--tremor-background-muted));
+  }
+  
+  .tremor-background-subtle {
+    background-color: rgb(var(--tremor-background-subtle));
+  }
+  
+  .tremor-background {
+    background-color: rgb(var(--tremor-background));
+  }
+  
+  .tremor-background-emphasis {
+    background-color: rgb(var(--tremor-background-emphasis));
+  }
+  
+  /* Border utilities */
+  .tremor-border {
+    border-color: rgb(var(--tremor-border));
+  }
+  
+  /* Ring utilities */
+  .tremor-ring {
+    --tw-ring-color: rgb(var(--tremor-ring));
+  }
+  
+  /* Content/text utilities */
+  .tremor-content-subtle {
+    color: rgb(var(--tremor-content-subtle));
+  }
+  
+  .tremor-content {
+    color: rgb(var(--tremor-content));
+  }
+  
+  .tremor-content-emphasis {
+    color: rgb(var(--tremor-content-emphasis));
+  }
+  
+  .tremor-content-strong {
+    color: rgb(var(--tremor-content-strong));
+  }
+  
+  .tremor-content-inverted {
+    color: rgb(var(--tremor-content-inverted));
+  }
+}

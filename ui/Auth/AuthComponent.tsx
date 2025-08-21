@@ -1,18 +1,18 @@
 'use client';
-import { Card, Title, Text, Button } from '@tremor/react';
+import { Card, CardContent } from '@/ui/ui/card';
 import { signIn } from 'next-auth/react';
-import React from 'react';
 import { SiteLogoLarge } from '../Components/SiteLogo';
 
 function AuthComponent() {
   return (
     <div className="p-4 md:p-10 mx-auto max-w-3xl">
       <Card className="space-y-4 mx-auto">
-        <div className="mx-auto flex justify-center scale-50">
-          <SiteLogoLarge />
-        </div>
-        <Title>Sign-in with your account.</Title>
-        <Text>Only valid azscience.org emails are allowed.</Text>
+        <CardContent className="pt-6">
+          <div className="mx-auto flex justify-center scale-50">
+            <SiteLogoLarge />
+          </div>
+          <h2 className="text-2xl font-semibold mb-2">Sign-in with your account.</h2>
+          <p className="text-muted-foreground mb-4">Only valid azscience.org emails are allowed.</p>
         <button
           onClick={() => signIn('google')}
           type="button"
@@ -33,6 +33,7 @@ function AuthComponent() {
           </svg>
           Sign in with Google
         </button>
+        </CardContent>
       </Card>
     </div>
   );

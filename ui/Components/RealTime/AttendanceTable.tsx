@@ -1,14 +1,13 @@
 'use client';
-import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import {
   Table,
   TableBody,
   TableCell,
   TableHead,
-  TableHeaderCell,
-  TableRow,
-  Text
-} from '@tremor/react';
+  TableHeader,
+  TableRow
+} from '@/ui/ui/table';
+import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import { formatDateForUI } from 'lib/hooks/convertDate';
 import { AttendanceRecord } from 'lib/types';
 import React, { useState } from 'react';
@@ -85,36 +84,36 @@ export function AttendanceTable({ records }: { records: any }) {
   return (
     recordsByTheater && (
       <Table className="">
-        <TableHead>
+        <TableHeader>
           <TableRow>
-            <TableHeaderCell className="text-black dark:text-white hidden">
+            <TableHead className="text-foreground hidden">
               Theater
-            </TableHeaderCell>
-            <TableHeaderCell className="text-black dark:text-white">
+            </TableHead>
+            <TableHead className="text-foreground">
               Season
-            </TableHeaderCell>
-            <TableHeaderCell className="text-black dark:text-white">
+            </TableHead>
+            <TableHead className="text-foreground">
               Attendance
-            </TableHeaderCell>
-            <TableHeaderCell className="text-black dark:text-white">
+            </TableHead>
+            <TableHead className="text-foreground">
               Revenue
-            </TableHeaderCell>
+            </TableHead>
             {!useMerged && (
-              <TableHeaderCell className="text-black dark:text-white">
+              <TableHead className="text-foreground">
                 Price Type
-              </TableHeaderCell>
+              </TableHead>
             )}
-            <TableHeaderCell className="text-black dark:text-white">
+            <TableHead className="text-foreground">
               Performance
-            </TableHeaderCell>
-            <TableHeaderCell className="text-black dark:text-white">
+            </TableHead>
+            <TableHead className="text-foreground">
               Date
-            </TableHeaderCell>
-            <TableHeaderCell className="text-black dark:text-white">
+            </TableHead>
+            <TableHead className="text-foreground">
               Time
-            </TableHeaderCell>
+            </TableHead>
           </TableRow>
-        </TableHead>
+        </TableHeader>
         <TableBody>
           {sortedSections.map(([theater, recordsForTheater]) => {
             const isExpanded = expandedSections.includes(theater);
@@ -134,7 +133,7 @@ export function AttendanceTable({ records }: { records: any }) {
               <React.Fragment key={theater}>
                 {/* Section header with expand/collapse */}
                 <TableRow>
-                  <TableHeaderCell className="text-gray-900 dark:text-gray-200 text-lg">
+                  <TableHead className="text-foreground text-lg">
                     <button
                       onClick={() => toggleSection(theater)}
                       className="flex items-center space-x-2 focus:outline-none"
@@ -146,7 +145,7 @@ export function AttendanceTable({ records }: { records: any }) {
                       )}
                       <span>{theater}</span>
                     </button>
-                  </TableHeaderCell>
+                  </TableHead>
                 </TableRow>
 
                 {/* Section records (expandable) */}
@@ -212,19 +211,19 @@ export function AttendanceTable({ records }: { records: any }) {
                             (record?.price_type_id?.toString() || '')
                           }
                         >
-                          <TableCell className="text-gray-900 dark:text-gray-100 hidden">
+                          <TableCell className="text-foreground hidden">
                             {record.theater}
                           </TableCell>
-                          <TableCell className="text-gray-900 dark:text-gray-100 pl-8">
+                          <TableCell className="text-foreground pl-8">
                             {record.production_season}
                           </TableCell>
-                          <TableCell className="text-gray-900 dark:text-gray-100">
+                          <TableCell className="text-foreground">
                             {record.attendance}
                           </TableCell>
                           <TableCell>
-                            <Text className="text-gray-900 dark:text-gray-100">
+                            <span className="text-foreground">
                               ${record.revenue}
-                            </Text>
+                            </span>
                           </TableCell>
                           {!useMerged && (
                             <TableCell>
@@ -237,27 +236,27 @@ export function AttendanceTable({ records }: { records: any }) {
                             </TableCell>
                           )}
                           <TableCell>
-                            <Text className="text-gray-900 dark:text-gray-100">
+                            <span className="text-foreground">
                               {record.production}
-                            </Text>
+                            </span>
                           </TableCell>
                           <TableCell>
-                            <Text className="text-gray-900 dark:text-gray-100">
+                            <span className="text-foreground">
                               {formattedDate}
-                            </Text>
+                            </span>
                           </TableCell>
                           <TableCell>
-                            <Text className="text-gray-900 dark:text-gray-100">
+                            <span className="text-foreground">
                               {hiddenTimes.includes(record.perf_time)
                                 ? '---'
                                 : record.perf_time}
-                            </Text>
+                            </span>
                           </TableCell>
                         </TableRow>
                       );
                     })}
                 {/* Section totals (always visible) */}
-                <TableRow className="bg-gray-50 dark:bg-gray-700 font-bold text-lg">
+                <TableRow className="bg-muted font-bold text-lg">
                   <TableCell className="hidden"></TableCell>
                   <TableCell className="pl-8">Section Total</TableCell>
                   <TableCell>{sectionTotals.attendance}</TableCell>
@@ -271,7 +270,7 @@ export function AttendanceTable({ records }: { records: any }) {
             );
           })}
           {/* Grand Total (Daily Total) */}
-          <TableRow className="bg-gray-200 dark:bg-gray-900 font-bold text-lg">
+          <TableRow className="bg-muted/50 font-bold text-lg">
             <TableCell className="hidden"></TableCell>
             <TableCell className="pl-8">Daily Revenue Total</TableCell>
             <TableCell></TableCell>

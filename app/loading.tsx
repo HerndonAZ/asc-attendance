@@ -1,6 +1,6 @@
 'use client';
+import { Alert, AlertDescription } from '@/ui/ui/alert';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
-import { Callout } from '@tremor/react';
 
 export default function Loading() {
   return (
@@ -26,14 +26,14 @@ export default function Loading() {
         <span className="sr-only">Loading...</span>
       </div>
       <div>
-        <Callout
-          className="mt-4 max-w-5xl px-8 mx-auto absolute right-0 left-0 top-4 dark:brightness-150 animate-pulse duration-300 ease-in-out"
-          title="Fetching data from Tessitura"
-          icon={CheckCircleIcon}
-          color="teal"
-        >
-          Please do not refresh as this can take up to 1 minute.
-        </Callout>
+        <Alert className="mt-4 max-w-5xl px-8 mx-auto absolute right-0 left-0 top-4 dark:brightness-150 animate-pulse duration-300 ease-in-out border-teal-200 bg-teal-50 dark:border-teal-800 dark:bg-teal-950">
+          <CheckCircleIcon className="h-4 w-4 text-teal-600" />
+          <AlertDescription className="text-teal-800 dark:text-teal-200">
+            <span className="font-medium">Fetching data from Tessitura</span>
+            <br />
+            Please do not refresh as this can take up to 1 minute.
+          </AlertDescription>
+        </Alert>
       </div>
     </main>
   );

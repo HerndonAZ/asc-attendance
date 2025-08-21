@@ -1,5 +1,5 @@
 'use client';
-import { Button } from '@tremor/react';
+import { Button } from '@/ui/ui/button';
 import { useState } from 'react';
 import { CSVLink } from 'react-csv';
 import { AiOutlineExport } from 'react-icons/ai';
@@ -28,7 +28,7 @@ function DownloadAsCSV({ csvData, date }: any) {
         <Button
           onMouseEnter={() => showTip(true)}
           onMouseLeave={() => showTip(false)}
-          className=""
+          className="border-2 border-gray-200 dark:border-gray-800 bg-[#80298F] hover:bg-[#4d1b56]"
         >
           <AiOutlineExport className="text-xl " />
         </Button>

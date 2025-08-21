@@ -36,9 +36,9 @@ export const requestTessitura = async <T = unknown>(
   }
 };
 
-export const fetchLast7Days = () => requestTessitura('/api/v1/getLast7Days');
+export const fetchLast7Days = async () => requestTessitura('/api/v1/getLast7Days');
 
-export const fetchToday = () => requestTessitura('/api/v1/getRealTimeToday');
+export const fetchToday = async () => requestTessitura('/api/v1/getRealTimeToday');
 
 export const fetchYesterday = async () => {
   const result = await requestTessitura<unknown[]>(

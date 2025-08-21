@@ -1,8 +1,8 @@
 import DismissButton from '@/app/dismiss-button';
 import { cookies } from 'next/headers';
 import React from 'react';
-function SiteInBetaNotice() {
-  const cookieStore = cookies();
+async function SiteInBetaNotice() {
+  const cookieStore = await cookies();
   const cookieString = 'site-beta-notice';
   const expirationTime = new Date(new Date().getTime() + 15 * 1440 * 1000); // In fifteen moinutes
 
@@ -17,7 +17,7 @@ function SiteInBetaNotice() {
           role="alert"
         >
           <svg
-            className="flex-shrink-0 w-4 h-4"
+            className="shrink-0 w-4 h-4"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"

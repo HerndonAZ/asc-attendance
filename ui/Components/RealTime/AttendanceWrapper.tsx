@@ -2,15 +2,9 @@
 import useTimePassed from '@/lib/hooks/useTimePassed';
 import DownloadAsCSV from '@/ui/Buttons/DownloadAsCSV';
 import RefreshButton from '@/ui/Buttons/RefreshButton';
-import {
-  Button,
-  Card,
-  DateRangePicker,
-  Flex,
-  Select,
-  SelectItem,
-  Text
-} from '@tremor/react';
+import { Button } from '@/ui/ui/button';
+import { Card } from '@/ui/ui/card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/ui/ui/select';
 
 //import { TabsContent, TabsTrigger, TabsList, Tabs } from '../Tremor/Components';
 import Loading from 'app/loading';
@@ -20,9 +14,9 @@ import { BsViewStacked } from 'react-icons/bs';
 import { TfiViewList } from 'react-icons/tfi';
 import Search from '../Search';
 import { AttendanceTable } from './AttendanceTable';
+import LastSevenDays from './LastSevenDays';
 import { getTableData } from './actions';
 import { useRealTimeStore } from './store';
-import LastSevenDays from './LastSevenDays';
 
 const AttendanceWrapper = ({
   initialData,
@@ -91,40 +85,44 @@ const AttendanceWrapper = ({
     !loading && (
       <div className="p-4 md:p-10 mx-auto max-w-7xl relative">
         <Suspense>
-          <h1 className="text-black dark:text-white text-xl font-bold uppercase">
+          <h1 className=" text-xl font-bold uppercase">
             Realtime Attendance
           </h1>
-          <Text className="text-gray-900 dark:text-gray-100">
+          <p className="text-foreground">
             Arizona Science Center realtime attendance and revenue reporting
-          </Text>
-          <Flex className="md:flex-row  flex-col hidden">
+          </p>
+          <div className="md:flex-row  flex-col hidden">
             <Search records={data || initialData} />
-            <DateRangePicker />
-          </Flex>
-          <Flex className="h-fit items-center mt-6">
-            <Flex className="justify-start space-x-2">
+            {/* DateRangePicker placeholder - implement with Calendar + Popover if needed */}
+          </div>
+          <div className="h-fit items-center mt-6 flex justify-between">
+            <div className="justify-start space-x-2">
               <Select
+                
                 //  disabled
-                enableClear={false}
                 defaultValue={day}
                 onValueChange={(v) => handleSetDate(v)}
-                className="w-40"
               >
-                <SelectItem className=" " value="today">
-                  Today
-                </SelectItem>
-                <SelectItem className=" " value="yesterday">
-                  Yesterday
-                </SelectItem>
-                <SelectItem className="hidden" value="last7days">
-                  Last 7 Days
-                </SelectItem>
+                <SelectTrigger className="w-40 dark:bg-gray-900 bg-gray-100">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className='dark:bg-gray-900 bg-gray-100'>
+                  <SelectItem value="today">
+                    Today
+                  </SelectItem>
+                  <SelectItem value="yesterday">
+                    Yesterday
+                  </SelectItem>
+                  <SelectItem value="last7days">
+                    Last 7 Days
+                  </SelectItem>
+                </SelectContent>
               </Select>
-            </Flex>
-            <Flex className="justify-end space-x-4">
-              <div hidden={day === 'yesterday'}>
-                <Text className="text-xs italic">Last Updated</Text>
-                <Text className="text-xs">{useTimePassed(timeUpdated)}</Text>
+            </div>
+            <div className="justify-end space-x-4 flex text-white">
+              <div className='text-black dark:text-white' hidden={day === 'yesterday'}>
+                <p className="text-xs italic">Last Updated</p>
+                <p className="text-xs">{useTimePassed(timeUpdated)}</p>
               </div>
               <RefreshButton disabled={day === 'yesterday'} />
               <div className="hidden">
@@ -141,16 +139,16 @@ const AttendanceWrapper = ({
                   <DownloadAsCSV csvData={data} date={day} />
                 </div>
               )}
-            </Flex>
-          </Flex>
+            </div>
+          </div>
           {dataToDisplay && day !== 'last7days' && (
-            <Card className="mt-6 bg-white dark:bg-gray-800 ">
+            <Card className="mt-6">
               <AttendanceTable records={dataToDisplay} />
             </Card>
           )}
           {day === 'last7days' && (
             <Suspense>
-              <Card className="mt-6 bg-white dark:bg-gray-800 ">
+              <Card className="mt-6">
                 <LastSevenDays />
               </Card>
             </Suspense>

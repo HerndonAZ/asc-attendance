@@ -1,92 +1,87 @@
 import {
   apiUrl,
-  credentials,
-  handleTessituraError
+  credentials
 } from 'lib/providers/Tessitura';
 import { NextRequest, NextResponse } from 'next/server';
-import { redis, redisGet, redisSet } from 'providers/Redis/redis';
+import { redisGet } from 'providers/Redis/redis';
 
 export const revalidate = 0;
 
-const cacheKey = 'asc_perf_cache';
+const cacheKey = 'asc_last_7_days_cache'; // Use the same key as the cron job
 
 /**
- * Fetch attendance update data for the seven-day window surrounding a
- * reference date. By default the reference date is today, but it may be
- * overridden with the `start` query parameter (format: YYYY-MM-DD). The API
- * responds with performances from three days before through three days after
- * the reference date.
+ * Fetch attendance update data for the last 7 days from Redis cache.
+ * Data is updated daily by a cron job at midnight Arizona time.
  */
 export async function GET(req: NextRequest) {
   const cachedResponse = await redisGet(cacheKey);
   const searchParams = req.nextUrl.searchParams;
-  const cron = searchParams.get('cron');
-  const startParam = searchParams.get('start');
+  const forceRefresh = searchParams.get('refresh');
 
   if (req.method !== 'GET') {
     return NextResponse.json('error: Method Not Allowed', { status: 405 });
   }
 
-  if (cachedResponse && !cron && !startParam) {
+  // Return cached data if available and not forcing refresh
+  if (cachedResponse && !forceRefresh) {
+    console.log('Returning cached last 7 days data');
     return NextResponse.json(JSON.parse(cachedResponse));
-  } else if (cron) {
-    await redis.del(cacheKey);
   }
 
+  // If no cached data or forcing refresh, fallback to live fetch
+  console.log('No cached data found, falling back to live fetch');
+  
   if (credentials) {
-    const endpoint = '/custom/Attendance_Update_priceType';
     try {
-      const response = await fetch(apiUrl + endpoint, {
-        cache: 'no-cache',
-        method: 'GET',
-        headers: {
-          Authorization: 'Basic ' + credentials,
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        }
-      });
-
-      if (!response.ok) {
-        await handleTessituraError(response);
-      }
-
-      const data = await response.json();
-
-      if (data && Array.isArray(data)) {
+      const today = new Date();
+      const allData = [];
+      
+      // Fetch data for each of the last 7 days independently
+      for (let i = 0; i < 7; i++) {
+        const date = new Date(today);
+        date.setDate(today.getDate() - i);
+        const dateStr = date.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+        
+        console.log(`Live fetch: Getting data for ${dateStr}...`);
+        
         try {
-          // Determine the reference date.
-          // - use ?start=YYYY-MM-DD if provided and valid
-          // - otherwise fall back to the current date
-          let referenceDate = new Date();
-          if (startParam) {
-            const parsed = new Date(startParam);
-            if (!isNaN(parsed.getTime())) {
-              referenceDate = parsed;
+          const endpoint = `/custom/Attendance_Update_priceType?perf_dt=${dateStr}`;
+          const response = await fetch(apiUrl + endpoint, {
+            cache: 'no-cache',
+            method: 'GET',
+            headers: {
+              Authorization: 'Basic ' + credentials,
+              'Content-Type': 'application/json',
+              Accept: 'application/json'
             }
-          }
-
-          // Compute the window three days before and after the reference date.
-          const startDate = new Date(referenceDate);
-          startDate.setDate(startDate.getDate() - 3);
-
-          const endDate = new Date(referenceDate);
-          endDate.setDate(endDate.getDate() + 3);
-
-          // Filter the performances within the 7-day range
-          const filteredData = data.filter((perf) => {
-            const perfDate = new Date(perf.perf_dt);
-            return perfDate >= startDate && perfDate <= endDate;
           });
 
-          // Cache and return filtered data (only when not using a custom start)
-          if (!startParam) {
-            await redisSet(cacheKey, JSON.stringify(filteredData));
+          if (!response.ok) {
+            console.warn(`Live fetch: Failed to fetch data for ${dateStr}: ${response.status}`);
+            continue; // Skip this date and continue with others
           }
-          console.log(filteredData, 'DATA FILTERED');
-          return NextResponse.json(filteredData);
-        } catch (err) {
-          return NextResponse.json(JSON.stringify(err));
+
+          const dayData = await response.json();
+          
+          if (dayData && Array.isArray(dayData)) {
+            allData.push(...dayData);
+            console.log(`Live fetch: Got ${dayData.length} records for ${dateStr}`);
+          }
+          
+          // Add a small delay between requests
+          await new Promise(resolve => setTimeout(resolve, 100));
+          
+        } catch (dayError) {
+          console.error(`Live fetch: Error fetching data for ${dateStr}:`, dayError);
+          continue;
         }
+      }
+
+      if (allData.length > 0) {
+        console.log(`Live fetch completed: Retrieved ${allData.length} total records for last 7 days`);
+        return NextResponse.json(allData);
+      } else {
+        return NextResponse.json({ error: 'No data available for the last 7 days' }, { status: 404 });
       }
     } catch (error) {
       console.error(error);

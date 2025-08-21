@@ -3,6 +3,10 @@
     {
       "path": "/api/v1/getAttendanceUpdatePreviousDate?cron=true",
       "schedule": "15 7 * * *"
+    },
+    {
+      "path": "/api/cron/cacheLast7Days",
+      "schedule": "0 7 * * *"
     }
   ],
   "functions": {

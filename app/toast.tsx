@@ -1,8 +1,8 @@
 import { cookies } from 'next/headers';
 import DismissButton from './dismiss-button';
 
-export default function Toast() {
-  const cookieStore = cookies();
+export default async function Toast() {
+  const cookieStore = await cookies();
   const isHidden = cookieStore.get('template-banner-hidden');
 
   return isHidden ? null : (

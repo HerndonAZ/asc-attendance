@@ -1,6 +1,7 @@
 'use client';
 
-import { Card, Metric, Text, Title, BarList, Flex, Grid } from '@tremor/react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/ui/ui/card';
+import { Progress } from '@/ui/ui/progress';
 import Chart from './chart';
 
 const website = [
@@ -47,32 +48,40 @@ const data = [
 export default function PlaygroundPage() {
   return (
     <main className="p-4 md:p-10 mx-auto max-w-7xl">
-      <Grid numItemsSm={2} numItemsLg={3} className="gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {data.map((item) => (
           <Card key={item.category}>
-            <Title>{item.category}</Title>
-            <Flex
-              justifyContent="start"
-              alignItems="baseline"
-              className="space-x-2"
-            >
-              <Metric>{item.stat}</Metric>
-              <Text>Total views</Text>
-            </Flex>
-            <Flex className="mt-6">
-              <Text>Pages</Text>
-              <Text className="text-right">Views</Text>
-            </Flex>
-            <BarList
-              data={item.data}
-              valueFormatter={(number: number) =>
-                Intl.NumberFormat('us').format(number).toString()
-              }
-              className="mt-2"
-            />
+            <CardHeader>
+              <CardTitle>{item.category}</CardTitle>
+              <div className="flex items-baseline space-x-2">
+                <span className="text-3xl font-bold">{item.stat}</span>
+                <span className="text-sm text-muted-foreground">Total views</span>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="flex justify-between text-sm text-muted-foreground mb-2">
+                <span>Pages</span>
+                <span>Views</span>
+              </div>
+              <div className="space-y-3">
+                {item.data.map((dataItem, index) => {
+                  const maxValue = Math.max(...item.data.map(d => d.value));
+                  const percentage = (dataItem.value / maxValue) * 100;
+                  return (
+                    <div key={dataItem.name} className="space-y-1">
+                      <div className="flex justify-between text-sm">
+                        <span className="truncate">{dataItem.name}</span>
+                        <span>{Intl.NumberFormat('us').format(dataItem.value)}</span>
+                      </div>
+                      <Progress value={percentage} className="h-2" />
+                    </div>
+                  );
+                })}
+              </div>
+            </CardContent>
           </Card>
         ))}
-      </Grid>
+      </div>
       <Chart />
     </main>
   );

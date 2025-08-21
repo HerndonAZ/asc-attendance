@@ -73,8 +73,8 @@ function getVariantStyles(tabVariant: TabsListVariant) {
         'data-[state=active]:border-blue-500 data-[state=active]:text-blue-500',
         'data-[state=active]:dark:border-blue-500 data-[state=active]:dark:text-blue-500',
         // disabled
-        'data-[disabled]:pointer-events-none',
-        'data-[disabled]:text-gray-300 data-[disabled]:dark:text-gray-700'
+        'data-disabled:pointer-events-none',
+        'data-disabled:text-gray-300 data-disabled:dark:text-gray-700'
       );
     case 'solid':
       return cx(
@@ -90,7 +90,7 @@ function getVariantStyles(tabVariant: TabsListVariant) {
         'data-[state=active]:bg-white data-[state=active]:text-gray-900 data-[state=active]:shadow',
         'data-[state=active]:dark:bg-gray-950 data-[state=active]:dark:text-gray-50',
         // disabled
-        'data-[disabled]:pointer-events-none data-[disabled]:text-gray-400 data-[disabled]:opacity-50 data-[disabled]:dark:text-gray-600'
+        'data-disabled:pointer-events-none data-disabled:text-gray-400 data-disabled:opacity-50 data-disabled:dark:text-gray-600'
       );
   }
 }
