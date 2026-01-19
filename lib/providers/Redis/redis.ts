@@ -1,5 +1,4 @@
 import { Redis } from 'ioredis';
-import { promisify } from 'util';
 
 const port = process.env.REDIS_PORT || '6379';
 
@@ -45,10 +44,11 @@ const redis = new Redis(getRedisUrl());
 const redisRestUrl = getRedisRestUrl();
 const redisRestToken = getRedisRestToken();
 
-const redisGet = promisify(redis.get).bind(redis);
-const redisSet = promisify(redis.set).bind(redis);
-const redisAppend = promisify(redis.append).bind(redis);
-const redisHSet = promisify(redis.hset).bind(redis); // Add this line
+// ioredis already returns Promises, no need to promisify
+const redisGet = redis.get.bind(redis);
+const redisSet = redis.set.bind(redis);
+const redisAppend = redis.append.bind(redis);
+const redisHSet = redis.hset.bind(redis);
 
 const fetchRedisCache = async (): Promise<unknown | Error> => {
   try {
