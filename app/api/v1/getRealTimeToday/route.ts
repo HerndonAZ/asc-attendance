@@ -38,6 +38,7 @@ export async function GET(req: NextRequest) {
         const data = await response.json();
 
         console.log(fetchDate);
+        console.log("This is the DATA for today", data)
 
         return NextResponse.json(data);
       } catch (error) {
