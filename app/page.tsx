@@ -1,8 +1,8 @@
 import AuthComponent from '@/ui/Auth/AuthComponent';
 import AttendanceWrapper from '@/ui/Components/RealTime/AttendanceWrapper';
 import { fetchToday, fetchYesterday } from 'lib/db';
-import Loading from './loading';
 import { auth } from './auth';
+import Loading from './loading';
 export const dynamic = 'force-dynamic';
 
 export default async function IndexPage() {
@@ -20,6 +20,7 @@ export default async function IndexPage() {
     try {
       const [{ data: today, time }, { data: yesterday }]: any =
         await Promise.all([fetchToday(), fetchYesterday()]);
+        console.log("Hit this if you are grabbing fetchtoday", fetchToday())
 
       const dataProps = {
         initialData: today || [],
