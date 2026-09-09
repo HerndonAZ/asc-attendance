@@ -48,6 +48,7 @@ const AttendanceWrapper = ({
   } = useRealTimeStore();
 
   useEffect(() => {
+    console.log("This is data after page.tsx", data);
     if (data) {
       getTableData({ data, useMerged });
     }
