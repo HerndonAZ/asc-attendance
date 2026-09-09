@@ -27,9 +27,8 @@ export default async function IndexPage() {
         previousDayData: yesterday || []
       };
 
-      console.log("Hit the data drops", {...dataProps})
-
       if (yesterday) {
+        console.log("This is for attendance (Hit data drops under yesterday)", {...dataProps})
         return <AttendanceWrapper {...dataProps} />;
       }
 
