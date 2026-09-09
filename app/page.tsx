@@ -22,9 +22,9 @@ export default async function IndexPage() {
         await Promise.all([fetchToday(), fetchYesterday()]);
 
       const dataProps = {
-        initialData: today || [],
+        initialData: today.Items || [],
         timeUpdated: time,
-        previousDayData: yesterday || []
+        previousDayData: yesterday.Items || []
       };
 
       console.log('Data to check if today is gotten correctly:', [{ data: today, time }, { data: yesterday }]);
