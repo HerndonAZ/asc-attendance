@@ -20,14 +20,14 @@ export default async function IndexPage() {
     try {
       const [{ data: today, time }, { data: yesterday }]: any =
         await Promise.all([fetchToday(), fetchYesterday()]);
-      
-      console.log("Hit this if you are grabbing fetchtoday", today)
 
       const dataProps = {
         initialData: today || [],
         timeUpdated: time,
         previousDayData: yesterday || []
       };
+
+      console.log("Hit the data drops", {...dataProps})
 
       if (yesterday) {
         return <AttendanceWrapper {...dataProps} />;
