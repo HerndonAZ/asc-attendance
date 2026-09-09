@@ -48,7 +48,6 @@ const AttendanceWrapper = ({
   } = useRealTimeStore();
 
   useEffect(() => {
-    console.log("This is data after page.tsx", data);
     if (data) {
       getTableData({ data, useMerged });
     }
@@ -60,7 +59,7 @@ const AttendanceWrapper = ({
     setLoading(true);
 
     if (date === 'today') {
-      // console.log(initialData)
+      console.log("Hit today on attendance wrapper", initialData);
       setData(initialData);
     }
 
