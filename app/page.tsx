@@ -27,7 +27,9 @@ export default async function IndexPage() {
         previousDayData: yesterday || []
       };
 
+      console.log('Data to check if today is gotten correctly:', [{ data: today, time }, { data: yesterday }]);
       console.log('Data collection:', <AttendanceWrapper {...dataProps}/>);
+
 
       if (yesterday) {
         return <AttendanceWrapper {...dataProps} />;
