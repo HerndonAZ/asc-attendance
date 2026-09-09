@@ -1,6 +1,6 @@
 import AuthComponent from '@/ui/Auth/AuthComponent';
 import AttendanceWrapper from '@/ui/Components/RealTime/AttendanceWrapper';
-import { fetchLast7Days, fetchToday, fetchYesterday } from 'lib/db';
+import { fetchToday, fetchYesterday } from 'lib/db';
 import { auth } from './auth';
 import Loading from './loading';
 export const dynamic = 'force-dynamic';
@@ -18,10 +18,13 @@ export default async function IndexPage() {
 
   if (session) {
     try {
-      const [{ data: today, time }, { data: yesterday }, { data: seven_days }]: any =
-        await Promise.all([fetchToday(), fetchYesterday(), fetchLast7Days()]);
+      const [{ data: today, time }, { data: yesterday }]: any =
+        await Promise.all([fetchToday(), fetchYesterday()]);
 
-        console.log("This is the last 7 days data from page.tsx", seven_days);
+      // const [{ data: seven_days }]: any =
+      //   await Promise.all([fetchLast7Days()]);
+
+        // console.log("This is the last 7 days data from page.tsx", seven_days);
 
       const dataProps = {
         initialData: today.Items || [],
