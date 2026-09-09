@@ -28,6 +28,7 @@ export default async function IndexPage() {
       };
 
       console.log('Data to check if today is gotten correctly:', [{ data: today, time }, { data: yesterday }]);
+      console.log("Tosee today Items", today.Items);
       console.log('Data collection:', <AttendanceWrapper {...dataProps}/>);
 
 
