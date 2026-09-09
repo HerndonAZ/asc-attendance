@@ -59,7 +59,6 @@ const AttendanceWrapper = ({
     setLoading(true);
 
     if (date === 'today') {
-      console.log("Hit today on attendance wrapper", initialData);
       setData(initialData);
     }
 

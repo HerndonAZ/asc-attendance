@@ -27,6 +27,8 @@ export default async function IndexPage() {
         previousDayData: yesterday || []
       };
 
+      console.log('Data collection:', <AttendanceWrapper {...dataProps}/>);
+
       if (yesterday) {
         return <AttendanceWrapper {...dataProps} />;
       }
