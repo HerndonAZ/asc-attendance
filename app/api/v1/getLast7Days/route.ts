@@ -80,8 +80,6 @@ export async function GET(req: NextRequest) {
         }
       }
 
-      console.log("Hi After the for loop", allData);
-
       if (allData.length > 0) {
         console.log(
           `Live fetch completed: Retrieved ${allData.length} total records for last 7 days`
