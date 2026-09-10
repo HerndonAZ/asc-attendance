@@ -61,12 +61,11 @@ export async function GET(req: NextRequest) {
           }
 
           const dayData = await response.json();
-          console.log("Each Data being fetched", dayData);
 
-          if (dayData && Array.isArray(dayData)) {
-            allData.push(...dayData);
+          if (dayData && Array.isArray(dayData.Items)) {
+            allData.push(...dayData.Items);
             console.log(
-              `Live fetch: Got ${dayData.length} records for ${dateStr}`
+              `Live fetch: Got ${dayData.Items.length} records for ${dateStr}`
             );
           }
 
