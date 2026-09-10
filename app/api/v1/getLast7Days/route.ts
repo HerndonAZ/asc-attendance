@@ -61,6 +61,7 @@ export async function GET(req: NextRequest) {
           }
 
           const dayData = await response.json();
+          console.log("Each Data being fetched", dayData);
 
           if (dayData && Array.isArray(dayData)) {
             allData.push(...dayData);
@@ -79,6 +80,8 @@ export async function GET(req: NextRequest) {
           continue;
         }
       }
+
+      console.log("Hi After the for loop", allData);
 
       if (allData.length > 0) {
         console.log(
