@@ -28,6 +28,13 @@ export const useRealTimeStore = create<RealTimeStore>((set) => ({
 }));
 export const priceTypes = [
   {
+    id: 52,
+    longName: 'Employee Exchange',
+    shortName: 'EMP EXC',
+    badgeColor:
+      'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300'
+  },
+  {
     id: 1026,
     longName: 'All-Inclusive Adult',
     shortName: 'AI Adult',
