@@ -210,7 +210,7 @@ export const priceTypes = [
     badgeColor: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'
   },
   {
-    id: 17,
+    id: 1103,
     longName: 'Group Child Under3',
     shortName: 'GRPCH Under 3',
     badgeColor: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'
