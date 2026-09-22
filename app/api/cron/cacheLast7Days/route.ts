@@ -60,10 +60,10 @@ export async function GET(req: NextRequest) {
 
         const dayData = await response.json();
 
-        if (dayData && Array.isArray(dayData)) {
-          allData.push(...dayData);
+        if (dayData && Array.isArray(dayData.Items)) {
+          allData.push(...dayData.Items);
           console.log(
-            `Successfully fetched ${dayData.length} records for ${dateStr}`
+            `Successfully fetched ${dayData.Items.length} records for ${dateStr}`
           );
         } else {
           console.log(`No data returned for ${dateStr}`);
