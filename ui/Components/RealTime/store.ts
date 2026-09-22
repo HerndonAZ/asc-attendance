@@ -206,13 +206,19 @@ export const priceTypes = [
   {
     id: 16,
     longName: 'Group Adult',
-    shortName: 'Group Adult',
+    shortName: 'GRP ADT',
     badgeColor: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'
   },
   {
     id: 17,
-    longName: 'Group Child',
-    shortName: 'Group Child',
+    longName: 'Group Child Under3',
+    shortName: 'GRPCH Under 3',
+    badgeColor: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'
+  },
+  {
+    id: 17,
+    longName: 'Group Child (3-17)',
+    shortName: 'GRPCH 3-17',
     badgeColor: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'
   },
   {
