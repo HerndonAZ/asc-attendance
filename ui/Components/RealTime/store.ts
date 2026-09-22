@@ -36,50 +36,50 @@ export const priceTypes = [
   },
   {
     id: 1026,
-    longName: 'All-Inclusive Adult',
-    shortName: 'AI Adult',
+    longName: 'Discovery Pass Adult',
+    shortName: 'DCV ADULT',
     badgeColor:
       'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300'
   },
   {
     id: 1027,
-    longName: 'All-Inclusive Child (3-17)',
-    shortName: 'AI Child',
+    longName: 'Discovery Pass Child (3-17)',
+    shortName: 'DCV CHILD',
     badgeColor:
       'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300'
   },
   {
     id: 1037,
-    longName: 'All-Inclusive Child (Under 3)',
-    shortName: 'AI Under 3',
+    longName: 'Discovery Pass Child Under 3',
+    shortName: 'DCV Under 3',
     badgeColor:
       'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300'
   },
   {
     id: 1036,
-    longName: 'All-Inclusive Military',
-    shortName: 'AI Military',
+    longName: 'Discovery Pass Military',
+    shortName: 'DCV MILIT',
     badgeColor:
       'bg-purple-200 text-purple-900 dark:bg-purple-800 dark:text-purple-200'
   },
   {
     id: 1035,
-    longName: 'All-Inclusive Senior (62+)',
-    shortName: 'AI Senior',
+    longName: 'Discovery Pass Senior (62+)',
+    shortName: 'DCV SENIOR',
     badgeColor:
       'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300'
   },
   {
     id: 1034,
-    longName: 'All-Inclusive Student',
-    shortName: 'AI Student',
+    longName: 'Discovery Pass Student',
+    shortName: 'DCV STDNT',
     badgeColor:
       'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300'
   },
   {
-    id: 1039,
-    longName: 'All-Inclusive Child 0-5 (GST)',
-    shortName: 'AI Child 0-5',
+    id: 1182,
+    longName: 'Discovery Pass LapChild Under3',
+    shortName: 'DCV LapU3',
     badgeColor:
       'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300'
   },
