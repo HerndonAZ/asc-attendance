@@ -129,8 +129,8 @@ export const priceTypes = [
   },
   {
     id: 1031,
-    longName: 'General Admission Senior (62+)',
-    shortName: 'GA Senior',
+    longName: 'General Admission Military',
+    shortName: 'GA Military',
     badgeColor:
       'bg-green-200 text-green-900 dark:bg-green-800 dark:text-green-200'
   },
