@@ -114,9 +114,23 @@ export const priceTypes = [
       'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300'
   },
   {
+    id: 1185,
+    longName: '	General Admission Child Under3',
+    shortName: 'GA SeatU3',
+    badgeColor:
+      'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300'
+  },
+  {
+    id: 1185,
+    longName: '	General Admission Lap Under3',
+    shortName: 'GA LapU3',
+    badgeColor:
+      'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300'
+  },
+  {
     id: 2,
     longName: 'General Admission Child (3-17)',
-    shortName: 'GA Child',
+    shortName: 'GA Child 3-17',
     badgeColor:
       'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300'
   },
