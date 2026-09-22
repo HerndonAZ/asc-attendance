@@ -258,9 +258,37 @@ export const priceTypes = [
       'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300'
   },
   {
+    id: 27,
+    longName: 'Group Teacher',
+    shortName: 'GRP TCHR',
+    badgeColor:
+      'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'
+  },
+  {
+    id: 72,
+    longName: 'Group Chaperone',
+    shortName: 'GRP CHP',
+    badgeColor:
+      'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'
+  },
+  {
     id: 73,
     longName: 'T1 Group Chaperones',
-    shortName: 'T1 Adult',
+    shortName: 'T1 CHAP',
+    badgeColor:
+      'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300'
+  },
+  {
+    id: 348,
+    longName: 'T1 Group Teacher',
+    shortName: 'T1 TCHR',
+    badgeColor:
+      'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300'
+  },
+  {
+    id: 996,
+    longName: 'T1 Group Child (3-17)',
+    shortName: 'T1 CHILD',
     badgeColor:
       'bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300'
   },
