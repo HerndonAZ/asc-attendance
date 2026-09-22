@@ -257,7 +257,7 @@ export function AttendanceTable({ records }: { records: any }) {
           <TableRow className="bg-muted/50 font-bold text-lg">
             <TableCell className="hidden"></TableCell>
             <TableCell className="pl-8">Daily Revenue Total</TableCell>
-            <TableCell></TableCell>
+            <TableCell>{grandTotals.attendance}</TableCell>
             <TableCell>${grandTotals.revenue.toFixed(2)}</TableCell>
             {!useMerged && <TableCell></TableCell>}
             <TableCell></TableCell>
