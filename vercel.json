@@ -11,13 +11,13 @@
   ],
   "functions": {
     "app/api/v1/**/*": {
-      "maxDuration": 300
+      "maxDuration": 800
     },
     "app/**/*": {
-      "maxDuration": 300
+      "maxDuration": 800
     },
     "app/api/cron/**/*": {
-      "maxDuration": 300
+      "maxDuration": 800
     }
   }
 }
