@@ -257,6 +257,12 @@ export const priceTypes = [
     badgeColor: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'
   },
   {
+    id: 615,
+    longName: 'School Group',
+    shortName: 'Schl Grp',
+    badgeColor: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'
+  },
+  {
     id: 78,
     longName: 'VIP Pass',
     shortName: 'VIP Pass',
