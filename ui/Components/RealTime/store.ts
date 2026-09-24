@@ -336,6 +336,27 @@ export const priceTypes = [
       'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300'
   },
   {
+    id: 1188,
+    longName: '	MuseumsForAll Lap Child Under3',
+    shortName: 'MFACH LapU3',
+    badgeColor:
+      'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300'
+  },
+  {
+    id: 1215,
+    longName: 'MFA Member Child (3-17)',
+    shortName: 'MFAMEM CH',
+    badgeColor:
+      'bg-yellow-800 text-yellow-100 dark:bg-yellow-300 dark:text-yellow-900'
+  },
+  {
+    id: 1219,
+    longName: 'MFA Member Adult',
+    shortName: 'MFAMEM ADT',
+    badgeColor:
+      'bg-yellow-800 text-yellow-100 dark:bg-yellow-300 dark:text-yellow-900'
+  },
+  {
     id: 27,
     longName: 'Group Teacher',
     shortName: 'GRP TCHR',
