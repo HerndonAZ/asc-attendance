@@ -239,6 +239,12 @@ export const priceTypes = [
     badgeColor: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300'
   },
   {
+    id: 45,
+    longName: '	Group Comp',
+    shortName: 'GRP CMP',
+    badgeColor: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300'
+  },
+  {
     id: 16,
     longName: 'Group Adult',
     shortName: 'GRP ADT',
@@ -254,6 +260,24 @@ export const priceTypes = [
     id: 17,
     longName: 'Group Child (3-17)',
     shortName: 'GRPCH 3-17',
+    badgeColor: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'
+  },
+  {
+    id: 615,
+    longName: 'School Group',
+    shortName: 'Schl Grp',
+    badgeColor: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'
+  },
+  {
+    id: 1050,
+    longName: 'Explorer Pass Group Child 3-17',
+    shortName: 'EP GRP CHD',
+    badgeColor: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'
+  },
+  {
+    id: 1055,
+    longName: '	Explorer Pass Group Adult',
+    shortName: 'EP GRP ADT',
     badgeColor: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'
   },
   {
