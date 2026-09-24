@@ -1,6 +1,6 @@
 import { Redis } from 'ioredis';
 
-const port = process.env.REDIS_PORT || '6379';
+const port = process.env.REDIS_PORT || '6380';
 
 const getRedisUrl = () => {
   const baseUrl = process.env.AZURE_REDIS_URL;
