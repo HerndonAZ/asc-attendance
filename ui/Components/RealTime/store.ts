@@ -219,6 +219,34 @@ export const priceTypes = [
       'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300'
   },
   {
+    id: 1214,
+    longName: 'PLT Member Adult',
+    shortName: 'PLTMEM Adult',
+    badgeColor:
+      'bg-orange-800 text-orange-100 dark:bg-orange-300 dark:text-orange-900'
+  },
+  {
+    id: 1210,
+    longName: 'PLT Member Child (3-17)',
+    shortName: 'PLTMEM CH',
+    badgeColor:
+      'bg-orange-800 text-orange-100 dark:bg-orange-300 dark:text-orange-900'
+  },
+  {
+    id: 1211,
+    longName: 'PLT Member Child Under3',
+    shortName: 'PLTMEM U3',
+    badgeColor:
+      'bg-orange-800 text-orange-100 dark:bg-orange-300 dark:text-orange-900'
+  },
+  {
+    id: 1212,
+    longName: '	PLT Member Lap Child Under3',
+    shortName: 'PLTMEM L3',
+    badgeColor:
+      'bg-orange-800 text-orange-100 dark:bg-orange-300 dark:text-orange-900'
+  },
+  {
     id: 1038,
     longName: 'All-Inclusive Child 6-17 (GST)',
     shortName: 'AI Child 6-17',
@@ -346,6 +374,13 @@ export const priceTypes = [
     id: 1215,
     longName: 'MFA Member Child (3-17)',
     shortName: 'MFAMEM CH',
+    badgeColor:
+      'bg-yellow-800 text-yellow-100 dark:bg-yellow-300 dark:text-yellow-900'
+  },
+  {
+    id: 1216,
+    longName: 'MFA Member Child Under 3',
+    shortName: 'MFAMEM U3',
     badgeColor:
       'bg-yellow-800 text-yellow-100 dark:bg-yellow-300 dark:text-yellow-900'
   },
