@@ -205,6 +205,13 @@ export const priceTypes = [
       'bg-orange-200 text-orange-900 dark:bg-orange-800 dark:text-orange-200'
   },
   {
+    id: 340,
+    longName: 'Member Promo',
+    shortName: 'Mem Promo',
+    badgeColor:
+      'bg-orange-200 text-orange-900 dark:bg-orange-800 dark:text-orange-200'
+  },
+  {
     id: 1010,
     longName: 'Member Child 6-17 (GST)',
     shortName: 'Mem Child 6-17',
