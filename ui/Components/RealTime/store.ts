@@ -438,6 +438,18 @@ export const priceTypes = [
     longName: 'Title 1 Arizona',
     shortName: 'T1 Student',
     badgeColor: 'bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-300'
+  },
+  {
+    id: 1148,
+    longName: 'Fac Bar - Service Fee',
+    shortName: 'Bar Service',
+    badgeColor: 'bg-teal-800 text-teal-100 dark:bg-teal-300 dark:text-teal-900'
+  },
+  {
+    id: 1269,
+    longName: 'Fac Bar - Tickets: Beer/Liquor',
+    shortName: 'BarTixLiqr',
+    badgeColor: 'bg-teal-800 text-teal-100 dark:bg-teal-300 dark:text-teal-900'
   }
   //{ id: 1009, longName: "T1 Group Chaperones", shortName: "T1 Chaperones", badgeColor: "bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300" },
   //{ id: 1006, longName: "Title 1 Arizona", shortName: "Title 1 AZ", badgeColor: "bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-300" },
