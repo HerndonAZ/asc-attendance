@@ -31,6 +31,7 @@ export async function GET(req: NextRequest) {
       const fetchDate = getYesterday();
       const cache = !cron ? 'force-cache' : 'no-cache';
       const customApiEndpoint = `/custom/Attendance_Update_priceType?perf_dt=${fetchDate}`;
+      const response_for_ticket_count = `/TXN/Performances?startDate=${fetchDate}&endDate=${fetchDate}`;
 
       const response = await fetch(apiUrl + customApiEndpoint, {
         cache: cache,
@@ -41,6 +42,18 @@ export async function GET(req: NextRequest) {
           Accept: 'application/json'
         }
       });
+
+      const response_2 = await fetch(apiUrl + response_for_ticket_count, {
+        cache: cache,
+        method: 'GET',
+        headers: {
+          Authorization: `Basic ${credentials}`,
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        }
+      });
+
+      console.log('This is the response for ticket count', response_2);
 
       if (!response.ok) {
         await handleTessituraError(response);
