@@ -25,6 +25,7 @@ export default async function IndexPage() {
       //   await Promise.all([fetchLast7Days()]);
 
       // console.log("This is the last 7 days data from page.tsx", seven_days);
+      console.log("Yesterdays Items to see ticket counts", yesterday.Items);
 
       const dataProps = {
         initialData: today.Items || [],
