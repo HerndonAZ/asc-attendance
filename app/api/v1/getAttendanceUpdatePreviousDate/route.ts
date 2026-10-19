@@ -53,7 +53,9 @@ export async function GET(req: NextRequest) {
         }
       });
 
-      console.log('This is the response for ticket count', response_2);
+      if (!response_2.ok) {
+       console.log('This is the response for ticket count', response_2);
+      }
 
       if (!response.ok) {
         await handleTessituraError(response);
