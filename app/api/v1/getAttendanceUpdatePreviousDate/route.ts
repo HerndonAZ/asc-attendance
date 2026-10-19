@@ -61,7 +61,7 @@ export async function GET(req: NextRequest) {
         await handleTessituraError(response);
       }
 
-      const data = await response.json();
+      const data = await response_2.json();
 
       if (data) {
         try {
