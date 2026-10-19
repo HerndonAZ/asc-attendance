@@ -43,25 +43,21 @@ export async function GET(req: NextRequest) {
         }
       });
 
-      const response_2 = await fetch(apiUrl + response_for_ticket_count, {
-        cache: cache,
-        method: 'GET',
-        headers: {
-          Authorization: `Basic ${credentials}`,
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        }
-      });
-
-      if (!response_2.ok) {
-       console.log('This is the response for ticket count', response_2);
-      }
+      // const response_2 = await fetch(apiUrl + response_for_ticket_count, {
+      //   cache: cache,
+      //   method: 'GET',
+      //   headers: {
+      //     Authorization: `Basic ${credentials}`,
+      //     'Content-Type': 'application/json',
+      //     Accept: 'application/json'
+      //   }
+      // });
 
       if (!response.ok) {
         await handleTessituraError(response);
       }
 
-      const data = await response_2.json();
+      const data = await response.json();
 
       if (data) {
         try {
