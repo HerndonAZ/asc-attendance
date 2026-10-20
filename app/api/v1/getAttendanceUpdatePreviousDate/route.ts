@@ -33,17 +33,7 @@ export async function GET(req: NextRequest) {
       const customApiEndpoint = `/custom/Attendance_Update_priceType?perf_dt=${fetchDate}`;
       const response_for_ticket_count = `/TXN/Performances?startDate=${fetchDate}&endDate=${fetchDate}`;
 
-      const response = await fetch(apiUrl + customApiEndpoint, {
-        cache: cache,
-        method: 'GET',
-        headers: {
-          Authorization: `Basic ${credentials}`,
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        }
-      });
-
-      // const response_2 = await fetch(apiUrl + response_for_ticket_count, {
+      // const response = await fetch(apiUrl + customApiEndpoint, {
       //   cache: cache,
       //   method: 'GET',
       //   headers: {
@@ -53,11 +43,27 @@ export async function GET(req: NextRequest) {
       //   }
       // });
 
-      if (!response.ok) {
-        await handleTessituraError(response);
+      const response_2 = await fetch(apiUrl + response_for_ticket_count, {
+        // cache: cache,
+        method: 'GET',
+        headers: {
+          Authorization: `Basic ${credentials}`,
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        }
+      });
+
+      // if (!response.ok) {
+      //   await handleTessituraError(response);
+      // }
+
+      // const data = await response.json();
+
+      if (!response_2.ok) {
+        await handleTessituraError(response_2);
       }
 
-      const data = await response.json();
+      const data = await response_2.json();
 
       if (data) {
         try {
