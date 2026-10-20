@@ -43,12 +43,9 @@ export const fetchToday = async () =>
   requestTessitura('/api/v1/getRealTimeToday');
 
 export const fetchYesterday = async () => {
-  // const result = await requestTessitura<unknown[]>(
-  //   '/api/v1/getAttendanceUpdatePreviousDate',
-  //   'force-cache'
-  // );
   const result = await requestTessitura<unknown[]>(
     '/api/v1/getAttendanceUpdatePreviousDate',
+    'force-cache'
   );
 
   console.log("Layer ebfore main", result);
