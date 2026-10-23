@@ -19,6 +19,7 @@ export function AttendanceTable({ records }: { records: any }) {
   const customOrder = [
     'Arizona Science Center',
     'Groups',
+    'Facility Rentals',
     'Sybil B Harrington Galleries',
     'Irene P. Flinn Theater',
     'Evans Family Sky Cycle',
@@ -40,9 +41,16 @@ export function AttendanceTable({ records }: { records: any }) {
       let theaterName = record.theater!;
       if (
         theaterName === 'Sybil B Harrington Galleries' &&
-        record.perf_name === 'Group Admissions'
+        record.perf_name === 'Groups Admissions'
       ) {
         theaterName = 'Groups';
+      }
+
+      if (
+        theaterName === 'Arizona Science Center' &&
+        record.production === 'Facility Rentals'
+      ) {
+        theaterName = 'Facility Rentals';
       }
 
       if (!acc[theaterName]) {
